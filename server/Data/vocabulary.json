@@ -1,0 +1,7044 @@
+{
+  "turkish": {
+    "words": [
+      {
+        "tr": "ve",
+        "de": "und",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "62d16d29-eff1-44b2-ba40-2e6f8dc750a1"
+      },
+      {
+        "tr": "bir",
+        "de": "ein/eine",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c4ec8608-b133-44d7-9339-7f78a06f0608"
+      },
+      {
+        "tr": "bu",
+        "de": "dieser/diese/dieses",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "27e0197b-7084-4d5e-bec7-68c38a9f25a5"
+      },
+      {
+        "tr": "değil",
+        "de": "nicht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "050cd7f1-79be-4c4d-b390-d69da8b8ed60"
+      },
+      {
+        "tr": "ben",
+        "de": "ich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3b9a4fce-a034-4ea8-a916-7fbaac11f5df"
+      },
+      {
+        "tr": "sen",
+        "de": "du",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1feb2323-64e5-4311-b5e0-31d06825cb70"
+      },
+      {
+        "tr": "o",
+        "de": "er/sie/es",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e550aa95-b6e7-46ef-af1a-5496d82a757d"
+      },
+      {
+        "tr": "ne",
+        "de": "was",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "44c5454c-e2bf-4225-a89f-042e8adbf697"
+      },
+      {
+        "tr": "var",
+        "de": "es gibt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "59e3f1de-4782-40a5-92ba-b4f6c4898753"
+      },
+      {
+        "tr": "yok",
+        "de": "es gibt nicht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f3ec7e40-8e09-44af-bd99-e0c7cb7f47f5"
+      },
+      {
+        "tr": "evet",
+        "de": "ja",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3289eb20-96e7-4ec3-9c61-e8434a63ce8b"
+      },
+      {
+        "tr": "hayır",
+        "de": "nein",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4f94d1cf-0688-4c3f-ad52-1e9dcace241b"
+      },
+      {
+        "tr": "lütfen",
+        "de": "bitte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "90b37544-ea43-4532-9428-037553e726a1"
+      },
+      {
+        "tr": "teşekkürler",
+        "de": "danke",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "491723fa-3995-4465-9be1-4ccccb742cb8"
+      },
+      {
+        "tr": "merhaba",
+        "de": "hallo",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e62cb570-ee4d-4bf3-b908-847c7280c86d"
+      },
+      {
+        "tr": "güle güle",
+        "de": "tschüss",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6f76468f-3a8e-46f3-b0a6-81d165cf0f55"
+      },
+      {
+        "tr": "iyi",
+        "de": "gut",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "af9c0ac0-d4f8-4418-95eb-27ac31b3915f"
+      },
+      {
+        "tr": "kötü",
+        "de": "schlecht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "67a23503-4bae-4863-867c-259dbf71800c"
+      },
+      {
+        "tr": "bugün",
+        "de": "heute",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d436fbbd-cc2b-4963-ac22-7143e41f70f0"
+      },
+      {
+        "tr": "yarın",
+        "de": "morgen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "eaa1a383-681b-47c7-9ec2-a32c47fb2f47"
+      },
+      {
+        "tr": "dün",
+        "de": "gestern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2d683de5-68d5-4ac3-a6c2-9cf2e878c7da"
+      },
+      {
+        "tr": "şimdi",
+        "de": "jetzt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "704b5f2f-1e3a-48f4-bf24-469318ac3d79"
+      },
+      {
+        "tr": "sonra",
+        "de": "später",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "08d90aff-260b-4fcd-aa0d-71344ac9f7ea"
+      },
+      {
+        "tr": "aile",
+        "de": "Familie",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ab1c4c52-5302-47bb-935e-4f8bc3af9692"
+      },
+      {
+        "tr": "anne",
+        "de": "Mutter",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6a28860a-ca85-43cc-ba89-6654656a2fe8"
+      },
+      {
+        "tr": "baba",
+        "de": "Vater",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "898b1b76-07a0-436f-94ae-10596a9e8ff9"
+      },
+      {
+        "tr": "kardeş",
+        "de": "Geschwister",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fa2725a2-5996-4c27-9f04-3f925f5b9598"
+      },
+      {
+        "tr": "ev",
+        "de": "Haus",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4e0673d4-857c-469b-a8ad-1ea4454dfbab"
+      },
+      {
+        "tr": "yemek",
+        "de": "Essen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c27f105f-0629-4f53-b2be-3626fbdf0ae4"
+      },
+      {
+        "tr": "su",
+        "de": "Wasser",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "222fa8bd-b042-43f6-8496-8753953628aa"
+      },
+      {
+        "tr": "gitmek",
+        "de": "gehen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e65ecd14-ea43-43c6-9260-f727f2750f6b"
+      },
+      {
+        "tr": "gelmek",
+        "de": "kommen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "93233330-ad95-4ee1-8793-7cd5ab280c77"
+      },
+      {
+        "tr": "yapmak",
+        "de": "machen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d88098cb-f619-469a-b3e3-eda8f619aa0c"
+      },
+      {
+        "tr": "söylemek",
+        "de": "sagen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1749183f-a6a0-4727-8371-9f201465274d"
+      },
+      {
+        "tr": "bilmek",
+        "de": "wissen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ff8d590b-f2de-4acf-8371-47163d3f2dbf"
+      },
+      {
+        "tr": "istiyorum",
+        "de": "ich möchte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4b16e765-0a0b-4b3b-94e1-d97b5b00329c"
+      },
+      {
+        "tr": "ihtiyacım var",
+        "de": "ich brauche",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b85a4610-6520-4f63-988c-de8ad72dad8a"
+      },
+      {
+        "tr": "nerede",
+        "de": "wo",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9c0749a5-42dc-4658-b619-29b8274f76ba"
+      },
+      {
+        "tr": "nasıl",
+        "de": "wie",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e201f0a2-70d8-4dd2-80d0-791b3d4410be"
+      },
+      {
+        "tr": "neden",
+        "de": "warum",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2eb16404-b21c-4484-a88f-d227338cc389"
+      },
+      {
+        "tr": "kim",
+        "de": "wer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5ce51ce9-4ad2-44a3-8c06-029e4cae315a"
+      },
+      {
+        "tr": "zaman",
+        "de": "Zeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7e7e324b-3ba8-4c0d-a557-173e33ba094f"
+      },
+      {
+        "tr": "para",
+        "de": "Geld",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f0bf7954-e513-448a-8491-8d631ce6c9e3"
+      },
+      {
+        "tr": "şehir",
+        "de": "Stadt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fa9cb42c-4735-4ef4-99bc-04e5b86a8ba2"
+      },
+      {
+        "tr": "ülke",
+        "de": "Land",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "dd2d7283-e568-4d7d-a4fd-952b827c0dd6"
+      },
+      {
+        "tr": "dil",
+        "de": "Sprache",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "33099106-0a4a-4ada-bd0e-d3d44539f181"
+      },
+      {
+        "tr": "Türkçe",
+        "de": "Türkisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4a4c0bd2-2aad-48a3-92bb-537a7145e14a"
+      },
+      {
+        "tr": "Almanca",
+        "de": "Deutsch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7ae83760-d14d-4bdc-8b18-8ba2eb499a52"
+      },
+      {
+        "tr": "İngilizce",
+        "de": "Englisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f4660729-1b24-43e1-9b7b-5e2ae6996f43"
+      },
+      {
+        "tr": "kolay",
+        "de": "einfach",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "743392f9-93c3-4c20-9ca4-876db2069e80"
+      },
+      {
+        "tr": "zor",
+        "de": "schwierig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "232cdbd7-8ccf-421b-b190-0b85fa0d9212"
+      },
+      {
+        "tr": "küçük",
+        "de": "klein",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "add1ec09-62a4-4b22-81d9-ff8517d6a844"
+      },
+      {
+        "tr": "büyük",
+        "de": "groß",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8ce24cfc-c402-4174-a0c4-91216bef4b22"
+      },
+      {
+        "tr": "yeni",
+        "de": "neu",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "646b269f-23f0-4d67-9dbd-50fc5e1f646a"
+      },
+      {
+        "tr": "eski",
+        "de": "alt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f9b75230-f6b9-47dd-a8ec-0463e0a3cf86"
+      },
+      {
+        "tr": "güzel",
+        "de": "schön",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1dd70ffd-79f4-47d3-9ca3-a86a7d7bcd89"
+      },
+      {
+        "tr": "çirkin",
+        "de": "hässlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "337bc239-9565-438a-95d0-7df82dc0bf48"
+      },
+      {
+        "tr": "sıcak",
+        "de": "heiß",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e2b8df4e-0945-4fd2-a39b-24e5a1dbf86b"
+      },
+      {
+        "tr": "soğuk",
+        "de": "kalt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c158969f-dc97-42a5-a317-fb354cecb05d"
+      },
+      {
+        "tr": "aç",
+        "de": "hungrig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fdfec654-864a-43f7-aa53-d2dfb5b53e20"
+      },
+      {
+        "tr": "tok",
+        "de": "satt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1710554d-ca64-4409-92b2-11a2a0d89b56"
+      },
+      {
+        "tr": "genç",
+        "de": "jung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "df76af0f-ff6e-4fe1-a1d5-096bb82e79c9"
+      },
+      {
+        "tr": "yaşlı",
+        "de": "alt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b70a9cd9-5905-49d2-8f54-746ff5023c72"
+      },
+      {
+        "tr": "erkek",
+        "de": "Mann",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "677ebbf3-5973-4f3a-8b0f-1fc5d39fdea8"
+      },
+      {
+        "tr": "kadın",
+        "de": "Frau",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "84b3413a-3e5a-4ba0-b148-6c8321fa0cfa"
+      },
+      {
+        "tr": "çocuk",
+        "de": "Kind",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "707e1e05-fc3b-453c-a388-a82b31374472"
+      },
+      {
+        "tr": "hasta",
+        "de": "krank",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "83ceba35-c8cf-4772-bad5-0798c7b01e3c"
+      },
+      {
+        "tr": "sağlıklı",
+        "de": "gesund",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c715f4d4-6137-4022-976e-aed02945df72"
+      },
+      {
+        "tr": "gün",
+        "de": "Tag",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "26743770-362c-4604-8c33-67e40fa131c8"
+      },
+      {
+        "tr": "hafta",
+        "de": "Woche",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fb0d16ca-3a46-41a5-8b7f-6ea5e344ab8a"
+      },
+      {
+        "tr": "ay",
+        "de": "Monat",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "731f8272-e11e-409e-a8ee-f8afd316dac2"
+      },
+      {
+        "tr": "yıl",
+        "de": "Jahr",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "42305e84-9c76-4b3c-9d76-29c107da5232"
+      },
+      {
+        "tr": "sabah",
+        "de": "Morgen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f12caa6b-d847-47a4-9148-7ec7d9701a0e"
+      },
+      {
+        "tr": "akşam",
+        "de": "Abend",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "12e75409-3ac2-488a-8eca-0105634aba05"
+      },
+      {
+        "tr": "gece",
+        "de": "Nacht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "dd035441-5792-4b2d-bd22-1eef3020e418"
+      },
+      {
+        "tr": "pazartesi",
+        "de": "Montag",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a3287307-6bc5-4c7b-8f61-2993eaa6f809"
+      },
+      {
+        "tr": "salı",
+        "de": "Dienstag",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "aefc4d18-8b88-4aa1-abb2-1564577d8bc7"
+      },
+      {
+        "tr": "çarşamba",
+        "de": "Mittwoch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a734e61a-e1c8-4caf-9038-54a817d0c1c5"
+      },
+      {
+        "tr": "perşembe",
+        "de": "Donnerstag",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fd57e488-6c16-466f-ba1c-555c1ea0d19a"
+      },
+      {
+        "tr": "cuma",
+        "de": "Freitag",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8439763a-7ec7-4c80-945f-9d7b86ceb6fe"
+      },
+      {
+        "tr": "cumartesi",
+        "de": "Samstag",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d7a3fcc2-c8e1-41dc-ae1a-9ce3a427e222"
+      },
+      {
+        "tr": "pazar",
+        "de": "Sonntag",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "595094f3-8083-4777-aab5-393f93ad1b07"
+      },
+      {
+        "tr": "ocak",
+        "de": "Januar",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b4f1afb7-1740-40ac-85fb-472f953ee200"
+      },
+      {
+        "tr": "şubat",
+        "de": "Februar",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e744fd11-1155-49e1-9a18-13db44d4dc0d"
+      },
+      {
+        "tr": "mart",
+        "de": "März",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f9dd49d4-0b14-4e56-bb95-732585faea17"
+      },
+      {
+        "tr": "nisan",
+        "de": "April",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ffa22139-fe3c-490a-b92b-adb04bfc647b"
+      },
+      {
+        "tr": "mayıs",
+        "de": "Mai",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e22eadcd-4859-428e-8ced-f55551c6076f"
+      },
+      {
+        "tr": "haziran",
+        "de": "Juni",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a00ee2a9-f50b-4876-9604-5f15a641802e"
+      },
+      {
+        "tr": "temmuz",
+        "de": "Juli",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8a425963-a48e-4186-90bd-075bbd3e37b6"
+      },
+      {
+        "tr": "ağustos",
+        "de": "August",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f21a0ceb-53c2-430b-b8a3-afd1503e3d13"
+      },
+      {
+        "tr": "eylül",
+        "de": "September",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d1ed7755-53da-47d7-9b53-ce054fb84cb7"
+      },
+      {
+        "tr": "ekim",
+        "de": "Oktober",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "057d109d-3020-4476-be30-498784fa87d5"
+      },
+      {
+        "tr": "kasım",
+        "de": "November",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4ce739a0-e3d6-4546-8278-e7d3d15c6d56"
+      },
+      {
+        "tr": "aralık",
+        "de": "Dezember",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a7fdbe54-642b-4ede-b0ab-d5fb3fcdb2a3"
+      },
+      {
+        "tr": "sokak",
+        "de": "Straße",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b1c5712b-7fe3-4dfe-9a0d-bf59598a0f72"
+      },
+      {
+        "tr": "restoran",
+        "de": "Restaurant",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8dfa41fe-d962-46f6-bc7f-b72cbc71ce0a"
+      },
+      {
+        "tr": "otel",
+        "de": "Hotel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5f696b9e-2b30-4b9d-bce2-6364898c370a"
+      },
+      {
+        "tr": "hastane",
+        "de": "Krankenhaus",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "da6d9d23-20f8-40fa-805b-4f1b9cc9ab81"
+      },
+      {
+        "tr": "eczane",
+        "de": "Apotheke",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8dc6cd74-60e2-4a98-856e-79b59d0449a8"
+      },
+      {
+        "tr": "market",
+        "de": "Supermarkt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cefd6254-5a39-4236-a38f-0196bb432b1a"
+      },
+      {
+        "tr": "okul",
+        "de": "Schule",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7a7fd2e1-8cb2-4555-a0d5-7d4df07646d1"
+      },
+      {
+        "tr": "üniversite",
+        "de": "Universität",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "03b386f1-2015-4bb0-926c-6d51baf32f4f"
+      },
+      {
+        "tr": "iş",
+        "de": "Arbeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ba50b69c-5ea9-4b76-ab82-7c72420b79de"
+      },
+      {
+        "tr": "araba",
+        "de": "Auto",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d85b6a2f-55be-41fe-b6ea-16c8182d7a88"
+      },
+      {
+        "tr": "otobüs",
+        "de": "Bus",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8a9fdc47-2fb9-419b-9e30-a4e53ad8219b"
+      },
+      {
+        "tr": "tren",
+        "de": "Zug",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3b73e002-9e38-4673-8623-2de116e7ea22"
+      },
+      {
+        "tr": "uçak",
+        "de": "Flugzeug",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2eb87fa8-86fa-410c-82ab-6f6a04b007d2"
+      },
+      {
+        "tr": "pasaport",
+        "de": "Reisepass",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d4456732-dedf-4909-891f-95ce7f4b185e"
+      },
+      {
+        "tr": "bilet",
+        "de": "Ticket",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "61e512dc-2f20-473f-9a03-84186c9fb72e"
+      },
+      {
+        "tr": "yol",
+        "de": "Weg",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c52a2fe1-a544-49ec-b8cd-f45989705ff1"
+      },
+      {
+        "tr": "harita",
+        "de": "Karte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e239b955-e959-444f-b2f6-061579705ee7"
+      },
+      {
+        "tr": "adres",
+        "de": "Adresse",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "963a091f-012b-4337-8918-9391d3b29e3e"
+      },
+      {
+        "tr": "telefon",
+        "de": "Telefon",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "898d7af9-2601-4035-bc56-dda1d3a1802d"
+      },
+      {
+        "tr": "numara",
+        "de": "Nummer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2df63e65-9d76-4b31-88ec-d2ee77803990"
+      },
+      {
+        "tr": "mesaj",
+        "de": "Nachricht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d3715aaf-77d8-408f-8f22-70faf23c6192"
+      },
+      {
+        "tr": "e-posta",
+        "de": "E-Mail",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f068837c-5dc9-4eed-a51c-a959ad9a668a"
+      },
+      {
+        "tr": "internet",
+        "de": "Internet",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b525cb23-e36d-4ae0-bf21-0e9b293efbc8"
+      },
+      {
+        "tr": "el",
+        "de": "Hand",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "faa53716-9b55-4a59-9b60-d6fed0135217"
+      },
+      {
+        "tr": "ayak",
+        "de": "Fuß",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9aad55a3-787d-4a30-9a70-66c626817151"
+      },
+      {
+        "tr": "baş",
+        "de": "Kopf",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0b0ff449-90c3-4f05-ba75-a93c967b1675"
+      },
+      {
+        "tr": "göz",
+        "de": "Auge",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a3054d28-bc45-4f28-aa91-bebe644f47d4"
+      },
+      {
+        "tr": "kulak",
+        "de": "Ohr",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ec59435c-c66f-4ece-b8f5-28809c5aa8ed"
+      },
+      {
+        "tr": "ağız",
+        "de": "Mund",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "84927eab-f713-4d1e-9df8-ad4b9312f5ca"
+      },
+      {
+        "tr": "burun",
+        "de": "Nase",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "eefa13fe-5793-4b7d-9e27-e1dcd4e1ff36"
+      },
+      {
+        "tr": "saç",
+        "de": "Haar",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "06676558-07d6-4520-9a65-9ee83a028f05"
+      },
+      {
+        "tr": "yüz",
+        "de": "Gesicht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fe0689ca-f1a4-4cf5-b561-24d29ed37dc5"
+      },
+      {
+        "tr": "kalp",
+        "de": "Herz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0ebd9665-dfe5-482e-8d62-e976eaf4af5d"
+      },
+      {
+        "tr": "mide",
+        "de": "Magen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "dc7ae138-1799-4070-b72a-948c708d9b20"
+      },
+      {
+        "tr": "sırt",
+        "de": "Rücken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "99a8e7a5-408a-46e3-b9c6-a53a7676ada1"
+      },
+      {
+        "tr": "et",
+        "de": "Fleisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ff7896d5-7157-43a3-aa3b-1f21d5400697"
+      },
+      {
+        "tr": "sebze",
+        "de": "Gemüse",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9e2efff8-4f27-4185-ade0-ec5c6bc8cac7"
+      },
+      {
+        "tr": "meyve",
+        "de": "Obst",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "77b2ae78-0a1a-4b71-9ecc-ca292be3a027"
+      },
+      {
+        "tr": "ekmek",
+        "de": "Brot",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "867c5be3-f8d5-4e4c-ad2f-00a8dfd26dbe"
+      },
+      {
+        "tr": "peynir",
+        "de": "Käse",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "135bd472-ad0f-49b9-b83e-dfbc8e47903c"
+      },
+      {
+        "tr": "yumurta",
+        "de": "Ei",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "94f03561-a00a-4fe2-ba54-902e94de78be"
+      },
+      {
+        "tr": "tavuk",
+        "de": "Huhn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a5721c7d-34fe-4085-9a42-2df83bd68401"
+      },
+      {
+        "tr": "balık",
+        "de": "Fisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "aff1934f-88b0-443b-a3cd-930a106887fc"
+      },
+      {
+        "tr": "pilav",
+        "de": "Reis",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "802e2aee-8ae5-417b-8970-21cf2e5154c2"
+      },
+      {
+        "tr": "makarna",
+        "de": "Nudeln",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6cfa1f05-5f8f-42b2-8bbf-4ed08b2ca16d"
+      },
+      {
+        "tr": "çorba",
+        "de": "Suppe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "89cf2915-a290-450a-8c12-8fb732ab7aed"
+      },
+      {
+        "tr": "tuz",
+        "de": "Salz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2271320f-5255-48be-8b38-a2e6621098ab"
+      },
+      {
+        "tr": "biber",
+        "de": "Pfeffer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7627f4aa-a4e4-433d-b836-d8f31d473507"
+      },
+      {
+        "tr": "şeker",
+        "de": "Zucker",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "66ee63a1-f5c4-4d3a-bd1f-1434fadb822d"
+      },
+      {
+        "tr": "kahve",
+        "de": "Kaffee",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "83082d3a-3cba-46db-920c-f0423e80fc45"
+      },
+      {
+        "tr": "çay",
+        "de": "Tee",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "89073935-f8c7-42dc-8952-7537e245b8fc"
+      },
+      {
+        "tr": "süt",
+        "de": "Milch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "90efea70-6482-460c-a580-4361c8efe2ad"
+      },
+      {
+        "tr": "meyve suyu",
+        "de": "Saft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c4f18c8c-cf56-4811-aabf-16ac793691b3"
+      },
+      {
+        "tr": "bira",
+        "de": "Bier",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1bbb5e1a-9f1f-4c2c-9352-b4f569b580a9"
+      },
+      {
+        "tr": "şarap",
+        "de": "Wein",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f447d445-ff7b-40ed-9eff-1e5479d0743c"
+      },
+      {
+        "tr": "su",
+        "de": "Wasser",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7d563a8b-397a-4a2e-a725-68364e8a3687"
+      },
+      {
+        "tr": "kırmızı",
+        "de": "rot",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d701f9a5-7c84-4f7c-8d6a-3020ec5f6b70"
+      },
+      {
+        "tr": "mavi",
+        "de": "blau",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ea23ec2c-25db-42b0-83f9-ddacc7c12471"
+      },
+      {
+        "tr": "yeşil",
+        "de": "grün",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b745a254-106f-49df-a9d8-37dce09e5be7"
+      },
+      {
+        "tr": "sarı",
+        "de": "gelb",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c98d6063-3171-4336-bee9-0e6763c542f9"
+      },
+      {
+        "tr": "beyaz",
+        "de": "weiß",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "82adc01d-f873-4c36-8b44-99adddf748c5"
+      },
+      {
+        "tr": "siyah",
+        "de": "schwarz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e7994363-d80d-4612-b03c-6ac6e4e19544"
+      },
+      {
+        "tr": "gri",
+        "de": "grau",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6e880a1d-86a9-4d47-86fa-b25569f24e41"
+      },
+      {
+        "tr": "kahverengi",
+        "de": "braun",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "143c94e0-8b55-4b65-af18-eae903e406b2"
+      },
+      {
+        "tr": "turuncu",
+        "de": "orange",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f90f4630-a52d-45dd-a7c6-f0cbe4ce935e"
+      },
+      {
+        "tr": "mor",
+        "de": "lila",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5dc61207-2308-40aa-b613-789f0de07e54"
+      },
+      {
+        "tr": "pembe",
+        "de": "rosa",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "97d0afa1-30b0-4ff9-9570-da2bdf7f9ed2"
+      },
+      {
+        "tr": "birinci",
+        "de": "erste",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7a505241-68f6-4639-8d72-d4bbcf484f51"
+      },
+      {
+        "tr": "ikinci",
+        "de": "zweite",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b9e0b1dc-3153-4eca-ae3b-91f808e3647e"
+      },
+      {
+        "tr": "üçüncü",
+        "de": "dritte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "34350f5d-9f4b-4d36-8530-7448360fbdb0"
+      },
+      {
+        "tr": "dördüncü",
+        "de": "vierte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a5cc9c16-e088-4d80-bb85-74492bd6f6ce"
+      },
+      {
+        "tr": "beşinci",
+        "de": "fünfte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "58e2d4dd-10fd-4d66-a481-af80c6ea75d4"
+      },
+      {
+        "tr": "altıncı",
+        "de": "sechste",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c7c3b02b-4e43-434a-b833-13e36f3463d6"
+      },
+      {
+        "tr": "yedinci",
+        "de": "siebte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c56f3453-1344-4657-8bfe-6ddfb2e3a8ff"
+      },
+      {
+        "tr": "sekizinci",
+        "de": "achte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "80631848-3657-4ab5-8bf6-e05eb8c725f3"
+      },
+      {
+        "tr": "dokuzuncu",
+        "de": "neunte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "89621775-a581-4dcf-803e-1a474273eeb6"
+      },
+      {
+        "tr": "onuncu",
+        "de": "zehnte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "62be0aa8-b882-4608-b658-17123f9e74cf"
+      },
+      {
+        "tr": "sıfır",
+        "de": "null",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d9f7d2ef-89d9-4236-b1d0-6a5b592475d0"
+      },
+      {
+        "tr": "bir",
+        "de": "eins",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4b01e414-b15b-45cd-a36e-d4aec1e52903"
+      },
+      {
+        "tr": "iki",
+        "de": "zwei",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "957fcfc7-ebef-40cb-a588-4a0ee73d20fe"
+      },
+      {
+        "tr": "üç",
+        "de": "drei",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "817f890a-6678-40d7-bb43-460245d45f14"
+      },
+      {
+        "tr": "dört",
+        "de": "vier",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "01eb3430-727c-4c3c-98b0-7f5ab086cad2"
+      },
+      {
+        "tr": "beş",
+        "de": "fünf",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2425b72d-63a4-4eb0-826a-5b245085c64c"
+      },
+      {
+        "tr": "altı",
+        "de": "sechs",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d7032cf6-d0bd-4c63-92ac-0ed06bca7b4b"
+      },
+      {
+        "tr": "yedi",
+        "de": "sieben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9cd41bf8-6882-4550-be9c-7179eee706ac"
+      },
+      {
+        "tr": "sekiz",
+        "de": "acht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "602bf7fd-1221-44a9-a036-f479444aaae6"
+      },
+      {
+        "tr": "dokuz",
+        "de": "neun",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "445c7a92-50eb-4377-b714-0b5eebfdff38"
+      },
+      {
+        "tr": "on",
+        "de": "zehn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e5079ea6-806c-41eb-83a2-7c67c2764c99"
+      },
+      {
+        "tr": "yirmi",
+        "de": "zwanzig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2b0f67df-ad2f-462b-8b84-7e3d24d5e387"
+      },
+      {
+        "tr": "otuz",
+        "de": "dreißig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f015d7c6-e2d4-4100-8792-f898ee28a470"
+      },
+      {
+        "tr": "kırk",
+        "de": "vierzig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a00873eb-8f52-400e-9828-93c2cc378f08"
+      },
+      {
+        "tr": "elli",
+        "de": "fünfzig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2fb6b9c4-2d5b-4a3d-8c0e-23f0737e8bc2"
+      },
+      {
+        "tr": "altmış",
+        "de": "sechzig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "985e808c-6c24-4d42-bd4b-8a88ab2b7ab0"
+      },
+      {
+        "tr": "yetmiş",
+        "de": "siebzig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d68e3a7a-ac9d-4f27-a40c-bcc284fb1214"
+      },
+      {
+        "tr": "seksen",
+        "de": "achtzig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5819a041-15c6-4dd9-a75d-fd30e8c3c86a"
+      },
+      {
+        "tr": "doksan",
+        "de": "neunzig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5d943bb4-9cce-4686-978e-d7714089428b"
+      },
+      {
+        "tr": "yüz",
+        "de": "hundert",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "943f760c-d8b1-45d1-a1e6-d3b9cbb1fce8"
+      },
+      {
+        "tr": "bin",
+        "de": "tausend",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "38545b37-992f-47a6-a042-2a0332e6c8be"
+      },
+      {
+        "tr": "milyon",
+        "de": "Million",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0c19328a-52d3-4249-9125-83f0f5becd63"
+      },
+      {
+        "tr": "önce",
+        "de": "vor",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "33bf8352-5831-4111-ac43-6a88cf7a6d37"
+      },
+      {
+        "tr": "sonra",
+        "de": "nach",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "616cf543-9588-4762-bab9-5690d5d24e54"
+      },
+      {
+        "tr": "ile",
+        "de": "mit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "aa0691e1-3882-491d-b951-0ffbadcdb15c"
+      },
+      {
+        "tr": "için",
+        "de": "für",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4a9d1026-965e-48d4-badc-b5f8f2da4dd4"
+      },
+      {
+        "tr": "kadar",
+        "de": "bis",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c2f96c0a-b7e4-4fa6-aea1-390a85900655"
+      },
+      {
+        "tr": "doğru",
+        "de": "richtig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d9c007da-39cb-4cfd-b415-b4f1f7c4e8df"
+      },
+      {
+        "tr": "yanlış",
+        "de": "falsch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6ecd65ac-8cb9-4fbf-8acb-07ef198d6c0c"
+      },
+      {
+        "tr": "hızlı",
+        "de": "schnell",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "621fdd1d-f8da-4b9a-8674-87ff2d178c8e"
+      },
+      {
+        "tr": "yavaş",
+        "de": "langsam",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bb764e5f-6b88-4a91-ab1c-feb58992d813"
+      },
+      {
+        "tr": "pahalı",
+        "de": "teuer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bc615a83-4774-4902-8b63-74f6527cc0b1"
+      },
+      {
+        "tr": "ucuz",
+        "de": "billig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e377f574-fe96-43f8-aa3f-335979734e47"
+      },
+      {
+        "tr": "boş",
+        "de": "leer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ac2a3a96-7f28-4c8e-a4a8-398e5af254e7"
+      },
+      {
+        "tr": "dolu",
+        "de": "voll",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b4428683-7238-46c4-9d41-506467bdea04"
+      },
+      {
+        "tr": "temiz",
+        "de": "sauber",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "87ebb98f-d211-45af-b386-68461240b9b1"
+      },
+      {
+        "tr": "kirli",
+        "de": "schmutzig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9a7f20bd-ad87-43ca-a166-d0fbe6701154"
+      },
+      {
+        "tr": "ıslak",
+        "de": "nass",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7b790103-63f8-45fc-b9cd-b16ec59be590"
+      },
+      {
+        "tr": "kuru",
+        "de": "trocken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c90a2b9e-421b-4b83-b962-3d50dfe401f4"
+      },
+      {
+        "tr": "sert",
+        "de": "hart",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d0160e4e-91d1-4fa6-b374-6b315bf17271"
+      },
+      {
+        "tr": "yumuşak",
+        "de": "weich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9d28d5d7-c817-4212-8e7e-30fd7826bc44"
+      },
+      {
+        "tr": "ağır",
+        "de": "schwer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d0662960-112f-4490-9f1f-deb5caa90f7f"
+      },
+      {
+        "tr": "hafif",
+        "de": "leicht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a37ca447-d398-4fdf-8f2d-9acfb8aab4fc"
+      },
+      {
+        "tr": "uzun",
+        "de": "lang",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "77a7543b-c882-4a41-a75d-af606fc6c02e"
+      },
+      {
+        "tr": "kısa",
+        "de": "kurz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1f4f39be-ce0a-4b04-aea9-bea6c09fbb8d"
+      },
+      {
+        "tr": "geniş",
+        "de": "breit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a1972b6a-e085-4bda-a633-951e648fa00d"
+      },
+      {
+        "tr": "dar",
+        "de": "eng",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d3a6174f-964e-446b-8ecb-3fb13aca883a"
+      },
+      {
+        "tr": "yüksek",
+        "de": "hoch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d42031a8-3c21-4794-955c-0b842a3e8ef4"
+      },
+      {
+        "tr": "alçak",
+        "de": "niedrig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3ad7316a-3684-4ae7-af0a-b2792f8cd49f"
+      },
+      {
+        "tr": "derin",
+        "de": "tief",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "647b976b-fbf4-4636-abdd-f868700d3703"
+      },
+      {
+        "tr": "sığ",
+        "de": "flach",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ae040132-06dd-4be3-8296-7f6ce91d404d"
+      },
+      {
+        "tr": "yakın",
+        "de": "nah",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "32e50d1f-6905-4a51-bb32-2731de86d9de"
+      },
+      {
+        "tr": "uzak",
+        "de": "fern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e946369e-2025-4ee5-9399-9a505e190a7d"
+      },
+      {
+        "tr": "sağ",
+        "de": "rechts",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f50db6c5-e1be-4f48-8f4f-fb4ec7a7c5ce"
+      },
+      {
+        "tr": "sol",
+        "de": "links",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fadcb464-781e-4c34-884d-824657d62c02"
+      },
+      {
+        "tr": "düz",
+        "de": "geradeaus",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5fe81d6f-cbaf-41ba-9380-0569310133f7"
+      },
+      {
+        "tr": "yukarı",
+        "de": "oben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "522cb9f2-e0c9-4eda-8b5a-6ba65175ca01"
+      },
+      {
+        "tr": "aşağı",
+        "de": "unten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a2364549-fc6a-4b70-9df2-d0093fb5e022"
+      },
+      {
+        "tr": "içinde",
+        "de": "innen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d1e41285-9536-48e8-8f86-7e4ee7c5ec7b"
+      },
+      {
+        "tr": "dışında",
+        "de": "außen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4aaf582d-5ee3-4a4c-9c14-b68be12c248b"
+      },
+      {
+        "tr": "önünde",
+        "de": "vorne",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1994da0a-9c3f-4465-9758-1bfcedc15a8e"
+      },
+      {
+        "tr": "arkasında",
+        "de": "hinten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e05081f7-6d2c-4253-ba5a-42f990946cd2"
+      },
+      {
+        "tr": "yanında",
+        "de": "neben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "19dca89d-14f4-43b6-8685-381a9ef4085f"
+      },
+      {
+        "tr": "arasında",
+        "de": "zwischen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2a508fb7-eab6-4d03-9681-c14835f9f643"
+      },
+      {
+        "tr": "karşısında",
+        "de": "gegenüber",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "68b48e91-b21c-4907-8664-4a0704f63630"
+      },
+      {
+        "tr": "altında",
+        "de": "unter",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "efcd28d3-fd81-468f-b8e1-9c6d338b6b46"
+      },
+      {
+        "tr": "üstünde",
+        "de": "über",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "da676bec-02ea-4325-b353-078a6bc5c020"
+      },
+      {
+        "tr": "yakında",
+        "de": "in der Nähe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4a40f6e7-1ec2-4303-bd1b-9a3fae6861a1"
+      },
+      {
+        "tr": "biraz",
+        "de": "ein bisschen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "76d98c0f-c339-447c-8184-dbc57ca72fab"
+      },
+      {
+        "tr": "çok",
+        "de": "viel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f56bd144-9716-4737-b4b1-ae12c3acbe5a"
+      },
+      {
+        "tr": "az",
+        "de": "wenig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "275f3d24-686c-4805-b4f6-245d265b691a"
+      },
+      {
+        "tr": "hep",
+        "de": "immer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "afdb221f-2a1d-4333-8832-8509a0449a15"
+      },
+      {
+        "tr": "hiç",
+        "de": "nie",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b698195b-f8a8-471a-aa79-c64663d419bc"
+      },
+      {
+        "tr": "bazen",
+        "de": "manchmal",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bdd0c01b-a1ae-492f-b3de-cb8da9e2dc2c"
+      },
+      {
+        "tr": "sık sık",
+        "de": "oft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6470c84b-88a6-4c54-8107-59453b5e4bce"
+      },
+      {
+        "tr": "nadiren",
+        "de": "selten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "eeff9e73-3df1-4005-a2f5-8f7e36048f13"
+      },
+      {
+        "tr": "belki",
+        "de": "vielleicht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e35de313-8a3a-4b11-9e34-cf59130b3eb7"
+      },
+      {
+        "tr": "tabii",
+        "de": "natürlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d1d929d9-7ee9-4ec9-9d99-5331a1ee8f5e"
+      },
+      {
+        "tr": "kesinlikle",
+        "de": "bestimmt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f28238bd-b2d6-4614-b669-d6aa862d51fd"
+      },
+      {
+        "tr": "asla",
+        "de": "niemals",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6a6e098f-2862-4dca-9707-bc091accb723"
+      },
+      {
+        "tr": "hemen",
+        "de": "sofort",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e7fb6270-982f-41a7-a2de-44affaa9ae63"
+      },
+      {
+        "tr": "yavaşça",
+        "de": "langsam",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a79790ab-3478-4403-b182-1a57649c0db1"
+      },
+      {
+        "tr": "hızlıca",
+        "de": "schnell",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "77e09021-779b-42a2-9255-37c0ce47bf34"
+      },
+      {
+        "tr": "dikkatli",
+        "de": "vorsichtig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "da378906-dd44-47bb-9e12-82b592f6ade8"
+      },
+      {
+        "tr": "beraber",
+        "de": "zusammen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d56088c6-0900-4358-9c76-7c1a2dc81f59"
+      },
+      {
+        "tr": "yalnız",
+        "de": "allein",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b5b85a77-93dd-4d10-ac19-fcf97604f7d5"
+      },
+      {
+        "tr": "sessiz",
+        "de": "leise",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8b44de86-9dd1-4272-9c88-aaffc085b4d6"
+      },
+      {
+        "tr": "gürültülü",
+        "de": "laut",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "edf7af92-3b37-4a67-b40a-e4e8b9737194"
+      },
+      {
+        "tr": "kolayca",
+        "de": "leicht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fdfe8fee-7eae-4b5b-bc75-cfa366c98bd3"
+      },
+      {
+        "tr": "zorlukla",
+        "de": "schwer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e25326d9-48a5-4c1a-8691-c31e1f22dc4f"
+      },
+      {
+        "tr": "açık",
+        "de": "offen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1b6f2d8f-1f16-4e9b-b8e5-21445b397412"
+      },
+      {
+        "tr": "kapalı",
+        "de": "geschlossen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c0efda59-4964-458a-ab28-4304bbf0d152"
+      },
+      {
+        "tr": "parlak",
+        "de": "hell",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b6657f94-a95d-4a74-aed4-015572379190"
+      },
+      {
+        "tr": "karanlık",
+        "de": "dunkel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5902a7a2-1c87-41e7-8884-ff0f7cc222e8"
+      },
+      {
+        "tr": "mutlu",
+        "de": "glücklich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ed0827f7-71b5-42cc-a97e-3ec535ebfe63"
+      },
+      {
+        "tr": "üzgün",
+        "de": "traurig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "16e9af94-ba41-4dab-9187-967220919bab"
+      },
+      {
+        "tr": "kızgın",
+        "de": "wütend",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f00de55b-ab17-49ed-a147-4330768632d8"
+      },
+      {
+        "tr": "korkmuş",
+        "de": "ängstlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "967c557a-4204-4a4e-80b7-6aacac3a571b"
+      },
+      {
+        "tr": "şaşkın",
+        "de": "überrascht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "abe5f6f7-4fee-41a5-b12a-9f5d1d6bb6df"
+      },
+      {
+        "tr": "sakin",
+        "de": "ruhig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "42bac123-e02e-4b17-8e53-990cdb3a8fd2"
+      },
+      {
+        "tr": "telaşlı",
+        "de": "hektisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5d042b72-5429-438d-ae18-37f1e2f99aae"
+      },
+      {
+        "tr": "yorgun",
+        "de": "müde",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "52b4c9da-373b-4f96-8ef0-1746f1513efe"
+      },
+      {
+        "tr": "dinç",
+        "de": "fit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6fbbfe2c-eb2b-4cca-8287-e765a8d141cc"
+      },
+      {
+        "tr": "açık",
+        "de": "klar",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2346c3db-771e-4389-980e-20c553003cc9"
+      },
+      {
+        "tr": "bulutlu",
+        "de": "bewölkt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "80d76e94-614d-4e7b-907d-3b5512595a92"
+      },
+      {
+        "tr": "yağmurlu",
+        "de": "regnerisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "35ac24c5-78ef-4011-b139-19d94e78df11"
+      },
+      {
+        "tr": "karlı",
+        "de": "schneereich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4362ceeb-02b0-4e3a-993a-20a11e60527d"
+      },
+      {
+        "tr": "rüzgarlı",
+        "de": "windig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fa62c946-9404-4dcb-81d6-24093587a5ba"
+      },
+      {
+        "tr": "güneşli",
+        "de": "sonnig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "07178457-6c45-4761-b882-58b7d42245a3"
+      },
+      {
+        "tr": "fırtınalı",
+        "de": "stürmisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3da38f38-20b7-4e7e-afca-21da02acc0a7"
+      },
+      {
+        "tr": "nemli",
+        "de": "schwül",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c9817c87-f18b-49ed-9959-93cf31915b08"
+      },
+      {
+        "tr": "don",
+        "de": "Frost",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7e94710f-3581-4073-a798-717ac8e89d60"
+      },
+      {
+        "tr": "sis",
+        "de": "Nebel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "df41a5c7-e8ed-4758-8e9b-a856bdcecbdc"
+      },
+      {
+        "tr": "şimşek",
+        "de": "Blitz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bfbd1fca-9462-4aae-a98e-5b70589123f0"
+      },
+      {
+        "tr": "gök gürültüsü",
+        "de": "Donner",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7bc75ebe-0f04-4bbc-86fb-6f5ff37b4d23"
+      },
+      {
+        "tr": "yağmur",
+        "de": "Regen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1c65a9c2-0b65-4bd2-99b0-e285d69983cd"
+      },
+      {
+        "tr": "kar",
+        "de": "Schnee",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7fe10b85-0f2f-4741-9063-f8b82d8db9ae"
+      },
+      {
+        "tr": "dolu",
+        "de": "Hagel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "74867728-20e3-4c79-9376-ec5c2ec1b784"
+      },
+      {
+        "tr": "ırmak",
+        "de": "Fluss",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ae6b20ff-a08b-4879-bee3-16413d2d22f2"
+      },
+      {
+        "tr": "göl",
+        "de": "See",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "47ef50e5-e717-45b7-93b5-3a7335998fc2"
+      },
+      {
+        "tr": "deniz",
+        "de": "Meer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "231d735f-7a7d-4f52-a284-7255bf723745"
+      },
+      {
+        "tr": "okyanus",
+        "de": "Ozean",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1e1e9044-7ea5-4003-9572-04f48400b665"
+      },
+      {
+        "tr": "dağ",
+        "de": "Berg",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f3f83e03-fade-4a40-8b35-5e8187fc1ca1"
+      },
+      {
+        "tr": "tepe",
+        "de": "Hügel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5be60cfa-a7d6-44e6-a78a-d91df46b4c30"
+      },
+      {
+        "tr": "vadi",
+        "de": "Tal",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9543432e-d08c-4f7f-9ac5-9cd672bfe99f"
+      },
+      {
+        "tr": "orman",
+        "de": "Wald",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e216cf4c-328a-4b2e-b3ad-d6f26c656168"
+      },
+      {
+        "tr": "çöl",
+        "de": "Wüste",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6314798e-9e8a-4e21-a1fa-152fa5fd422b"
+      },
+      {
+        "tr": "ada",
+        "de": "Insel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b83ca756-12b9-4ad5-9ec2-4c19f22c996e"
+      },
+      {
+        "tr": "kıyı",
+        "de": "Küste",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bdfad899-001b-4175-b0fc-45218018de18"
+      },
+      {
+        "tr": "plaj",
+        "de": "Strand",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "732f8d32-75c4-4494-a968-3dfc0a92e459"
+      },
+      {
+        "tr": "kum",
+        "de": "Sand",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4ed4b377-ff88-43a5-9b1e-c4c522f8d12b"
+      },
+      {
+        "tr": "taş",
+        "de": "Stein",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7e7b98e6-07ef-4479-9884-4d49704f1e8a"
+      },
+      {
+        "tr": "toprak",
+        "de": "Erde",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c2b4aad0-8aef-4f0d-8b3b-ee43adf4ee73"
+      },
+      {
+        "tr": "çamur",
+        "de": "Schlamm",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bd9ce674-5f69-4b95-adb9-c2a3946ded93"
+      },
+      {
+        "tr": "toz",
+        "de": "Staub",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "74dbe617-f658-4358-8b84-2cf6e0db7876"
+      },
+      {
+        "tr": "duman",
+        "de": "Rauch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bb6bf6ee-257e-4a6f-95fa-3f8b611cc277"
+      },
+      {
+        "tr": "ateş",
+        "de": "Feuer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0d627b23-e5c5-478c-9d5c-dd4a4f9322fb"
+      },
+      {
+        "tr": "buz",
+        "de": "Eis",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7ada3598-2f95-4a8f-8db4-496f27b65f3b"
+      },
+      {
+        "tr": "su",
+        "de": "Wasser",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2bcfd45b-dc20-4792-a082-8e8504cd8077"
+      },
+      {
+        "tr": "hava",
+        "de": "Luft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a249e298-f988-47ab-b92f-129e08dce4ed"
+      },
+      {
+        "tr": "gökkuşağı",
+        "de": "Regenbogen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "17a8b733-287d-4e6b-91ce-ecacd1f08f7b"
+      },
+      {
+        "tr": "yıldız",
+        "de": "Stern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4fe85597-7ecb-4b2f-a80f-8404557baf0a"
+      },
+      {
+        "tr": "ay",
+        "de": "Mond",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b1a796e6-de2f-4078-84b4-bc0012fa3b84"
+      },
+      {
+        "tr": "güneş",
+        "de": "Sonne",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "39995b52-67dd-4e5e-a99d-4844fcac97f0"
+      },
+      {
+        "tr": "bulut",
+        "de": "Wolke",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "69b43c9a-4724-403c-bdf6-e57c1a6558fe"
+      },
+      {
+        "tr": "gökyüzü",
+        "de": "Himmel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8b55b7ab-df7c-4ffb-8996-7e8459ebbbf9"
+      },
+      {
+        "tr": "dünya",
+        "de": "Welt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b8f0200d-e4a3-403c-ba9e-4770894c24e0"
+      },
+      {
+        "tr": "doğa",
+        "de": "Natur",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ad3a551e-687a-497e-bc41-dd8528f2dfe2"
+      },
+      {
+        "tr": "bitki",
+        "de": "Pflanze",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c0c59350-f16b-4b7a-a0e9-75201bdb3907"
+      },
+      {
+        "tr": "ağaç",
+        "de": "Baum",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "dee40651-4a45-48d7-b065-db0fd92aa36b"
+      },
+      {
+        "tr": "çiçek",
+        "de": "Blume",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2d362718-e6a0-446d-87d2-895c95cf9927"
+      },
+      {
+        "tr": "yaprak",
+        "de": "Blatt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "401b9849-b50c-478d-ae21-702bfee67188"
+      },
+      {
+        "tr": "ot",
+        "de": "Gras",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9d17f759-4bce-49d1-ad63-4002598ef30e"
+      },
+      {
+        "tr": "meyve",
+        "de": "Frucht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ff2a9c41-2400-4226-a0c3-a106c7237256"
+      },
+      {
+        "tr": "sebze",
+        "de": "Gemüse",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "029ddd36-cdc7-4053-96e6-b7211f1e7a58"
+      },
+      {
+        "tr": "hayvan",
+        "de": "Tier",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "df118cf4-8083-40f3-b9d0-3db5476f5fd4"
+      },
+      {
+        "tr": "kedi",
+        "de": "Katze",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c320d567-94f3-4949-b344-b18db5e7650c"
+      },
+      {
+        "tr": "köpek",
+        "de": "Hund",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bcb6d24f-c366-4e89-a31c-56598d207066"
+      },
+      {
+        "tr": "kuş",
+        "de": "Vogel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f0ad61ba-d231-4a06-ba6c-dbb060855d00"
+      },
+      {
+        "tr": "balık",
+        "de": "Fisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1faf6f76-0f99-4631-9b70-e276107d63ba"
+      },
+      {
+        "tr": "at",
+        "de": "Pferd",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "372d68fc-68a8-4318-b677-29e877344834"
+      },
+      {
+        "tr": "inek",
+        "de": "Kuh",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e8300572-e4c0-4f33-9130-16d66858c581"
+      },
+      {
+        "tr": "tavuk",
+        "de": "Huhn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8398e593-5287-43d7-ba1e-2b8ce1e767f5"
+      },
+      {
+        "tr": "ördek",
+        "de": "Ente",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3430a0da-2ea4-4e82-bbac-f2e0170ffaaa"
+      },
+      {
+        "tr": "arı",
+        "de": "Biene",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e8bfa176-0e2e-42b5-9d71-2c656fcb5556"
+      },
+      {
+        "tr": "kelebek",
+        "de": "Schmetterling",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7af0c237-97b8-4f0b-ac40-9a7ac3244478"
+      },
+      {
+        "tr": "yılan",
+        "de": "Schlange",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f5d078cd-ded0-4ab4-ae69-d7e4c7c82432"
+      },
+      {
+        "tr": "kurbağa",
+        "de": "Frosch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "746194a6-7291-4469-af18-a867b90cc94b"
+      },
+      {
+        "tr": "örümcek",
+        "de": "Spinne",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "722b1594-5de2-4c8c-9f63-24c446e7f86e"
+      },
+      {
+        "tr": "sinek",
+        "de": "Fliege",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "75cb021d-ac40-43ea-8713-d59ec173fb5c"
+      },
+      {
+        "tr": "sivrisinek",
+        "de": "Mücke",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e5fda270-450b-4009-bf83-293fe0dcac89"
+      },
+      {
+        "tr": "karınca",
+        "de": "Ameise",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "550295e1-1b99-45b5-a12e-f34b627f1d0b"
+      },
+      {
+        "tr": "fil",
+        "de": "Elefant",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e67035c9-ef17-4857-a376-6a5a715a4466"
+      },
+      {
+        "tr": "aslan",
+        "de": "Löwe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "83f5acb5-e25e-4265-8a2e-f950e8f3a2b0"
+      },
+      {
+        "tr": "kaplan",
+        "de": "Tiger",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b0915949-a3fb-44cd-b7c8-1aa27f98ea31"
+      },
+      {
+        "tr": "ayı",
+        "de": "Bär",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e8724e4b-2e70-4956-9daf-71c479aac3b9"
+      },
+      {
+        "tr": "kurt",
+        "de": "Wolf",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c44aa0df-006f-4b06-b08d-1092490fc90b"
+      },
+      {
+        "tr": "tilki",
+        "de": "Fuchs",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "70873178-1163-47c9-ab8e-7d41ef56a5fd"
+      },
+      {
+        "tr": "zürafa",
+        "de": "Giraffe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f8195f1e-498b-43af-9093-230cd5cff6a4"
+      },
+      {
+        "tr": "zebra",
+        "de": "Zebra",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "91ea8b0e-4e2c-4341-a275-80f894c24342"
+      },
+      {
+        "tr": "maymun",
+        "de": "Affe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "caf53f6a-81e6-4fed-9fdf-88e51d98f8e9"
+      },
+      {
+        "tr": "timsah",
+        "de": "Krokodil",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1c1fb780-3aa4-4a5a-a675-0242a6fd07e8"
+      },
+      {
+        "tr": "köpek balığı",
+        "de": "Hai",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1fc24fd3-f82a-4f46-a1dd-1bdaf6f49e86"
+      },
+      {
+        "tr": "yunus",
+        "de": "Delfin",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "33c7884d-f895-46a7-8cdf-4e40412430ed"
+      },
+      {
+        "tr": "balina",
+        "de": "Wal",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fc3ec616-a693-4692-bb45-2ff4d8608133"
+      },
+      {
+        "tr": "fok",
+        "de": "Robbe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fdae93ff-3cc0-47ba-8de6-7ad4dca4c493"
+      },
+      {
+        "tr": "penguen",
+        "de": "Pinguin",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "38e5d481-0ba4-4321-9aa1-9e6eaa9621e2"
+      },
+      {
+        "tr": "deve",
+        "de": "Kamel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "977e1e6d-df59-4e53-96cc-43fc11de30e9"
+      },
+      {
+        "tr": "tavşan",
+        "de": "Hase",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fdb11b82-9e74-4d70-95c1-13cf97b269b4"
+      },
+      {
+        "tr": "sincap",
+        "de": "Eichhörnchen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e3c3b1e0-44f1-4f99-89ec-f5ffb2414cd0"
+      },
+      {
+        "tr": "kirpi",
+        "de": "Igel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c76b1892-90c9-44a8-b32d-943e6a5936ea"
+      },
+      {
+        "tr": "baykuş",
+        "de": "Eule",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "08098506-ab77-4a7e-9873-fafa109a80cb"
+      },
+      {
+        "tr": "kartal",
+        "de": "Adler",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ddf55fda-f13e-40c5-923d-77e31b6f1ca1"
+      },
+      {
+        "tr": "şahin",
+        "de": "Falke",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "033d3b09-8f0e-4735-b1d2-dde07b0bae5f"
+      },
+      {
+        "tr": "leylek",
+        "de": "Storch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "36595ceb-6dd3-49aa-96d3-d7f00f3d5d57"
+      },
+      {
+        "tr": "martı",
+        "de": "Möwe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0eaedefc-77c1-4753-8c03-1050243336ee"
+      },
+      {
+        "tr": "serçe",
+        "de": "Spatz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5abf798e-033f-4b31-be73-9140e90c9db7"
+      },
+      {
+        "tr": "akbaba",
+        "de": "Geier",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cf28c133-46c0-4f96-b139-016ea6752e3e"
+      },
+      {
+        "tr": "papağan",
+        "de": "Papagei",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b6ea3e61-e3cd-4e1c-8d69-f91e92c2aea5"
+      },
+      {
+        "tr": "flamingo",
+        "de": "Flamingo",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2a154cbe-e116-47fe-b778-7d0f79582145"
+      },
+      {
+        "tr": "sürüngen",
+        "de": "Reptil",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2c65894a-dd39-4acb-9c3a-e36ba7fe2961"
+      },
+      {
+        "tr": "böcek",
+        "de": "Insekt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2f296356-d3a4-4517-a887-33342fe26f00"
+      },
+      {
+        "tr": "solucan",
+        "de": "Wurm",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "060ca2eb-c15b-420e-9075-bcc64cd2d4ee"
+      },
+      {
+        "tr": "salyangoz",
+        "de": "Schnecke",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "67477449-0bd1-40f0-85f6-850377f05d7c"
+      },
+      {
+        "tr": "midye",
+        "de": "Muschel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5207ce53-60ce-4a60-b5af-2d2738d33d49"
+      },
+      {
+        "tr": "yengeç",
+        "de": "Krabbe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a47e7972-70da-4444-a580-5ccda0e6c089"
+      },
+      {
+        "tr": "ıstakoz",
+        "de": "Hummer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "405d2e74-1d6f-42a4-a2d9-9756d2006863"
+      },
+      {
+        "tr": "ahtapot",
+        "de": "Tintenfisch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "53f659e9-1ee6-4d1b-bc38-4c80b8e9d3d4"
+      },
+      {
+        "tr": "deniz yıldızı",
+        "de": "Seestern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d075313b-f96d-4770-b9b7-078da94b325e"
+      },
+      {
+        "tr": "denizanası",
+        "de": "Qualle",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0b34e2f4-e2b9-404a-88a0-f8eda988236f"
+      },
+      {
+        "tr": "yosun",
+        "de": "Alge",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a989b5a5-570f-46ec-bc4d-453b8bf85aa8"
+      },
+      {
+        "tr": "mantar",
+        "de": "Pilz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e93a8fb7-bc7a-40e9-9c59-354efbb07c97"
+      },
+      {
+        "tr": "bakteri",
+        "de": "Bakterie",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "df587103-810f-4d8d-abc6-993ecdfce0c3"
+      },
+      {
+        "tr": "virüs",
+        "de": "Virus",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2d0dbbf9-a811-4ec6-af8b-0ee49d1def65"
+      },
+      {
+        "tr": "hücre",
+        "de": "Zelle",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "aa4df1ac-8caa-402c-8c82-6c24320ccf3b"
+      },
+      {
+        "tr": "doku",
+        "de": "Gewebe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "50fa0933-0ac9-4d82-b883-907914df32a5"
+      },
+      {
+        "tr": "organ",
+        "de": "Organ",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3613f080-e39f-4355-a968-1ca9948333f9"
+      },
+      {
+        "tr": "kemik",
+        "de": "Knochen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "11d31633-0c7d-476d-bfd0-e845c4f583ba"
+      },
+      {
+        "tr": "kas",
+        "de": "Muskel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0e5dd3a2-3f64-4fde-9de2-5b2ede0dc635"
+      },
+      {
+        "tr": "deri",
+        "de": "Haut",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "37840911-13e4-46b3-b8ac-8e5a6a340b9b"
+      },
+      {
+        "tr": "kan",
+        "de": "Blut",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "053e45f3-a2d7-4e4e-a179-2da0475d5227"
+      },
+      {
+        "tr": "damar",
+        "de": "Ader",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a9063e46-6f3b-4c64-83f1-e55e4cdf9314"
+      },
+      {
+        "tr": "sinir",
+        "de": "Nerv",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f5404fc7-85cc-416f-b764-3c44b3d2e5ed"
+      },
+      {
+        "tr": "beyin",
+        "de": "Gehirn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2f8fbdf0-aa96-4a0f-a691-377d9a8366b4"
+      },
+      {
+        "tr": "akciğer",
+        "de": "Lunge",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1b24b424-d567-411c-b106-f084100bcba5"
+      },
+      {
+        "tr": "karaciğer",
+        "de": "Leber",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "99105828-9bb6-4fa6-a3d2-4051db6eaab3"
+      },
+      {
+        "tr": "böbrek",
+        "de": "Niere",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c3ff5558-0d9f-4fe2-a1f2-248edf272615"
+      },
+      {
+        "tr": "mide",
+        "de": "Magen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d153b7c5-600c-4dc9-a71a-c73af42185b8"
+      },
+      {
+        "tr": "bağırsak",
+        "de": "Darm",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a09d6aea-57f9-47e4-977b-5d4c9de00520"
+      },
+      {
+        "tr": "kalp",
+        "de": "Herz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2289416a-75dc-4ee1-aefc-7d843152f0c4"
+      },
+      {
+        "tr": "göz",
+        "de": "Auge",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c49902fe-1b55-435c-b8f5-1c4161c65a52"
+      },
+      {
+        "tr": "kulak",
+        "de": "Ohr",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "611cf380-2e26-465f-825e-6978b2587da6"
+      },
+      {
+        "tr": "burun",
+        "de": "Nase",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "59ab8e67-8b97-4070-8165-502a0a6ae06e"
+      },
+      {
+        "tr": "ağız",
+        "de": "Mund",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "39ec1d9b-8818-49f6-9470-95dd5f0193ef"
+      },
+      {
+        "tr": "dil",
+        "de": "Zunge",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7ed7a8bc-ece6-472e-885d-229fa2d7901f"
+      },
+      {
+        "tr": "diş",
+        "de": "Zahn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "493cef78-01e0-4fe7-b1ba-b5254bd4ff11"
+      },
+      {
+        "tr": "dudak",
+        "de": "Lippe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "849095e0-8156-4bae-868e-675409332ca5"
+      },
+      {
+        "tr": "çene",
+        "de": "Kinn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4be3771d-060a-4d89-a9f1-48b8280c07f1"
+      },
+      {
+        "tr": "alın",
+        "de": "Stirn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "74ff3230-edfc-458d-b8f0-ab13afe929ae"
+      },
+      {
+        "tr": "kaş",
+        "de": "Augenbraue",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "409abf4c-9aaa-457c-994c-999fe029dcaa"
+      },
+      {
+        "tr": "kirpik",
+        "de": "Wimper",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ae0c05e0-c863-421d-8283-dd6273715eaf"
+      },
+      {
+        "tr": "yüz",
+        "de": "Gesicht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "45bc71fe-d59b-42a4-9c06-f5e3129855b9"
+      },
+      {
+        "tr": "saç",
+        "de": "Haar",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9707bc07-c20e-468f-9557-06948e3e9b79"
+      },
+      {
+        "tr": "sakal",
+        "de": "Bart",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3d7d290b-3793-4b30-a342-3f0a05c336cc"
+      },
+      {
+        "tr": "bıyık",
+        "de": "Schnurrbart",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2877e15e-70f7-434d-9ecd-2d2cfbbceef0"
+      },
+      {
+        "tr": "boyun",
+        "de": "Hals",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "64f29d88-ede0-4c39-bec5-b0e28053629c"
+      },
+      {
+        "tr": "omuz",
+        "de": "Schulter",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "076ad36d-ff4c-4db7-acd9-244bd964a899"
+      },
+      {
+        "tr": "kol",
+        "de": "Arm",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e3cbf50f-c2d0-4dff-9418-e5bf37f5afcc"
+      },
+      {
+        "tr": "dirsek",
+        "de": "Ellbogen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8d625182-8ecf-4aaf-abd9-a683e3593be4"
+      },
+      {
+        "tr": "bilek",
+        "de": "Handgelenk",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3e8aed44-5e31-4bf7-b196-74947ec8b8b5"
+      },
+      {
+        "tr": "el",
+        "de": "Hand",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a499770b-252d-419b-ba1b-3f04fc97f2ac"
+      },
+      {
+        "tr": "parmak",
+        "de": "Finger",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c6b406b2-8699-4955-8baa-77c3852185f2"
+      },
+      {
+        "tr": "tırnak",
+        "de": "Fingernagel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "62dd6e84-981b-49e9-9015-3f9c2caa190c"
+      },
+      {
+        "tr": "göğüs",
+        "de": "Brust",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "185928a6-63b5-4957-81ea-a70d869aa7c9"
+      },
+      {
+        "tr": "sırt",
+        "de": "Rücken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0fea7aad-f7a2-4420-b354-c9c6e9f7b0d3"
+      },
+      {
+        "tr": "bel",
+        "de": "Taille",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e86ccfe5-c240-48a0-9992-b41706cdd2a2"
+      },
+      {
+        "tr": "karın",
+        "de": "Bauch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ffae4ddc-1994-46b8-93fe-e44cd685999e"
+      },
+      {
+        "tr": "kalça",
+        "de": "Hüfte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a3d5b84b-1be8-42bd-9049-f64ce9330a12"
+      },
+      {
+        "tr": "bacak",
+        "de": "Bein",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "49f1730a-07b6-45e6-b0ba-4fcd443f9274"
+      },
+      {
+        "tr": "diz",
+        "de": "Knie",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0dae1f57-d01d-4553-9010-c4bbb41f2a7c"
+      },
+      {
+        "tr": "ayak bileği",
+        "de": "Knöchel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "faa00c3f-4ab9-4743-af13-20a4b610c146"
+      },
+      {
+        "tr": "ayak",
+        "de": "Fuß",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0360da5f-a333-4cb7-92a0-4d33202f74c7"
+      },
+      {
+        "tr": "topuk",
+        "de": "Ferse",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "46de056a-99d6-4cfa-ab88-8412fc502641"
+      },
+      {
+        "tr": "ayak parmağı",
+        "de": "Zehe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3b6d5e63-1f50-4e89-a035-7d127831a662"
+      },
+      {
+        "tr": "cilt",
+        "de": "Haut",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b1708c91-b67b-4be0-9762-c7054f8b5cf0"
+      },
+      {
+        "tr": "ter",
+        "de": "Schweiß",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ceec7af1-6955-48f4-abf9-f5563dca8540"
+      },
+      {
+        "tr": "tükürük",
+        "de": "Speichel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c7c1b04c-57b6-4060-bab9-9508294470c6"
+      },
+      {
+        "tr": "gözyaşı",
+        "de": "Träne",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "aba42ae3-8228-469d-9082-780a9dc9022e"
+      },
+      {
+        "tr": "sümük",
+        "de": "Schnupfen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3d0f7526-b2e6-42ea-8d32-a97c6dca0ad4"
+      },
+      {
+        "tr": "idrar",
+        "de": "Urin",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f2d2d976-92af-405c-880e-e02f164408cd"
+      },
+      {
+        "tr": "dışkı",
+        "de": "Stuhl",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "24d0ad22-1bf4-43fb-90e8-d5248352b783"
+      },
+      {
+        "tr": "gaz",
+        "de": "Blähung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "63dd3cde-bee6-4568-b9c6-02720ef485e1"
+      },
+      {
+        "tr": "ağrı",
+        "de": "Schmerz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "604ba6c8-a787-4724-9d54-a31ca80a9d12"
+      },
+      {
+        "tr": "ateş",
+        "de": "Fieber",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e9a6e944-80b3-4190-ad05-de8d1d60ee20"
+      },
+      {
+        "tr": "öksürük",
+        "de": "Husten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "67b6f9da-e43e-45ca-b218-2314532ca799"
+      },
+      {
+        "tr": "hapşırık",
+        "de": "Niesen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0d532f4b-a201-495d-ba0c-73628f901937"
+      },
+      {
+        "tr": "nefes",
+        "de": "Atem",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f0179710-be88-4358-b1dd-08401ec3ef38"
+      },
+      {
+        "tr": "nabız",
+        "de": "Puls",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "667be0f1-2b49-4cd5-9b9f-bc4c58be301a"
+      },
+      {
+        "tr": "tansiyon",
+        "de": "Blutdruck",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cc461686-df0d-48e2-b684-b0c52f3cafa6"
+      },
+      {
+        "tr": "ilaç",
+        "de": "Medikament",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ccd8c395-b768-48b9-8840-0cbb1555f0b3"
+      },
+      {
+        "tr": "aşı",
+        "de": "Impfung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "dc415440-48b9-41f4-bbd8-46848542cd3d"
+      },
+      {
+        "tr": "ameliyat",
+        "de": "Operation",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a76a65bf-19c5-4ffc-a266-07faf7aaf007"
+      },
+      {
+        "tr": "doktor",
+        "de": "Arzt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "275fc933-057e-41da-b409-97cc85a9e11f"
+      },
+      {
+        "tr": "hemşire",
+        "de": "Krankenschwester",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "228bfc4c-5868-4cda-8bee-c7b584101adc"
+      },
+      {
+        "tr": "hasta",
+        "de": "Patient",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "73b34065-3520-499e-a292-08229e9d49e0"
+      },
+      {
+        "tr": "tedavi",
+        "de": "Behandlung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1226c2d2-b98f-410b-8fe3-466ea21f1f7e"
+      },
+      {
+        "tr": "teşhis",
+        "de": "Diagnose",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "224244b1-8ebd-4e5b-9a45-fb9b3fb97b77"
+      },
+      {
+        "tr": "semptom",
+        "de": "Symptom",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "28950397-ee05-4c9a-a927-0b9180317fa7"
+      },
+      {
+        "tr": "hastalık",
+        "de": "Krankheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cbb3d1e1-3029-4b6a-8b6e-179c66265fe7"
+      },
+      {
+        "tr": "enfeksiyon",
+        "de": "Infektion",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "78dcff60-69df-4d42-9909-a81d175e05f5"
+      },
+      {
+        "tr": "alerji",
+        "de": "Allergie",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4c182126-6495-42c6-af9f-65caf38b2a7a"
+      },
+      {
+        "tr": "kırık",
+        "de": "Bruch",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "07638af7-b810-4583-b996-b607c0a8e391"
+      },
+      {
+        "tr": "yaralanma",
+        "de": "Verletzung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "82e40c16-a3fd-4f63-858e-46cf5eca3682"
+      },
+      {
+        "tr": "yanık",
+        "de": "Verbrennung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "57fe9bb9-47f2-4f97-86de-caa8b0b004ea"
+      },
+      {
+        "tr": "kanama",
+        "de": "Blutung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "04feda20-0f21-4119-b257-073b2f9a54a3"
+      },
+      {
+        "tr": "morluk",
+        "de": "Bluterguss",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ed6bf036-74f1-4448-92fc-e0b6fda094ae"
+      },
+      {
+        "tr": "şişlik",
+        "de": "Schwellung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d64f7384-0d88-48d9-8440-4b616dec2067"
+      },
+      {
+        "tr": "kaşıntı",
+        "de": "Juckreiz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "02fbc2d4-baf9-4d9d-a16c-1bf2381c6b26"
+      },
+      {
+        "tr": "döküntü",
+        "de": "Ausschlag",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "abb46095-c4d9-451c-b67c-a93bce94eabe"
+      },
+      {
+        "tr": "bulantı",
+        "de": "Übelkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8c8a9bfd-62e0-4133-b801-4e97bb33396a"
+      },
+      {
+        "tr": "kusma",
+        "de": "Erbrechen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "aea9f566-01f9-4573-81ff-8fcd1b975f83"
+      },
+      {
+        "tr": "ishal",
+        "de": "Durchfall",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "28043bb0-4ad3-4197-940c-c187453bd001"
+      },
+      {
+        "tr": "kabızlık",
+        "de": "Verstopfung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "503fb654-8020-4540-b267-d2eef4ecbb7d"
+      },
+      {
+        "tr": "baş dönmesi",
+        "de": "Schwindel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c8e1c9a7-fa48-41c5-86a3-0363598f269d"
+      },
+      {
+        "tr": "bayılma",
+        "de": "Ohnmacht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8a05243b-189c-4595-bef6-cc14ceafd88c"
+      },
+      {
+        "tr": "stres",
+        "de": "Stress",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "eef86e48-b8f2-4d93-ab7d-644f1fc3cd70"
+      },
+      {
+        "tr": "depresyon",
+        "de": "Depression",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "71824675-f901-434c-a160-6f97ef7fa6fa"
+      },
+      {
+        "tr": "anksiyete",
+        "de": "Angst",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4c2b7de6-174f-41d5-9f99-b01e5db78ad3"
+      },
+      {
+        "tr": "mutluluk",
+        "de": "Glück",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0e0859f1-d455-4e3e-9082-c5a6b84a9d1e"
+      },
+      {
+        "tr": "üzüntü",
+        "de": "Traurigkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "94bbd129-1be7-46b8-98a0-66c3097bb224"
+      },
+      {
+        "tr": "öfke",
+        "de": "Wut",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ccea1cfb-dc5a-4c07-83e5-c6a028f11827"
+      },
+      {
+        "tr": "korku",
+        "de": "Furcht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "69bc538e-ca05-4d0e-a716-ab5e7910e111"
+      },
+      {
+        "tr": "şaşkınlık",
+        "de": "Überraschung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bc3567d3-4187-4c41-bf3a-ef2f2ad24e20"
+      },
+      {
+        "tr": "iğrenme",
+        "de": "Ekel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "903674ca-17b4-4bc3-810f-14060a344521"
+      },
+      {
+        "tr": "umut",
+        "de": "Hoffnung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bb86eb21-5d1f-46cb-a42b-68dcb56c9ba1"
+      },
+      {
+        "tr": "hayal kırıklığı",
+        "de": "Enttäuschung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2345c5d2-ba15-4b79-bf73-87b2a34b40e6"
+      },
+      {
+        "tr": "gurur",
+        "de": "Stolz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fcfb6408-bc83-4497-b5dc-3dc4873b3ad6"
+      },
+      {
+        "tr": "utanç",
+        "de": "Scham",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "91aa836a-da9b-4e15-8f39-50bb4d92dac1"
+      },
+      {
+        "tr": "suçluluk",
+        "de": "Schuld",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7efe0be9-5f90-4210-a90e-da0567280031"
+      },
+      {
+        "tr": "kıskançlık",
+        "de": "Eifersucht",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1d98b9dc-53a0-4a41-a1f1-fa615d67c99a"
+      },
+      {
+        "tr": "aşk",
+        "de": "Liebe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "dd526d03-b889-44fc-805c-ab5f76fc958e"
+      },
+      {
+        "tr": "nefret",
+        "de": "Hass",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cbdb3a36-ee8f-4fe3-b3d3-a4cc541acb46"
+      },
+      {
+        "tr": "arkadaşlık",
+        "de": "Freundschaft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "00ff0ca9-f9bd-4f7d-a3b4-3bba8433a713"
+      },
+      {
+        "tr": "düşmanlık",
+        "de": "Feindschaft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "508dd670-dd6e-4a89-ad25-76e50289c2b7"
+      },
+      {
+        "tr": "güven",
+        "de": "Vertrauen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "15d8ac44-507e-4465-be94-9ac49b06e1b1"
+      },
+      {
+        "tr": "şüphe",
+        "de": "Zweifel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "251bbdd6-5621-4d24-a6a0-d9e76a6e209e"
+      },
+      {
+        "tr": "saygı",
+        "de": "Respekt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "163a8a99-e56e-4255-8161-66d86aba35df"
+      },
+      {
+        "tr": "saygısızlık",
+        "de": "Respektlosigkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "45727c6a-3976-41ab-9a6a-4b2aea9b3824"
+      },
+      {
+        "tr": "hoşgörü",
+        "de": "Toleranz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8c7fc5f7-401b-4ba2-8f52-625523810f9c"
+      },
+      {
+        "tr": "hoşgörüsüzlük",
+        "de": "Intoleranz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ef900a18-62f2-4358-87b2-6348fec35852"
+      },
+      {
+        "tr": "adalet",
+        "de": "Gerechtigkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ddc98700-6c0e-4d39-b8e3-705b4b22939f"
+      },
+      {
+        "tr": "adaletsizlik",
+        "de": "Ungerechtigkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "97b74bbd-a929-4a67-8d48-f5cbd7121a24"
+      },
+      {
+        "tr": "özgürlük",
+        "de": "Freiheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a6be146c-29eb-4c08-8d02-e66ca0e06da6"
+      },
+      {
+        "tr": "esaret",
+        "de": "Gefangenschaft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a35aa116-6f64-4404-a500-075b01688d63"
+      },
+      {
+        "tr": "barış",
+        "de": "Frieden",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "feadabc6-4954-42db-944d-f5ccdf711822"
+      },
+      {
+        "tr": "savaş",
+        "de": "Krieg",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "70efb02c-37a3-403e-bc2a-37cfee2e89d5"
+      },
+      {
+        "tr": "zafer",
+        "de": "Sieg",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "199f516b-3b8c-4ba6-85fb-3b93fae3f3b2"
+      },
+      {
+        "tr": "yenilgi",
+        "de": "Niederlage",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2ec0b5c2-b33a-44bb-a038-d14eb7b049e7"
+      },
+      {
+        "tr": "umut",
+        "de": "Hoffnung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fe057096-fa40-45c6-bbe9-dd534f7fd712"
+      },
+      {
+        "tr": "umutsuzluk",
+        "de": "Hoffnungslosigkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f3f7115a-6a47-4137-af1e-9655fca52535"
+      },
+      {
+        "tr": "cesaret",
+        "de": "Mut",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "dbe9ae37-3190-4d2c-8bc5-827c862a8016"
+      },
+      {
+        "tr": "korkaklık",
+        "de": "Feigheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "83b4edf6-4e64-4a23-bb3d-1af0d2be41bc"
+      },
+      {
+        "tr": "cömertlik",
+        "de": "Großzügigkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e3e3ce34-bb8f-482f-b3be-00259e0ab161"
+      },
+      {
+        "tr": "cimrilik",
+        "de": "Geiz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "60bce915-ca01-4432-8c6d-8db487e2e4a6"
+      },
+      {
+        "tr": "alçakgönüllülük",
+        "de": "Bescheidenheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "da093ece-980d-45ca-a714-bf34560ad64b"
+      },
+      {
+        "tr": "kibir",
+        "de": "Arroganz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1eb3da36-02ec-4b7b-b315-7e406057fcd0"
+      },
+      {
+        "tr": "sabır",
+        "de": "Geduld",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fa7f05d2-2459-4d34-bb46-18f812861b7b"
+      },
+      {
+        "tr": "sabırsızlık",
+        "de": "Ungeduld",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7fb3e263-bcd5-4ded-8c76-9de2b2b915b8"
+      },
+      {
+        "tr": "azim",
+        "de": "Ausdauer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6040e2e5-4bce-4ff5-8fda-133ef917d1f8"
+      },
+      {
+        "tr": "tembellik",
+        "de": "Faulheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8116dee1-5023-47e9-9c7d-1e640731ef0e"
+      },
+      {
+        "tr": "zeka",
+        "de": "Intelligenz",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0363bbef-1aab-4e1c-9fec-8ed347ca5222"
+      },
+      {
+        "tr": "aptallık",
+        "de": "Dummheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e99d79ab-3071-4beb-a773-8cc4982e6997"
+      },
+      {
+        "tr": "bilgelik",
+        "de": "Weisheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cfe6900f-ae9e-472d-87ce-6c9c5d828e49"
+      },
+      {
+        "tr": "cehalet",
+        "de": "Unwissenheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "37e80464-148d-4f75-a603-b7f640055299"
+      },
+      {
+        "tr": "deneyim",
+        "de": "Erfahrung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "12c031b5-6acc-4ebc-afab-ad6a522905b7"
+      },
+      {
+        "tr": "acemilik",
+        "de": "Unerfahrenheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e35a324d-24ed-4481-a2f0-2621eb8e7516"
+      },
+      {
+        "tr": "uzman",
+        "de": "Experte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5340fd03-e3cf-491f-a840-fc8791af7e00"
+      },
+      {
+        "tr": "amatör",
+        "de": "Amateur",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e65ce0d4-e42a-468e-8df4-ac0a3edd0191"
+      },
+      {
+        "tr": "profesyonel",
+        "de": "Professionell",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bb7e7f18-caa2-4e36-a33a-3e2f33b22e08"
+      },
+      {
+        "tr": "iş",
+        "de": "Beruf",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "16c6aa8b-03f7-495d-abab-b965333bc42d"
+      },
+      {
+        "tr": "meslek",
+        "de": "Beruf",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2365eadc-7540-4e22-99f1-55ca2344580c"
+      },
+      {
+        "tr": "çalışma",
+        "de": "Arbeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ca25a97a-9a08-412b-bcae-f6a4c225cf2f"
+      },
+      {
+        "tr": "işsizlik",
+        "de": "Arbeitslosigkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "00fb38f8-57bb-439b-bff4-99ed29f981ba"
+      },
+      {
+        "tr": "maaş",
+        "de": "Gehalt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "18801929-1eec-4d7e-85ea-cc27a1da629b"
+      },
+      {
+        "tr": "ücret",
+        "de": "Lohn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "45546acd-e81c-45a8-8d39-ffa575d07c21"
+      },
+      {
+        "tr": "kâr",
+        "de": "Gewinn",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5d95fbec-c92a-40c6-a43c-8a9c56a4be04"
+      },
+      {
+        "tr": "zarar",
+        "de": "Verlust",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c6ef1f61-f2cb-47ee-bdca-30ef5a3f9230"
+      },
+      {
+        "tr": "ekonomi",
+        "de": "Wirtschaft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "02f9e0bb-2a52-41a7-a62b-db60ddd9e745"
+      },
+      {
+        "tr": "pazar",
+        "de": "Markt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0d69bbe4-50b3-41b1-99b9-383641352e6b"
+      },
+      {
+        "tr": "fiyat",
+        "de": "Preis",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6295b8f9-9637-46ee-8d71-38a0ba1920dd"
+      },
+      {
+        "tr": "maliyet",
+        "de": "Kosten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "afcdb4bd-4cdd-491b-85a4-eb9e0656431f"
+      },
+      {
+        "tr": "değer",
+        "de": "Wert",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5b03ec44-7ec0-41f9-864d-b7847011c051"
+      },
+      {
+        "tr": "kalite",
+        "de": "Qualität",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e3520da8-c6a7-419d-a082-6ee75290e759"
+      },
+      {
+        "tr": "miktar",
+        "de": "Menge",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "19edea0c-4b4f-4c9a-87c3-2eda487d69bc"
+      },
+      {
+        "tr": "indirim",
+        "de": "Rabatt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "967ba3a5-888d-401c-a5f8-3dec7a3647d6"
+      },
+      {
+        "tr": "zam",
+        "de": "Erhöhung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "642eb509-f4ba-46e6-b9ff-3dcb57bc14f9"
+      },
+      {
+        "tr": "enflasyon",
+        "de": "Inflation",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0f0ed1a5-eae6-4440-b2f1-4f99a19242ec"
+      },
+      {
+        "tr": "vergi",
+        "de": "Steuer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5f9d27cf-470a-4d4c-9f96-f1aa8cf78f45"
+      },
+      {
+        "tr": "borç",
+        "de": "Schuld",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "da34c382-60b8-428b-9e06-9f94a27f1119"
+      },
+      {
+        "tr": "kredi",
+        "de": "Kredit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "15e33f3d-8e75-4814-b857-0c487a523458"
+      },
+      {
+        "tr": "yatırım",
+        "de": "Investition",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7084daa1-431d-456f-aeee-120944158fe9"
+      },
+      {
+        "tr": "bütçe",
+        "de": "Budget",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a0f3a748-63f5-4c85-8fdc-5dcfd12f2a40"
+      },
+      {
+        "tr": "tasarruf",
+        "de": "Ersparnis",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5061d9ab-5325-4e33-a94b-186a1c82fb58"
+      },
+      {
+        "tr": "harcama",
+        "de": "Ausgabe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2a59170c-af4f-44f9-8e11-33af6fc4fd12"
+      },
+      {
+        "tr": "gelir",
+        "de": "Einkommen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "007a6e5b-fc16-4472-81eb-b0c53405a14a"
+      },
+      {
+        "tr": "gider",
+        "de": "Ausgabe",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f914c327-1229-4608-9f6c-7ce503820b15"
+      },
+      {
+        "tr": "banka",
+        "de": "Bank",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7a841fd2-abc0-4640-b231-6478a000f61b"
+      },
+      {
+        "tr": "nakit",
+        "de": "Bargeld",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4ac0b223-61fc-4524-a7d8-ca22497bf45d"
+      },
+      {
+        "tr": "çek",
+        "de": "Scheck",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cc56f56b-5889-448f-abb5-753fd976eb25"
+      },
+      {
+        "tr": "kart",
+        "de": "Karte",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0569223c-52cc-4fad-836e-68466c2485e9"
+      },
+      {
+        "tr": "hesap",
+        "de": "Konto",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8e810218-ac93-4526-8773-34ddae72a97e"
+      },
+      {
+        "tr": "faiz",
+        "de": "Zinsen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d229c403-7ea0-4e8a-bf48-556c108b0da2"
+      },
+      {
+        "tr": "döviz",
+        "de": "Währung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5200b313-20c6-4882-926e-1c0d708c8732"
+      },
+      {
+        "tr": "dolar",
+        "de": "Dollar",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "485c3893-e9b8-4be9-beb8-62f2502cbee9"
+      },
+      {
+        "tr": "euro",
+        "de": "Euro",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d0df285b-68b0-4c91-a1d9-95d69bd4a529"
+      },
+      {
+        "tr": "lira",
+        "de": "Lira",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8eb4edb1-bd99-48a9-b25e-1bed952e691a"
+      },
+      {
+        "tr": "altın",
+        "de": "Gold",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "369e598d-cc90-4ad7-a075-9e1ef981cc08"
+      },
+      {
+        "tr": "gümüş",
+        "de": "Silber",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ab90dc91-54ae-4354-a5a1-030ad5f56a20"
+      },
+      {
+        "tr": "mücevher",
+        "de": "Schmuck",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8544d721-3d8d-4923-ab26-cc5038875391"
+      },
+      {
+        "tr": "taş",
+        "de": "Edelstein",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2579b734-c54f-4906-af0a-e47256e2cce1"
+      },
+      {
+        "tr": "elmas",
+        "de": "Diamant",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5b81119b-7bd4-4ec8-ab6d-6c385c933c07"
+      },
+      {
+        "tr": "zümrüt",
+        "de": "Smaragd",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3d9ce5de-ef85-457b-9745-dc1b8817f963"
+      },
+      {
+        "tr": "yakut",
+        "de": "Rubin",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c2bc4b76-e44a-4145-a492-813bd4fdc9e1"
+      },
+      {
+        "tr": "safir",
+        "de": "Saphir",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9e2f3744-4ef9-476d-bfe3-b35ef4fc0bde"
+      },
+      {
+        "tr": "inci",
+        "de": "Perle",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "717ad809-ef31-46bf-8933-ab8c7fff0124"
+      },
+      {
+        "tr": "saat",
+        "de": "Uhr",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5ca6de19-2d48-4f23-b4db-53f957ad0a9b"
+      },
+      {
+        "tr": "zaman",
+        "de": "Zeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "80a968db-17bc-40fa-bd6d-451b8ee485ab"
+      },
+      {
+        "tr": "dakika",
+        "de": "Minute",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2c5e600c-9b3d-43fe-a579-0575e8a06038"
+      },
+      {
+        "tr": "saniye",
+        "de": "Sekunde",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fdb0eac9-2976-4ddd-9a0f-9158a0f41c0d"
+      },
+      {
+        "tr": "saat",
+        "de": "Stunde",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3b72b4c5-1039-4295-9cf9-175e83789dcb"
+      },
+      {
+        "tr": "takvim",
+        "de": "Kalender",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bd74242b-402a-49eb-9e8d-d116fc5dd974"
+      },
+      {
+        "tr": "tarih",
+        "de": "Datum",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "80c5890a-41fd-461b-a093-0200bca20f47"
+      },
+      {
+        "tr": "geçmiş",
+        "de": "Vergangenheit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ce13f119-01ae-4aaa-9d45-a0f9b1f60591"
+      },
+      {
+        "tr": "şimdiki zaman",
+        "de": "Gegenwart",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4fcebbf9-cd49-4d89-98dc-196527e5ebd6"
+      },
+      {
+        "tr": "gelecek",
+        "de": "Zukunft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "40b87bf2-5f63-4e88-95bd-7a1e256755e1"
+      },
+      {
+        "tr": "süre",
+        "de": "Dauer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8f124072-2c9c-46c7-9ad1-ff57592621a7"
+      },
+      {
+        "tr": "an",
+        "de": "Moment",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7f4a49e4-4ccc-4216-8831-d9138b7e54d0"
+      },
+      {
+        "tr": "sürekli",
+        "de": "kontinuierlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b64c8390-59c2-4eef-b754-aaf51e7013b0"
+      },
+      {
+        "tr": "geçici",
+        "de": "vorübergehend",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "41e1ad0f-b216-4f35-9537-c511d2eae626"
+      },
+      {
+        "tr": "kalıcı",
+        "de": "dauerhaft",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e1c4aa04-361c-4a9b-a4f5-2516d050481a"
+      },
+      {
+        "tr": "değişken",
+        "de": "variabel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5a9e4cb6-5355-45e2-be4c-9eb5ea84dd8a"
+      },
+      {
+        "tr": "sabit",
+        "de": "konstant",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6315a02f-b722-46bc-90eb-6558fac3668a"
+      },
+      {
+        "tr": "hız",
+        "de": "Geschwindigkeit",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "538c8322-c80b-4a7e-9724-4dca17951683"
+      },
+      {
+        "tr": "ivme",
+        "de": "Beschleunigung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1c52d623-2f47-4b6d-bffb-b219854b4cbe"
+      },
+      {
+        "tr": "yavaşlama",
+        "de": "Verlangsamung",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "254b8302-7d62-45ba-8378-29a88d926464"
+      },
+      {
+        "tr": "duruş",
+        "de": "Stopp",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fc393d3a-d657-40ae-a2d6-806b3d3191fc"
+      },
+      {
+        "tr": "başlangıç",
+        "de": "Start",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1837ae7c-1469-4b57-bb3d-dd0b0b3f253c"
+      },
+      {
+        "tr": "bitiş",
+        "de": "Ende",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3e9a93c7-ead2-4f29-9751-391381cb3491"
+      },
+      {
+        "tr": "başlamak",
+        "de": "beginnen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f2dec2cf-5290-4fc6-a673-bc4468a0e39a"
+      },
+      {
+        "tr": "bitirmek",
+        "de": "beenden",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7ac87582-3756-418d-b9a5-e13c5b3701ff"
+      },
+      {
+        "tr": "devam etmek",
+        "de": "fortsetzen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "416de9b9-24a1-4c4d-bd65-b6f54c5d7dc1"
+      },
+      {
+        "tr": "durdurmak",
+        "de": "anhalten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d419a81d-c369-4770-a8eb-e66db37c2639"
+      },
+      {
+        "tr": "değiştirmek",
+        "de": "ändern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bb717268-804e-4685-a294-1cebe96ab6a0"
+      },
+      {
+        "tr": "geliştirmek",
+        "de": "verbessern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fb8adf8e-8cfa-4d42-b3d8-ee5a73be673c"
+      },
+      {
+        "tr": "bozmak",
+        "de": "kaputt machen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "67a03f9e-7e4a-4cf5-9d41-ea561c8d6ff6"
+      },
+      {
+        "tr": "onarmak",
+        "de": "reparieren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2fa8f592-8d53-491d-ab46-7889ebc33e54"
+      },
+      {
+        "tr": "inşa etmek",
+        "de": "bauen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f01cd818-e12a-42ac-9af3-0ba2200fc036"
+      },
+      {
+        "tr": "yıkmak",
+        "de": "zerstören",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f2517efc-5dcd-4ed2-bd38-e114a5bc8794"
+      },
+      {
+        "tr": "yükseltmek",
+        "de": "erhöhen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f8725b54-c810-4de1-84a7-a6e64788c0e7"
+      },
+      {
+        "tr": "azaltmak",
+        "de": "reduzieren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a5a8945e-fbc3-4b8b-b249-c8aadfa739cd"
+      },
+      {
+        "tr": "arttırmak",
+        "de": "steigern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "04155ddd-583d-4a5a-9e61-8169c7491d13"
+      },
+      {
+        "tr": "düşürmek",
+        "de": "senken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "909e62fe-194b-4784-97ae-4c648dc24895"
+      },
+      {
+        "tr": "karıştırmak",
+        "de": "mischen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2ef7df47-67f9-4dad-9377-ee833e129cf8"
+      },
+      {
+        "tr": "ayırmak",
+        "de": "trennen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a7de9275-378f-4602-a4b5-0b6ecebb434e"
+      },
+      {
+        "tr": "bağlamak",
+        "de": "verbinden",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "80be3a80-0992-469b-baec-c7d1113eb658"
+      },
+      {
+        "tr": "çözmek",
+        "de": "lösen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ebcd5cf9-a935-455a-a94b-2e424d04a0ca"
+      },
+      {
+        "tr": "sıkmak",
+        "de": "drücken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7e092d44-c6ff-41c5-8c5f-856da6a18125"
+      },
+      {
+        "tr": "çekmek",
+        "de": "ziehen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "40715cad-7f07-4fc6-aa4b-217fd7d675ac"
+      },
+      {
+        "tr": "itmek",
+        "de": "schieben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cdf4752a-37bf-4300-8b7e-7530ee33732d"
+      },
+      {
+        "tr": "kaldırmak",
+        "de": "heben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2347f9a7-baef-4908-935a-1c4b693cb721"
+      },
+      {
+        "tr": "indirmek",
+        "de": "senken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9406a970-2f18-43cf-898a-d57a7344996e"
+      },
+      {
+        "tr": "döndürmek",
+        "de": "drehen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "33407497-1f00-40b2-909f-6248b009fffa"
+      },
+      {
+        "tr": "sallamak",
+        "de": "schütteln",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "14c055a0-226a-4ef6-81f8-03824dfabb4e"
+      },
+      {
+        "tr": "vurmak",
+        "de": "schlagen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8d3bfe60-1b72-4416-8ddd-093ccba9972d"
+      },
+      {
+        "tr": "yakalamak",
+        "de": "fangen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d4572584-3b68-4dee-b7a0-b63cbd64482a"
+      },
+      {
+        "tr": "atmak",
+        "de": "werfen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8da5da0b-e0f8-424c-b972-7a4026d0c512"
+      },
+      {
+        "tr": "tutmak",
+        "de": "halten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "00f042a0-6f29-4dd9-8653-f61b0fcb99cd"
+      },
+      {
+        "tr": "bırakmak",
+        "de": "loslassen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "319f85b4-3d70-4eb1-b338-8e2db9b1bedf"
+      },
+      {
+        "tr": "dokunmak",
+        "de": "berühren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "39864532-54d2-4609-8234-f6cb22a89fc1"
+      },
+      {
+        "tr": "hissetmek",
+        "de": "fühlen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "361bfb84-f717-40fc-b035-18d952662735"
+      },
+      {
+        "tr": "görmek",
+        "de": "sehen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "180159c8-fec0-4594-b89d-d2e77e3b6a5c"
+      },
+      {
+        "tr": "duymak",
+        "de": "hören",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c17a9706-8c42-4833-bab8-bcac8b7052be"
+      },
+      {
+        "tr": "koklamak",
+        "de": "riechen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c53df98e-fed3-47a3-8cc1-0b47fe3dc76e"
+      },
+      {
+        "tr": "tatmak",
+        "de": "schmecken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3ea38a9d-ae29-4370-88da-9d60fb61966e"
+      },
+      {
+        "tr": "bakmak",
+        "de": "schauen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a9e3830c-24ee-4a4c-85f3-12af64b446d0"
+      },
+      {
+        "tr": "dinlemek",
+        "de": "zuhören",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2f0dd00f-32e3-4264-9a16-aa89b15611b2"
+      },
+      {
+        "tr": "konuşmak",
+        "de": "sprechen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8e251aeb-67c4-4bbe-b675-745c0fa7477f"
+      },
+      {
+        "tr": "söylemek",
+        "de": "sagen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "93b99bb7-b99e-49b9-8980-3786e7d25a27"
+      },
+      {
+        "tr": "okumak",
+        "de": "lesen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a958e586-5d6f-4cdb-9509-07e1aee3cecc"
+      },
+      {
+        "tr": "yazmak",
+        "de": "schreiben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6282f159-c927-4870-a8b1-6ee9c24d55ff"
+      },
+      {
+        "tr": "çizmek",
+        "de": "zeichnen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "92f72e35-e1d2-427e-b2a2-9fa7676185e7"
+      },
+      {
+        "tr": "boyamak",
+        "de": "malen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e775e28d-c1e0-47ca-b17e-08025739a1a1"
+      },
+      {
+        "tr": "öğrenmek",
+        "de": "lernen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d3a038c0-c72d-4c8c-bd36-639340940690"
+      },
+      {
+        "tr": "öğretmek",
+        "de": "lehren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "96cb4c3a-8d66-44aa-8b7e-3b4725fe0f19"
+      },
+      {
+        "tr": "hatırlamak",
+        "de": "erinnern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fa7a9120-e921-44f1-ae6d-6865c2318701"
+      },
+      {
+        "tr": "unutmak",
+        "de": "vergessen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ad6c8853-2a52-44a6-ba5e-b8d768e4731d"
+      },
+      {
+        "tr": "anlamak",
+        "de": "verstehen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4d2830ba-63bb-4dda-b450-829a7477b11c"
+      },
+      {
+        "tr": "açıklamak",
+        "de": "erklären",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8e4a6479-3f9c-4df0-ae37-046f009da999"
+      },
+      {
+        "tr": "sormak",
+        "de": "fragen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8f2b3db1-e63a-4900-a4ed-5770085bdf0f"
+      },
+      {
+        "tr": "cevaplamak",
+        "de": "antworten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e85f4845-1b25-4d60-ad4f-f471c837101f"
+      },
+      {
+        "tr": "onaylamak",
+        "de": "bestätigen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e1d13103-c1dc-42c1-b843-0495084d523e"
+      },
+      {
+        "tr": "reddetmek",
+        "de": "ablehnen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9b9a367e-f2fa-4d98-96a3-fde032e0a516"
+      },
+      {
+        "tr": "kabul etmek",
+        "de": "annehmen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3c694835-8c4a-42e3-9a7f-bf0bceddb127"
+      },
+      {
+        "tr": "teklif etmek",
+        "de": "anbieten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "da57dd92-323a-4f86-8f62-a526f63c9c9b"
+      },
+      {
+        "tr": "istemek",
+        "de": "verlangen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "66587b9c-631d-40ec-93e0-9e6cfc5a7edb"
+      },
+      {
+        "tr": "almak",
+        "de": "nehmen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "11486cba-8781-4fc2-a1af-164e3c213aaa"
+      },
+      {
+        "tr": "vermek",
+        "de": "geben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a8659487-e960-4658-9177-e7e6686a2ec2"
+      },
+      {
+        "tr": "satın almak",
+        "de": "kaufen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8932192c-bf07-4c54-af0c-897a350f790b"
+      },
+      {
+        "tr": "satmak",
+        "de": "verkaufen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "302cdb8a-11f8-4be1-9b9e-34ed6a6bc9de"
+      },
+      {
+        "tr": "ödünç almak",
+        "de": "leihen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8c522654-fe83-4a46-9fc8-304e0e76c231"
+      },
+      {
+        "tr": "ödünç vermek",
+        "de": "verleihen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4ab94ab4-aaf0-437f-80ff-52a1563cc902"
+      },
+      {
+        "tr": "bulmak",
+        "de": "finden",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c5f90568-e5ed-4971-bd88-05cb516b7e93"
+      },
+      {
+        "tr": "kaybetmek",
+        "de": "verlieren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "db18b37b-ba5e-4804-ab12-f22fe805c117"
+      },
+      {
+        "tr": "aramak",
+        "de": "suchen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2e32dd2b-3d40-43f2-a5a8-7699b434f7f0"
+      },
+      {
+        "tr": "keşfetmek",
+        "de": "entdecken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0d176c2f-34ef-4c16-848e-50d0478adb1e"
+      },
+      {
+        "tr": "saklamak",
+        "de": "verstecken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f74fe882-af5b-4428-ae0b-db493b3e0075"
+      },
+      {
+        "tr": "göstermek",
+        "de": "zeigen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0362c68c-0155-4112-b9e7-69836bcfb160"
+      },
+      {
+        "tr": "saklamak",
+        "de": "verbergen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "50ab769f-0633-402f-bcfb-c3f368b7ee5d"
+      },
+      {
+        "tr": "toplamak",
+        "de": "sammeln",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "09aafe0e-d6e7-4aa9-b69f-0827d95bd2e3"
+      },
+      {
+        "tr": "dağıtmak",
+        "de": "verteilen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b56d88ae-1e3b-4c9c-bdca-4d604bb9f835"
+      },
+      {
+        "tr": "korumak",
+        "de": "schützen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d1440662-2c6a-45a4-bb4f-a3d66832e1b9"
+      },
+      {
+        "tr": "kurtarmak",
+        "de": "retten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9ec7490d-1cb7-412d-b4ad-fd7b48d8bed5"
+      },
+      {
+        "tr": "riske atmak",
+        "de": "riskieren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9760b786-8606-4656-abf0-2df7db97ef7f"
+      },
+      {
+        "tr": "kazanmak",
+        "de": "gewinnen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1ee7cbc6-917f-40b0-aa6b-e75afde207f3"
+      },
+      {
+        "tr": "kaybetmek",
+        "de": "verlieren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "99a0bddc-98d4-4b33-80aa-5d36a220e820"
+      },
+      {
+        "tr": "başarmak",
+        "de": "erreichen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "07db5f45-9da3-48b5-9d44-d3c2ff6e11f1"
+      },
+      {
+        "tr": "başarısız olmak",
+        "de": "scheitern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9c9e2423-8ba0-4b6b-bbfc-552c337cc3f7"
+      },
+      {
+        "tr": "denemek",
+        "de": "versuchen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9b380109-c52f-4159-9e6e-46fd6e38baa6"
+      },
+      {
+        "tr": "başarmak",
+        "de": "gelingen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b0b7dad9-086f-4f81-b0c8-90c449034787"
+      },
+      {
+        "tr": "engellemek",
+        "de": "blockieren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6ffeff8e-5d04-450f-bd83-a2028a5fc52e"
+      },
+      {
+        "tr": "izin vermek",
+        "de": "erlauben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fce75dac-7bc7-4798-8561-9bd79943e6c3"
+      },
+      {
+        "tr": "yasaklamak",
+        "de": "verbieten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2339c2b1-c17e-48af-89fa-706fe93afbf9"
+      },
+      {
+        "tr": "serbest bırakmak",
+        "de": "freilassen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a6913aa0-cf4e-469d-a7e8-253599f060a4"
+      },
+      {
+        "tr": "hapsetmek",
+        "de": "einsperren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e8af7937-b77c-4a63-bead-77e35dc2213f"
+      },
+      {
+        "tr": "kaçmak",
+        "de": "fliehen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "80784400-a705-46d3-aa30-8bd5d15a10cf"
+      },
+      {
+        "tr": "takip etmek",
+        "de": "folgen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "568f9e0a-8047-41f1-b35e-7565c6d9f476"
+      },
+      {
+        "tr": "öncülük etmek",
+        "de": "führen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "93b0abff-00e5-4022-9966-d82df1dbbd90"
+      },
+      {
+        "tr": "yol göstermek",
+        "de": "führen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fbaf7b93-f1b0-4084-bb23-3cef0073632f"
+      },
+      {
+        "tr": "yönlendirmek",
+        "de": "lenken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "970f16cd-cd54-46ac-bc6d-d648a623421f"
+      },
+      {
+        "tr": "döndürmek",
+        "de": "wenden",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a5442b4a-96cc-4823-b2dc-bc634b8f368f"
+      },
+      {
+        "tr": "durmak",
+        "de": "anhalten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a2f58a2f-4084-4fcc-b278-159de45fa0ab"
+      },
+      {
+        "tr": "park etmek",
+        "de": "parken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b1814844-53d7-4095-b4a4-94e109041a13"
+      },
+      {
+        "tr": "seyahat etmek",
+        "de": "reisen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b315a890-0d44-4aee-a3c0-1fcadc2945ac"
+      },
+      {
+        "tr": "varmak",
+        "de": "ankommen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "016c87b6-1f3b-41f1-ad09-81da2dabb23e"
+      },
+      {
+        "tr": "ayrılmak",
+        "de": "abreisen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d98ac393-377f-41dd-9e3e-ca18db54ce09"
+      },
+      {
+        "tr": "uçmak",
+        "de": "fliegen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "71a39875-2394-40bb-8948-17cabbcdd0a5"
+      },
+      {
+        "tr": "yüzmek",
+        "de": "schwimmen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d5c71296-0417-41a1-bb90-fdc43c473dfd"
+      },
+      {
+        "tr": "yürümek",
+        "de": "gehen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5115d922-6490-445a-a339-83bd8735a8cf"
+      },
+      {
+        "tr": "koşmak",
+        "de": "rennen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4f858465-8a43-4eda-b2b0-51b2636d944f"
+      },
+      {
+        "tr": "sürünmek",
+        "de": "kriechen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "77d363d0-d74a-4caa-98d4-cde14ac3aca8"
+      },
+      {
+        "tr": "zıplamak",
+        "de": "springen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "870a91e0-13b0-4a38-a528-ebf30d9ce2ed"
+      },
+      {
+        "tr": "tırmanmak",
+        "de": "klettern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2e9b34ef-9d5d-4b30-b922-4809b467e782"
+      },
+      {
+        "tr": "düşmek",
+        "de": "fallen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d6c89a6a-74e5-4322-8d20-fbf06eae7364"
+      },
+      {
+        "tr": "oturmak",
+        "de": "sitzen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "732e2821-6a8c-4b17-abf1-78e5ebecbb6d"
+      },
+      {
+        "tr": "ayakta durmak",
+        "de": "stehen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "24f09413-db7a-4c2a-ac33-3b59224cc576"
+      },
+      {
+        "tr": "yatmak",
+        "de": "liegen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6bb37635-5ef2-4df5-905d-5d771c143e83"
+      },
+      {
+        "tr": "uyanmak",
+        "de": "aufwachen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "78738e3f-b7b6-489f-8e9e-1161d9aa96c6"
+      },
+      {
+        "tr": "uyumak",
+        "de": "schlafen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8c40d1ff-ade8-49d7-a33e-ec3f45ecc8b5"
+      },
+      {
+        "tr": "dinlenmek",
+        "de": "ruhen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f71ad01f-b070-4e7a-93f7-20f669254870"
+      },
+      {
+        "tr": "çalışmak",
+        "de": "arbeiten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e877915b-ed63-45d1-b38e-0f12ad07ef00"
+      },
+      {
+        "tr": "oynamak",
+        "de": "spielen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "8f652ca1-f496-4267-9892-6c1070d85094"
+      },
+      {
+        "tr": "eğlenmek",
+        "de": "sich amüsieren",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "aaa3ab8d-444d-4984-a05a-aff4f3187bb5"
+      },
+      {
+        "tr": "gülmek",
+        "de": "lachen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "58afc820-a399-4b70-9716-70d9aa77320d"
+      },
+      {
+        "tr": "ağlamak",
+        "de": "weinen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e8f797b8-e7fb-4783-aa8b-b4f2c86c1bfb"
+      },
+      {
+        "tr": "tebessüm etmek",
+        "de": "lächeln",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bf0960c9-d2fd-4909-ad51-10ff16071f4f"
+      },
+      {
+        "tr": "somurtmak",
+        "de": "schmollen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "29c4cdc8-33c7-4f4f-b68e-200a65b58f93"
+      },
+      {
+        "tr": "öpmek",
+        "de": "küssen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "84ff8e1b-67be-425c-8f11-f591e58dbd37"
+      },
+      {
+        "tr": "sarılmak",
+        "de": "umarmen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "168009ad-fa5c-46e8-8175-032f6a1824d7"
+      },
+      {
+        "tr": "vurmak",
+        "de": "schlagen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a2fd5f15-a1f2-4f8d-853d-1a0de5289887"
+      },
+      {
+        "tr": "dövmek",
+        "de": "prügeln",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e14a0535-52a7-4ed6-a615-d93a34396894"
+      },
+      {
+        "tr": "savunmak",
+        "de": "verteidigen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ddeff9eb-93fb-408b-b337-dade5931a34f"
+      },
+      {
+        "tr": "saldırmak",
+        "de": "angreifen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5860db73-55b6-49f0-bc35-7b887f12109a"
+      },
+      {
+        "tr": "kaçınmak",
+        "de": "vermeiden",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fc405572-9d96-47e9-8a21-ae68f3a21151"
+      },
+      {
+        "tr": "yakalamak",
+        "de": "fangen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1f4eb831-2122-4396-80bf-0a52320ffe0d"
+      },
+      {
+        "tr": "kurtulmak",
+        "de": "befreien",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a93e7ee5-5ec2-40d9-83e7-84e771fad573"
+      },
+      {
+        "tr": "korumak",
+        "de": "bewachen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c96d7927-8d95-4830-a2fc-39f13af077b2"
+      },
+      {
+        "tr": "ihmal etmek",
+        "de": "vernachlässigen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "480ff6a8-0990-478f-bb1b-5db18a9157e8"
+      },
+      {
+        "tr": "dikkat etmek",
+        "de": "aufpassen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a5f65c59-a952-4ef9-a2d7-d83b5906fefa"
+      },
+      {
+        "tr": "gözlemlemek",
+        "de": "beobachten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "802d5790-b8ce-49bf-bb4f-e04ba99331c6"
+      },
+      {
+        "tr": "incelemek",
+        "de": "untersuchen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3a5be95c-e18a-4a1c-9348-061e455be871"
+      },
+      {
+        "tr": "keşfetmek",
+        "de": "erforschen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "448c9f61-6e63-49d0-83ed-e74a1041ea0a"
+      },
+      {
+        "tr": "araştırmak",
+        "de": "erforschen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "4d84133b-f3af-4c6d-ace9-935f3746ccf0"
+      },
+      {
+        "tr": "icat etmek",
+        "de": "erfinden",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "65c33842-8e8d-499b-9927-b253be315b5c"
+      },
+      {
+        "tr": "keşfetmek",
+        "de": "entdecken",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9cf75e66-9835-4be8-b9a3-83e4a6d23be3"
+      },
+      {
+        "tr": "geliştirmek",
+        "de": "entwickeln",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "531b9309-a990-4ced-86ed-28f539e21a76"
+      },
+      {
+        "tr": "ilerlemek",
+        "de": "fortschreiten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "66767acf-5610-477d-a2eb-16ff031faf3e"
+      },
+      {
+        "tr": "gerilemek",
+        "de": "rückschrittlich sein",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bc39ea0e-df3a-467a-a15e-1b6b50e0d4c1"
+      },
+      {
+        "tr": "değişmek",
+        "de": "sich ändern",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "0358e450-bbda-4113-bd85-081d75a092d9"
+      },
+      {
+        "tr": "ayak uydurmak",
+        "de": "mithalten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b61f9089-4bdb-4b5a-a486-8d6c1dedebb5"
+      },
+      {
+        "tr": "geride kalmak",
+        "de": "zurückbleiben",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6e519c47-b66c-4f11-8139-63c6dce9f47e"
+      },
+      {
+        "tr": "hızlanmak",
+        "de": "beschleunigen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "eedd1727-8072-465b-a648-ce98dcc33944"
+      },
+      {
+        "tr": "yavaşlamak",
+        "de": "verlangsamen",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f10beb4d-6fb3-45e4-a235-9ab370103e58"
+      },
+      {
+        "tr": "erken",
+        "de": "früh",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f8b5f0bc-76d1-4848-8849-b257d4f08075"
+      },
+      {
+        "tr": "geç",
+        "de": "spät",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "483b0e54-838e-4821-8694-4612695bb124"
+      },
+      {
+        "tr": "vaktinde",
+        "de": "pünktlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "922ef09d-409d-4d9e-95cc-62a362f16d44"
+      },
+      {
+        "tr": "gecikmiş",
+        "de": "verspätet",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e9860fb8-303d-4a73-862e-ac5c2f728e85"
+      },
+      {
+        "tr": "acele",
+        "de": "Eile",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d84c412a-0c24-444e-8dd9-0c87dec41923"
+      },
+      {
+        "tr": "yavaş",
+        "de": "langsam",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "67fee41d-b490-436b-95de-8d50eee9b112"
+      },
+      {
+        "tr": "aniden",
+        "de": "plötzlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "d6f0b1ea-14dd-4966-a454-154f00d18604"
+      },
+      {
+        "tr": "yavaş yavaş",
+        "de": "allmählich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "2bf23b16-8414-4526-bff7-2f5e049b17ce"
+      },
+      {
+        "tr": "genellikle",
+        "de": "normalerweise",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "eea5dd6f-7287-4212-b208-6ad9f421f62d"
+      },
+      {
+        "tr": "bazen",
+        "de": "manchmal",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e5a4d2bb-9db6-4f86-adb3-7193da693cad"
+      },
+      {
+        "tr": "nadiren",
+        "de": "selten",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "ec933319-9de0-4e0b-8d5a-09720d8716ee"
+      },
+      {
+        "tr": "asla",
+        "de": "nie",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "5d3c8613-2e1e-493f-860f-c18e02b733f9"
+      },
+      {
+        "tr": "her zaman",
+        "de": "immer",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "564f75bf-b2f6-47f2-b0c9-b63920375b5c"
+      },
+      {
+        "tr": "sık sık",
+        "de": "häufig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "9c40e0eb-1b90-4cb3-ac34-9cfe28dd5329"
+      },
+      {
+        "tr": "ara sıra",
+        "de": "gelegentlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "cc890739-b882-40ae-8ccb-87a121622eda"
+      },
+      {
+        "tr": "çoğunlukla",
+        "de": "meistens",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "fa69a428-02c8-475f-85b3-43cd55f20978"
+      },
+      {
+        "tr": "tamamen",
+        "de": "vollständig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "106a4d1c-4e0c-4da4-9ed0-1b8064c74b51"
+      },
+      {
+        "tr": "kısmen",
+        "de": "teilweise",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7e31b6a4-027e-49d7-ab4c-2c62a1a97afa"
+      },
+      {
+        "tr": "neredeyse",
+        "de": "fast",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b66f1fa0-a505-45fe-961a-41b7c459297c"
+      },
+      {
+        "tr": "tam",
+        "de": "genau",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "c94d4373-ed14-4aaf-a6a8-42dd7c52ea87"
+      },
+      {
+        "tr": "yaklaşık",
+        "de": "ungefähr",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3a54b142-8248-4234-9f9a-cc05420f713d"
+      },
+      {
+        "tr": "fazla",
+        "de": "zu viel",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "69aedf61-577c-45fd-870d-da0529f7f153"
+      },
+      {
+        "tr": "yetersiz",
+        "de": "ungenügend",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "05f694fd-f123-42ad-a4b1-52927ce6f140"
+      },
+      {
+        "tr": "yeterli",
+        "de": "ausreichend",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "e5f99b6c-3c40-45e3-b1c4-80232c2b1f04"
+      },
+      {
+        "tr": "fazlasıyla",
+        "de": "reichlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f454f1df-475b-4e28-9021-7011b03529fe"
+      },
+      {
+        "tr": "sınırlı",
+        "de": "begrenzt",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "b0e23ba8-12c9-46cf-a7a7-a9e5b0e1df59"
+      },
+      {
+        "tr": "sonsuz",
+        "de": "unendlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "f3fe9b76-3542-4631-be97-b549d21e217b"
+      },
+      {
+        "tr": "mümkün",
+        "de": "möglich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "25f928f7-f828-4e99-af86-6fa7a3198dee"
+      },
+      {
+        "tr": "imkansız",
+        "de": "unmöglich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "bbd6c593-c659-4f3b-ba7a-47cb2d6c0835"
+      },
+      {
+        "tr": "olası",
+        "de": "wahrscheinlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "6556b80e-7ba6-4f85-885c-100a58a6cd42"
+      },
+      {
+        "tr": "olasılık dışı",
+        "de": "unwahrscheinlich",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "a1b495d0-99f0-4760-914e-30113e74226b"
+      },
+      {
+        "tr": "kesin",
+        "de": "sicher",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "1644a793-827b-40da-bfe6-ac49abcefb18"
+      },
+      {
+        "tr": "belirsiz",
+        "de": "unsicher",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "3729191d-4f48-4902-8da3-f682074aebdd"
+      },
+      {
+        "tr": "gerekli",
+        "de": "notwendig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7f044d1e-1258-48c7-92c8-af8e2e7623f2"
+      },
+      {
+        "tr": "gereksiz",
+        "de": "unnötig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "030759a8-f6f8-459d-927b-db66a66c52c3"
+      },
+      {
+        "tr": "önemli",
+        "de": "wichtig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "27cee502-275e-465e-abc0-c3773c7409f8"
+      },
+      {
+        "tr": "önemsiz",
+        "de": "unwichtig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "98801482-9198-428c-94c9-29bf95b8cc3b"
+      },
+      {
+        "tr": "acil",
+        "de": "dringend",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "14c5bbc5-e138-4c06-80d7-e012fd01b1a6"
+      },
+      {
+        "tr": "rutin",
+        "de": "routinemäßig",
+        "history": {
+          "counter": 0,
+          "learn": []
+        },
+        "id": "7de46d97-ffae-46d3-a32c-27438fa75661"
+      }
+    ]
+  }
+}

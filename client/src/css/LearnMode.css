@@ -1,0 +1,119 @@
+/* ------------- generic reset & layout ----------------------- */
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f7f8fa;
+  display: flex;
+  justify-content: center;   /* centers the column */
+  padding: 40px 16px;
+}
+
+/* ------------- wrapper column ------------------------------- */
+.flash-app {
+  width: 420px;              /* nice card width */
+  max-width: 100%;
+  text-align: center;
+}
+
+/* ------------- language toggle ------------------------------ */
+.toggle-row {
+  display: inline-flex;
+  gap: 1.2rem;
+
+  padding: 0.5rem 0.9rem;
+  margin-bottom: 24px;
+
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 9999px;     /* pill shape */
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+.toggle-row input {
+  all: unset;                /* remove default */
+  width: 15px;
+  height: 15px;
+  border: 2px solid #888;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+.toggle-row input:checked {
+  border-color: #0077ff;
+}
+.toggle-row input:checked::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #0077ff;
+  border-radius: 50%;
+}
+
+.toggle-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ------------- card & input --------------------------------- */
+
+
+/* optional: the static word on the card */
+.card-static {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-container input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.card-container button {
+  margin-top: 16px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  color: #fff;
+  background: #0077ff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.card-container button:hover {
+  background: #0060d4;
+}
+
+.feedback {
+  margin-top: 12px;
+  font-weight: 600;
+}
+.feedback.ok    { color: #2e7d32; }
+.feedback.error { color: #c62828; }
+
+.correct-answer {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.learn-card .card-container {
+  width: 350px;        /* was 350px */
+  height: 220px;       /* was 220px – keeps aspect */
+}
+
+.learn-card .card-static {
+  width: 350px;        /* match the container */
+  font-size: 2.4rem;   /* was 2rem */
+  padding: 90px 18px;  /* roomier interior */
+}
+
+.learn-card {
+  margin-top: 0px;    /* was larger—reduce until it looks right */
+}

@@ -1,0 +1,28 @@
+node_modules
+# Keep environment variables out of version control
+.env
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo
