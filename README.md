@@ -1,6 +1,6 @@
 # 1 K Words — Single‑User Vocabulary Trainer
 
-A lightweight, offline‑friendly flash‑card app to learn the 1 000 most common Turkish ↔ German words.  
+A lightweight, flash‑card app to learn the 1 000 most common words, languages can now be importet.  
 *Words are stored in* `vocabulary.json`. The API rewrites the file on every update.
 
 
@@ -13,31 +13,36 @@ A lightweight, offline‑friendly flash‑card app to learn the 1 000 most com
 
 ---
 
-## Quick Start (flat‑file mode)
-client 
+## Quick Start
+client: 
 ```bash
 npm install
 npm run start
 ```
 
-Server
+Server:
 ```bash
 npm install
+npx prisma migrate dev --name init
 npx ts-node index.ts 
 ```
 
-Clear json
+Maui:  
+Enable Windows developer mode or install jdk 17 and add a Android phone  
+in the Developer-Powershell  
 ```bash
-npx ts-node resetHistory.ts
+dotnet workload repair
+dotnet workload update
 ```
 
 ## Roadmap / Ideas
 
-* **Login/User** Login and User based Changes.
-* **User settings** Darkmode
-* **DB** to Support more languages on the fly
-* **App** Adding an app that fetches the website
+* **User settings** use the user settings and better the design
+* **User settings** implement Darkmode
+* **Better DB** Support changing between languages and also track it correctly
 * **Better design** robust to screen changes 
+* **Check words** word checking so only translations are added en: hello => de: hallo
+* **Better Apps** Maui is just added in testing needs to be done yet 
 
 ---
 

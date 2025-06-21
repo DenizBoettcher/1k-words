@@ -1,28 +1,44 @@
-node_modules
-# Keep environment variables out of version control
-.env
-# Node modules
+###############################################################################
+# Node / TypeScript
+###############################################################################
 node_modules/
-
-# Build output
 dist/
 build/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Logs
+# TS build artifacts
+*.tsbuildinfo
+
+###############################################################################
+# Prisma / database
+###############################################################################
+# SQLite database file (dev only)
+prisma/*.db
+prisma/*.sqlite
+
+# Generated Prisma client (re-created by `prisma generate`)
+node_modules/.prisma/
+prisma/generated/
+.prisma/
+prisma/Migrations
+*.sql
+
+###############################################################################
+# Environment & secrets
+###############################################################################
+.env
+.env.*.local
+.env.local
+
+###############################################################################
+# Logs & misc
+###############################################################################
 logs/
 *.log
-npm-debug.log*
-
-# Environment variables
-.env
-
-# System files
+*.tmp
 .DS_Store
 Thumbs.db
-
-# IDE/editor settings
-.vscode/
-.idea/
-
-# TypeScript
-*.tsbuildinfo

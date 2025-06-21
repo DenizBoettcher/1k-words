@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+/* ─────────────────────────  USERS  ───────────────────────── */
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  progress  LearningHistory[]
+}
+
+/* ────────────────────────  LANGUAGES  ────────────────────── */
+model Language {
+  id    Int    @id @default(autoincrement())
+  code  String @unique   // "en", "de", "tr", …
+  name  String           // "English", "Deutsch", …
+
+  translations Translation[]
+}
+
+/* ─────────────────────────  WORDS  ───────────────────────── */
+model Word {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  translations  Translation[]
+  learnerStats  LearningHistory[]
+}
+
+/* ─────────────────────  TRANSLATIONS  ───────────────────── */
+model Translation {
+  id         Int      @id @default(autoincrement())
+  text       String
+  word       Word      @relation(fields: [wordId], references: [id])
+  wordId     Int
+  language   Language  @relation(fields: [languageId], references: [id])
+  languageId Int
+
+  @@unique([wordId, languageId])   // max 1 translation per language+word
+}
+
+/* ────────────────  PER-USER LEARNING STATS  ──────────────── */
+model LearningHistory {
+  user      User @relation(fields: [userId], references: [id])
+  userId    Int
+  word      Word @relation(fields: [wordId], references: [id])
+  wordId    Int
+
+  counter   Int  @default(0)       // answers seen / successes, etc.
+  learn     Json @default("[]")    // any extra spaced-repetition data
+
+  @@id([userId, wordId])           // one history row per user+word
+}

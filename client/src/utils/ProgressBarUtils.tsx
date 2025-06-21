@@ -1,8 +1,8 @@
 import { WordEntry } from "../data/WordEntry";// <-- adjust the import path if needed
 
 // internal stores (module scope = survive unmounts)
-const seen = new Set<string>();
-const hits = new Map<string, number>();
+const seen = new Set<number>();
+const hits = new Map<number, number>();
 
 // call this every time the Vocabulary card is *displayed*
 export function registerVocabWord(word: WordEntry): void {

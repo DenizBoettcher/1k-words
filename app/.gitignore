@@ -1,0 +1,99 @@
+###############################################################################
+# OS-specific clutter
+###############################################################################
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+# Linux
+*~
+
+###############################################################################
+# General IDE / build artifacts
+###############################################################################
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider / ReSharper / JetBrains
+.idea/
+*.DotSettings.user
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+###############################################################################
+# .NET build outputs
+###############################################################################
+bin/
+obj/
+TestResults/
+*.dbmdl
+*.log
+*.tlog
+*.cache
+*.pdb
+*.dll
+*.exe
+*.appx
+*.appxbundle
+*.appxupload
+*.appinstaller
+*.msix
+*.msixupload
+*.vsix
+
+###############################################################################
+# NuGet
+###############################################################################
+# (packages folder is rarely used since package-reference, but include for safety)
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.nupkg
+*.snupkg
+# local NuGet config
+NuGet.Config
+
+###############################################################################
+# MAUI-specific
+###############################################################################
+AppPackages/
+Platforms/**/bin/
+Platforms/**/obj/
+*.apk
+*.aab
+*.ipa
+
+# iOS / Mac Catalyst builds
+build/
+*.dSYM/
+*.dsym/
+
+# Android Keystores (add yours if needed)
+*.keystore
+*.jks
+
+###############################################################################
+# User secrets / app settings (keep if you share sample settings)
+###############################################################################
+**/appsettings.Development.json
+secrets.json
+
+###############################################################################
+# Others you might generate
+###############################################################################
+*.mp4
+*.zip
+*.tmp

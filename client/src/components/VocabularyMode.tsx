@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { EMPTY_WORD, WordEntry } from '../data/WordEntry';
-import { getRandomIndex, updateArrayInMemory } from './Utils';
-import { updateWordOnServer } from './Api';
+import { getRandomIndex, updateArrayInMemory } from '../utils/homeUtils';
+import { updateWordOnServer } from '../utils/WordUtils';
 import ProgressBar from './ProgressBar';
-import { registerVocabWord, getVocabCoverage } from './ProgressBarUtils';
+import { registerVocabWord, getVocabCoverage } from '../utils/ProgressBarUtils';
 
 interface Props {
   sequenzeWords: WordEntry[];
@@ -61,7 +61,7 @@ const VocabularyMode: React.FC<Props> = ({ sequenzeWords, index, setIndex }) => 
     };
 
     updateArrayInMemory(sequenzeWords, wordId, edited);
-    await updateWordOnServer({ id: wordId, incrementCounter: true });
+    await updateWordOnServer({ wordId: wordId, incrementCounter: true });
   };
 
   return (
@@ -78,8 +78,8 @@ const VocabularyMode: React.FC<Props> = ({ sequenzeWords, index, setIndex }) => 
           onClick={handleCardClick}
           draggable="false"
         >
-          <div className="card-face card-front">{currentWord.tr}</div>
-          <div className="card-face card-back">{currentWord.de}</div>
+          <div className="card-face card-front">{currentWord.targetLang}</div>
+          <div className="card-face card-back">{currentWord.sourceLang}</div>
         </div>
       </div>
     </>

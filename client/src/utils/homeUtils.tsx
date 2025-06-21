@@ -1,12 +1,12 @@
 import { WordEntry } from "../data/WordEntry";
 
-export function getWordById(words: WordEntry[], id: string): WordEntry | undefined {
+export function getWordById(words: WordEntry[], id: number): WordEntry | undefined {
   return words.find(w => w.id === id);
 }
 
 export function updateArrayInMemory(
   words: WordEntry[],
-  id: string,
+  id: number,
   changes: Partial<Omit<WordEntry, "id">>
 ): WordEntry[] {
   return words.map(word =>

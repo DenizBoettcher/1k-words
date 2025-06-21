@@ -1,7 +1,7 @@
 export type WordEntry = {
-  id: string;
-  tr: string;
-  de: string;
+  id: number;
+  targetLang: string;
+  sourceLang: string;
   history: {
     counter: number;
     learn: boolean[];
@@ -9,8 +9,8 @@ export type WordEntry = {
 };
 
 export const EMPTY_WORD: WordEntry = {
-  id: "",
-  tr: "",
-  de: "",
+  id: 0,
+  targetLang: "",
+  sourceLang: "",
   history: { counter: 0, learn: [] },
 };
