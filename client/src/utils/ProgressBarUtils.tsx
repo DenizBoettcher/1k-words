@@ -16,7 +16,8 @@ export function registerVocabWord(word: WordEntry): void {
 export function getVocabCoverage(total: number) {
     const covered = seen.size;
     const valuesArray = Array.from(hits.values());
-    const minHits = total === 0 ? 0 : Math.min(...valuesArray) || 0;
+    var minHits = total === 0 ? 0 : Math.min(...valuesArray) || 0;
+    minHits = Number.isFinite(minHits) ? minHits : 0
 
     return { covered, minHits };
 }

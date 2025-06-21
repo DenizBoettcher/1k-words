@@ -35,7 +35,7 @@ const makeToken = (user: User) =>
   });
 
 // Guard middleware for protected routes
-export const authenticateJWT: RequestHandler = (req, res, next) => {
+export const authenticateJWT: RequestHandler = async (req, res, next) => {
   const bearer = req.headers.authorization;          // "Bearer <jwt>"
 
   /* 1 ─ Reject missing / malformed header */
@@ -51,14 +51,16 @@ export const authenticateJWT: RequestHandler = (req, res, next) => {
       email: string;
     };
 
-    (req as RequestWithUser).user = {
+    const user = (req as RequestWithUser).user = {
       id: payload.sub,
       email: payload.email,
     };
 
-    next();                  // hand off to the real handler
+    await prisma.user.findFirstOrThrow({ where: { id: user.id } });
+
+    next();
   } catch {
-    res.sendStatus(401);     // again, don’t return its value
+    res.sendStatus(401);     
   }
 };
 

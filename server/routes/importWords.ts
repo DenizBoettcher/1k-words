@@ -41,6 +41,7 @@ router.post(
     try {
       /* 3-a validate body */
       const data = Payload.parse(req.body);
+      
 
       /* 3-b process each entry serially (SQLite safe) */
       for (const entry of data) {
@@ -82,11 +83,10 @@ router.post(
         }
         
         const userId = (req as RequestWithUser).user.id;
-
-        /*  Step 4: (optional) initialise history for the uploader */
+        /*  Step 4: initialise history for the uploader */
         await prisma.learningHistory.upsert({
-          where: { userId_wordId: { userId: userId, wordId } },
-          update: {},                // don’t reset counters if exists
+          where: { userId_wordId: { userId: userId, wordId: wordId } },
+          update: {},
           create: { userId: userId, wordId, counter: 0, learn: [] },
         });
       }

@@ -14,6 +14,22 @@ A lightweight, flash‑card app to learn the 1 000 most common words, language
 ---
 
 ## Quick Start
+https setup
+``` bash
+choco install mkcert      # Windows
+brew install mkcert nss   # macOS
+sudo pacman -S mkcert     # Arch, etc.
+
+mkcert -install
+mkcert localhost 127.0.0.1 ::1
+```
+shove the generated files:  
+localhost+2.pem  
+localhost+2-key.pem  
+into   
+server\certs  
+client\public\certs
+
 client: 
 ```bash
 npm install
@@ -37,12 +53,16 @@ dotnet workload update
 
 ## Roadmap / Ideas
 
-* **User settings** use the user settings and better the design
-* **User settings** implement Darkmode
+* **WordSequenzes** WordSequenzes should be handled by the server to send a range from 5-50 words instead of all words
+* **WordSets** wordsets from people should be download/choosable by other users if flagged public
 * **Better DB** Support changing between languages and also track it correctly
 * **Better design** robust to screen changes 
-* **Check words** word checking so only translations are added en: hello => de: hallo
-* **Better Apps** Maui is just added in testing needs to be done yet 
+* **User settings** better design
+* **User settings** implement Darkmode
+* **Better Apps** Maui is just added in, testing needs to be done yet 
+* **App Notification** Notification by apps
+* **XP system** increase the will to open the webiste/app up again
+* **Deploy** deploy the webiste
 
 ---
 

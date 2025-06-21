@@ -1,35 +1,77 @@
 import { useSyncExternalStore } from 'react';
 import { DEFAULT_SETTINGS, Settings } from '../data/Settings';
+import { BaseUrl } from '../data/BaseUrl';
+import { getAuthHeader } from './apiUtils';
 
 const STORAGE_KEY = 'appSettings';
 
-/* ------------ helpers ----------------- */
-function readStorage(): Settings {
+/* ---------- helpers: local cache ----------------------- */
+function cacheRead(): Settings | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? { ...DEFAULT_SETTINGS, ...JSON.parse(raw) } : DEFAULT_SETTINGS;
+    return raw ? JSON.parse(raw) : null;
   } catch {
-    return DEFAULT_SETTINGS;
+    return null;
   }
 }
-function writeStorage(s: Settings) {
+function cacheWrite(s: Settings) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
 }
 
-/* ------------ reactive store ------------ */
-// naive pub-sub
-let current = readStorage();
+/* ---------- store + pub-sub ----------------------------- */
+let current: Settings = cacheRead() ?? DEFAULT_SETTINGS;
 let listeners: (() => void)[] = [];
 
-function setSettings(partial: Partial<Settings>) {
-  current = { ...current, ...partial };
-  writeStorage(current);
+function notify() {
   listeners.forEach((fn) => fn());
 }
 
-/* ------------ React hook ---------------- */
+/* ---------- API sync ------------------------------------ */
+async function fetchFromServer() {
+  try {
+    const res = await fetch(`${BaseUrl}/api/settings`, {
+      headers: getAuthHeader(),
+    });
+    if (!res.ok) throw new Error(await res.text());
+    current = { ...DEFAULT_SETTINGS, ...(await res.json()) };
+    cacheWrite(current);
+    notify();
+  } catch (err) {
+    console.warn('settings: fetch failed → using cache', err);
+  }
+}
+fetchFromServer(); // fire once at module load
+
+export async function setSettings(partial: Partial<Settings>) {
+  const next = { ...current, ...partial };
+
+  /* 1. persist to backend */
+  try {
+    const res = await fetch(`${BaseUrl}/api/settings`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify(partial),
+    });
+    if (!res.ok) throw new Error(await res.text());
+  } catch (err) {
+    console.warn('settings: PUT failed → keeping local change', err);
+  }
+
+  /* 2. update in-memory + cache + notify */
+  current = next;
+  cacheWrite(current);
+  notify();
+}
+
+/* ---------- export: live proxy -------------------------- */
+export const settings: Settings = new Proxy({} as Settings, {
+  get(_, prop) {
+    return (current as any)[prop];
+  },
+}) as Settings;
+
+/* ---------- React hook ---------------------------------- */
 export function useSettings() {
-  // subscribe/unsubscribe
   const snapshot = useSyncExternalStore(
     (cb) => {
       listeners.push(cb);
@@ -37,9 +79,5 @@ export function useSettings() {
     },
     () => current,
   );
-
-  return {
-    settings: snapshot,
-    setSettings,            // partial updater
-  };
+  return { settings: snapshot, setSettings };
 }

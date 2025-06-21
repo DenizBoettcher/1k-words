@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { BaseUrl } from '../data/BaseUrl';
+import { getAuthHeader } from '../utils/apiUtils';
 
 export default function WordImportButton({
   label = 'Import JSON',
@@ -43,7 +44,7 @@ export default function WordImportButton({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`,
+          ...getAuthHeader(),
         },
         body: JSON.stringify(payload),
       });

@@ -5,9 +5,8 @@ import VocabularyMode from '../components/VocabularyMode';
 import LearnMode from '../components/LearnMode';
 import { getWords } from '../utils/WordUtils';
 import { getRandomRange } from '../utils/homeUtils';
-import '../css/FlashCard.css';
-import WordImportButton from '../components/WordImportButton';
 import GearButton from '../components/GearButton';
+import { settings } from '../utils/settingUtils';
 
 type Mode = 'vocabulary' | 'learn';
 
@@ -22,8 +21,10 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    getWords()
+    getWords(settings.sourceLangId, settings.targetLangId)
       .then(fetched => {
+        if(fetched.length === 0)
+          return;
         setWords(fetched);
         setSequenzeWords(getRandomRange(fetched));
       })
@@ -69,10 +70,7 @@ const App: React.FC = () => {
 
 
       </div>
-      <section className="p-8">
-        <h1 className="mb-4 text-xl font-semibold">Bulk import</h1>
-        <WordImportButton onDone={(n) => console.log(`${n} words added`)} />
-      </section>
+      
     </>
   );
 };

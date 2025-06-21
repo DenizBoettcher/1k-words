@@ -1,4 +1,5 @@
 import { WordEntry } from "../data/WordEntry";
+import { settings } from '../utils/settingUtils';
 
 export function getWordById(words: WordEntry[], id: number): WordEntry | undefined {
   return words.find(w => w.id === id);
@@ -15,7 +16,7 @@ export function updateArrayInMemory(
 }
 
 export function getRandomRange<T>(array: T[]): T[] {
-  const count = 15;
+  const count = settings.wordsPerSession;
   if (array.length <= count) {
     return [...array]; // Return full array if not enough elements
   }
@@ -27,7 +28,6 @@ export function getRandomRange<T>(array: T[]): T[] {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
-  // Return the first 30 elements
   return shuffled.slice(0, count);
 }
 

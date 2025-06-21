@@ -3,7 +3,6 @@ import { EMPTY_WORD, WordEntry } from '../data/WordEntry';
 import { getWeightedRandomIndex, updateArrayInMemory } from '../utils/homeUtils';
 import { isAnswerCorrect } from '../utils/WordUtils';
 import { updateWordOnServer } from '../utils/WordUtils';
-import '../css/LearnMode.css';
 
 interface Props {
   words: WordEntry[];
@@ -19,7 +18,7 @@ const LearnMode: React.FC<Props> = ({ words, index, setIndex }) => {
 
   useEffect(() => {
     if (words.length && index === -1) {
-      setIndex(getWeightedRandomIndex(words));   // updates App state
+      setIndex(getWeightedRandomIndex(words));
     }
   }, [words, index, setIndex]);
 

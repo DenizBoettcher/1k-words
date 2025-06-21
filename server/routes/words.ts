@@ -80,6 +80,33 @@ router.get(
   }),
 );
 
+router.get(
+  '/lang',
+  authenticateJWT,
+  asyncHandler(async (req, res) => {
+    const userId = (req as RequestWithUser).user.id;
+    const userOnly = req.query.user === 'true' && userId;
+
+    const languages = await prisma.language.findMany({
+          where: {
+            translations: {
+              some: {
+                word: {
+                  learnerStats: {
+                    some: { userId: userId },
+                  },
+                },
+              },
+            },
+          },
+          orderBy: { name: 'asc' },
+          select: { id: true, code: true, name: true },
+        });
+      
+    res.json(languages);
+  }),
+);
+
 /* ==========================================================
    2) POST /api/words/update
    ========================================================= */

@@ -1,20 +1,17 @@
 import { BaseUrl } from "../data/BaseUrl";
+import { UpdateWordBody } from "../data/UpdateWordBody";
 import { WordEntry } from "../data/WordEntry";
-
-export type UpdateWordBody = {
-  wordId: number;
-  incrementCounter?: boolean;
-  learnResult?: boolean;
-};
+import { getAuthHeader } from "./apiUtils";
 
 export async function getWords(
-  lang = "1,2",
+  sourceLang : number,
+  targetLang : number
 ): Promise<WordEntry[]> {
-  const resp = await fetch(`${BaseUrl}/api/words/lang/${lang}`, {
+  const resp = await fetch(`${BaseUrl}/api/words/lang/${sourceLang},${targetLang}`, {
     method: "GET",
     headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`,
+          ...getAuthHeader(),
         },
   });
   if (!resp.ok) {
@@ -35,7 +32,7 @@ export async function updateWordOnServer(
     method: "POST",
     headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`,
+          ...getAuthHeader(),
         },
     body: JSON.stringify(body),
   });
