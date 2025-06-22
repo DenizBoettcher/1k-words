@@ -1,7 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import { DEFAULT_SETTINGS, Settings } from '../data/Settings';
-import { ApiUrl } from '../data/ApiUrl';
-import { getAuthHeader } from './apiUtils';
+import { RequestApi } from './apiUtils';
 
 const STORAGE_KEY = 'appSettings';
 
@@ -29,10 +28,8 @@ function notify() {
 /* ---------- API sync ------------------------------------ */
 async function fetchFromServer() {
   try {
-    const res = await fetch(`${ApiUrl}/api/settings`, {
-      headers: getAuthHeader(),
-    });
-    if (!res.ok) throw new Error(await res.text());
+    const res = await RequestApi(`settings`);
+
     current = { ...DEFAULT_SETTINGS, ...(await res.json()) };
     cacheWrite(current);
     notify();
@@ -47,12 +44,12 @@ export async function setSettings(partial: Partial<Settings>) {
 
   /* 1. persist to backend */
   try {
-    const res = await fetch(`${ApiUrl}/api/settings`, {
+    await RequestApi(`settings`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(partial),
     });
-    if (!res.ok) throw new Error(await res.text());
+
   } catch (err) {
     console.warn('settings: PUT failed → keeping local change', err);
   }

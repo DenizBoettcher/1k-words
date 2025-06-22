@@ -2,22 +2,19 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Mail, Lock } from 'lucide-react';
 import { Button, Card, CardContent, Input } from '../components/LoginComponents'
-import { ApiUrl } from '../data/ApiUrl';
+import { RequestApi } from '../utils/apiUtils';
 
 async function request(
   path: 'login' | 'register',
   email: string,
   password: string,
 ) {
-  const res = await fetch(`${ApiUrl}/api/auth/${path}`, {
+  const res = await RequestApi(`auth/${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   });
-  if (!res.ok) {
-    const msg = (await res.json().catch(() => ({}))).message ?? 'Request failed';
-    throw new Error(msg);
-  }
+
   return res.json() as Promise<{ token: string; user: { id: number; email: string } }>;
 }
 

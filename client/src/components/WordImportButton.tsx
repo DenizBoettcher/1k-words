@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
-import { ApiUrl } from '../data/ApiUrl';
-import { getAuthHeader } from '../utils/apiUtils';
+import { RequestApi } from '../utils/apiUtils';
 
 export default function WordImportButton({
   label = 'Import JSON',
@@ -40,12 +39,9 @@ export default function WordImportButton({
           })();
 
       /* 3 ─ POST to server */
-      const res = await fetch(`${ApiUrl}/api/importWords/json`, {
+      const res = await RequestApi("importWords/json", {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...getAuthHeader(),
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
@@ -53,13 +49,6 @@ export default function WordImportButton({
       const isJson =
         res.headers.get('content-type')?.startsWith('application/json') ?? false;
       const body = isJson ? await res.json() : await res.text();
-
-      if (!res.ok) {
-        const msg =
-          (isJson ? body.message : body) ??
-          `Server responded ${res.status}`;
-        throw new Error(msg);
-      }
 
       setStatus(`✅ Imported ${body.count} entries`);
       onDone?.(body.count);

@@ -1,39 +1,27 @@
-import { ApiUrl } from "../data/ApiUrl";
 import { UpdateWordBody } from "../data/UpdateWordBody";
 import { WordEntry } from "../data/WordEntry";
-import { getAuthHeader } from "./apiUtils";
+import { RequestApi } from "./apiUtils";
 
 export async function getWords(
   sourceLang : number,
   targetLang : number
 ): Promise<WordEntry[]> {
-  const resp = await fetch(`${ApiUrl}/api/words/lang/${sourceLang},${targetLang}`, {
+  const resp = await RequestApi(`words/lang/${sourceLang},${targetLang}`, {
     method: "GET",
-    headers: {
-          'Content-Type': 'application/json',
-          ...getAuthHeader(),
-        },
+    headers: { 'Content-Type': 'application/json' },
   });
-  if (!resp.ok) {
-    throw new Error(`getWords failed: ${resp.status} ${resp.statusText}`);
-  }
-var y = (await resp.json())
-console.log(y)
-  var x = y as WordEntry[]
-  console.log(x)
 
-  return x;
+  var words = (await resp.json()) as WordEntry[]
+  console.log(words)
+  return words;
 }
 
 export async function updateWordOnServer(
   body: UpdateWordBody,
 ): Promise<WordEntry> {
-  const resp = await fetch(`${ApiUrl}/api/words/update`, {
+  const resp = await RequestApi("words/update", {
     method: "POST",
-    headers: {
-          'Content-Type': 'application/json',
-          ...getAuthHeader(),
-        },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
 
@@ -46,7 +34,7 @@ export async function updateWordOnServer(
     } catch {
       /* ignore – response wasn’t JSON */
     }
-    throw new Error(`updateWord failed: ${msg}`);
+    console.log(`updateWord failed: ${msg}`);
   }
 
   const { updated } = (await resp.json()) as { updated: WordEntry };

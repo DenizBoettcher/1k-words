@@ -1,10 +1,6 @@
 import { WordEntry } from "../data/WordEntry";
 import { settings } from '../utils/settingUtils';
 
-export function getWordById(words: WordEntry[], id: number): WordEntry | undefined {
-  return words.find(w => w.id === id);
-}
-
 export function updateArrayInMemory(
   words: WordEntry[],
   id: number,

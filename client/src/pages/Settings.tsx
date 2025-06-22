@@ -2,10 +2,9 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useSettings } from '../utils/settingUtils';
 import WordImportButton from '../components/WordImportButton';
-import { ApiUrl } from '../data/ApiUrl';
 import { Lang } from '../data/Lang';
 import { DEFAULT_SETTINGS, Settings } from '../data/Settings';
-import { getAuthHeader } from '../utils/apiUtils';
+import { RequestApi } from '../utils/apiUtils';
 
 export default function SettingsPage() {
   const { settings, setSettings } = useSettings();
@@ -13,21 +12,17 @@ export default function SettingsPage() {
   /* ---------- languages from server ---------- */
   const [langs, setLangs] = useState<Lang[]>([]);
   const [loadingLangs, setLoadingLangs] = useState(true);
-  const [langError, setLangError] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
-      try {
-        const res = await fetch(`${ApiUrl}/api/words/lang`, {
-          headers: getAuthHeader(),
-        });
-        if (!res.ok) throw new Error(await res.text());
+     
+        const res = await RequestApi("words/lang");
+
+        if (!res.ok)
+          console.log(await res.text());
+
         setLangs((await res.json()) as Lang[]);
-      } catch (e: any) {
-        setLangError(e.message ?? 'fetch error');
-      } finally {
         setLoadingLangs(false);
-      }
     })();
   }, []);
 
@@ -61,9 +56,8 @@ export default function SettingsPage() {
       <h1 className="text-2xl font-semibold">Settings</h1>
 
       {loadingLangs && <p>Loading languages…</p>}
-      {langError && <p className="text-red-600">⚠ {langError}</p>}
 
-      {!loadingLangs && !langError && (
+      {!loadingLangs && (
         <>
           {/* Language pair ------------------------------------------------ */}
           <section className="space-y-2">
