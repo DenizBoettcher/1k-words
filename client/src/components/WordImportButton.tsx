@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { BaseUrl } from '../data/BaseUrl';
+import { ApiUrl } from '../data/ApiUrl';
 import { getAuthHeader } from '../utils/apiUtils';
 
 export default function WordImportButton({
@@ -40,7 +40,7 @@ export default function WordImportButton({
           })();
 
       /* 3 ─ POST to server */
-      const res = await fetch(`${BaseUrl}/api/importWords/json`, {
+      const res = await fetch(`${ApiUrl}/api/importWords/json`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

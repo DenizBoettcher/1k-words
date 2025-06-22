@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { EMPTY_WORD, WordEntry } from '../data/WordEntry';
 import { getRandomIndex, updateArrayInMemory } from '../utils/homeUtils';
-import { updateWordOnServer } from '../utils/WordUtils';
+import { updateWordOnServer } from '../utils/wordUtils';
 import ProgressBar from './ProgressBar';
-import { registerVocabWord, getVocabCoverage } from '../utils/ProgressBarUtils';
+import { registerVocabWord, getVocabCoverage } from '../utils/progressBarUtils';
 
 interface Props {
   sequenzeWords: WordEntry[];

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { EMPTY_WORD, WordEntry } from '../data/WordEntry';
 import { getWeightedRandomIndex, updateArrayInMemory } from '../utils/homeUtils';
-import { isAnswerCorrect } from '../utils/WordUtils';
-import { updateWordOnServer } from '../utils/WordUtils';
+import { isAnswerCorrect } from '../utils/wordUtils';
+import { updateWordOnServer } from '../utils/wordUtils';
 
 interface Props {
   words: WordEntry[];

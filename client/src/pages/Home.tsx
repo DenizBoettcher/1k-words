@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { WordEntry } from '../data/WordEntry';
 import VocabularyMode from '../components/VocabularyMode';
 import LearnMode from '../components/LearnMode';
-import { getWords } from '../utils/WordUtils';
+import { getWords } from '../utils/wordUtils';
 import { getRandomRange } from '../utils/homeUtils';
 import GearButton from '../components/GearButton';
 import { settings } from '../utils/settingUtils';

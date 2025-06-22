@@ -2,7 +2,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useSettings } from '../utils/settingUtils';
 import WordImportButton from '../components/WordImportButton';
-import { BaseUrl } from '../data/BaseUrl';
+import { ApiUrl } from '../data/ApiUrl';
 import { Lang } from '../data/Lang';
 import { DEFAULT_SETTINGS, Settings } from '../data/Settings';
 import { getAuthHeader } from '../utils/apiUtils';
@@ -18,7 +18,7 @@ export default function SettingsPage() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${BaseUrl}/api/words/lang`, {
+        const res = await fetch(`${ApiUrl}/api/words/lang`, {
           headers: getAuthHeader(),
         });
         if (!res.ok) throw new Error(await res.text());

@@ -1,4 +1,4 @@
-import { BaseUrl } from "../data/BaseUrl";
+import { ApiUrl } from "../data/ApiUrl";
 import { UpdateWordBody } from "../data/UpdateWordBody";
 import { WordEntry } from "../data/WordEntry";
 import { getAuthHeader } from "./apiUtils";
@@ -7,7 +7,7 @@ export async function getWords(
   sourceLang : number,
   targetLang : number
 ): Promise<WordEntry[]> {
-  const resp = await fetch(`${BaseUrl}/api/words/lang/${sourceLang},${targetLang}`, {
+  const resp = await fetch(`${ApiUrl}/api/words/lang/${sourceLang},${targetLang}`, {
     method: "GET",
     headers: {
           'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ console.log(y)
 export async function updateWordOnServer(
   body: UpdateWordBody,
 ): Promise<WordEntry> {
-  const resp = await fetch(`${BaseUrl}/api/words/update`, {
+  const resp = await fetch(`${ApiUrl}/api/words/update`, {
     method: "POST",
     headers: {
           'Content-Type': 'application/json',

@@ -1,20 +1,48 @@
 # 1 K Words — Single‑User Vocabulary Trainer
 
 A lightweight, flash‑card app to learn the 1 000 most common words, languages can now be importet.  
-*Words are stored in* `vocabulary.json`. The API rewrites the file on every update.
-
 
 | Feature                  | Summary                                                                                        |
 | ------------------------ | ---------------------------------------------------------------------------------------------- |
-| **Two Modes**            | *Vocabulary Mode* (flip card) · *Learn Mode* (type answer + instant feedback)                  |
+| **Two Modes**            | **Vocabulary Mode** flip card **Learn Mode** type answer + feedback                            |
 | **Weighted Random**      | Words you miss (`learn = false`) appear 5 × more often than ones you get right.                |
 | **Per‑session Progress** | Compact progress bar shows “words covered” and the least‑seen repetition count (e.g. *2 / 3*). |
-| **Storage Options**      | flat `vocabulary.json` This can easily be adapted to any need and language.                    |
-
----
+| **Importing Languages**  | Import every language you like based on the provided json in test_data                         |
+| **User Specific**        | Support Multiple Users, user can only see there Imported words                                 |
+| **App**                  | .Net MAUI app that displayes the Website on Windows, Android (and maybe IOS, MACOS not tested) |
 
 ## Quick Start
-https setup
+
+### client: 
+```bash
+npm install
+npm run start
+```
+
+### Server:
+```bash
+npm install
+npx prisma migrate dev --name init
+npx ts-node index.ts 
+```
+
+### Maui:  
+Enable Windows developer mode or install jdk 17 and add a Android phone  
+in the Developer-Powershell  
+```bash
+dotnet workload repair
+dotnet workload update
+```
+
+### http 
+use the .env.http.example environment
+change .env for client and AppConfig for app to http://localhost:4000
+
+### https setup (optional)
+use the .env.https.example environment and create/put the files at KEY_PATH and CERT_PATH  
+the same for client copy the files and change .env SSL_CRT_FILE and SSL_KEY_FILE  
+change .env for client and AppConfig for app to https://localhost:4000
+
 ``` bash
 choco install mkcert      # Windows
 brew install mkcert nss   # macOS
@@ -22,33 +50,6 @@ sudo pacman -S mkcert     # Arch, etc.
 
 mkcert -install
 mkcert localhost 127.0.0.1 ::1
-```
-shove the generated files:  
-localhost+2.pem  
-localhost+2-key.pem  
-into   
-server\certs  
-client\public\certs
-
-client: 
-```bash
-npm install
-npm run start
-```
-
-Server:
-```bash
-npm install
-npx prisma migrate dev --name init
-npx ts-node index.ts 
-```
-
-Maui:  
-Enable Windows developer mode or install jdk 17 and add a Android phone  
-in the Developer-Powershell  
-```bash
-dotnet workload repair
-dotnet workload update
 ```
 
 ## Roadmap / Ideas
@@ -63,8 +64,6 @@ dotnet workload update
 * **App Notification** Notification by apps
 * **XP system** increase the will to open the webiste/app up again
 * **Deploy** deploy the webiste
-
----
 
 ## License
 
