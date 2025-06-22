@@ -17,10 +17,7 @@ export default function SettingsPage() {
     (async () => {
      
         const res = await RequestApi("words/lang");
-
-        if (!res.ok)
-          console.log(await res.text());
-
+        
         setLangs((await res.json()) as Lang[]);
         setLoadingLangs(false);
     })();

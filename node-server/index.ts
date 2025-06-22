@@ -18,6 +18,7 @@ app.use(express.json());
 
 /* routes ------------------------------------------------------- */
 
+app.use('/', () => console.log("I am ALIVE"))
 app.use('/api/auth', loginRouter);
 app.use('/api/importwords', importWordsRouter);
 app.use('/api/words', wordsRouter)

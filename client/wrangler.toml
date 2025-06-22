@@ -1,4 +1,4 @@
-name = "1k-words"
+name = "1k-words-page"
 compatibility_date = "2025-06-22"
 main = "src/index.tsx"
 assets = { directory = "build"}

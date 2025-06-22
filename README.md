@@ -1,5 +1,7 @@
 # 1 K Words — Single‑User Vocabulary Trainer
 
+**does not work right now implementing cloudflare pages**
+
 A lightweight, flash‑card app to learn the 1 000 most common words, languages can now be importet.  
 
 | Feature                  | Summary                                                                                        |
