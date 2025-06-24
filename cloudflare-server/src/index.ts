@@ -8,10 +8,6 @@ import settingsRoutes from './routes/settings';
 const app = new Hono<{ Bindings: CloudflareBindings }>();
 
 app.use('*', cors());               // Wide‑open CORS (adjust as needed)
-app.use('*', async (c, next) => {   // JSON body limiter (optional)
-  c.req.raw.headers.set('x-powered-by', 'Hono');
-  await next();
-});
 
 /* ---------- Health check ---------- */
 app.get("/", (c) => {
