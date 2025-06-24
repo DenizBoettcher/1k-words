@@ -1,12 +1,11 @@
-import { Router } from 'express';
 import { z as zod } from 'zod';
-import { PrismaClient } from "./generated/prisma/";
-import { authenticateJWT } from './login';
-import { RequestWithUser } from './types/RequestWithUser';
+import { authenticateJWT } from '../middleware/authenticateJWT';
+import { RequestWithUser } from '../types/RequestWithUser';
+import { Hono } from 'hono'
+import { getPrisma } from '../prisma/prismaHelper';
+import { PrismaClient } from '../generated/prisma/index';
 
-const adapter = new PrismaD1(env.DB);
-const prisma = new PrismaClient({ adapter });
-const router = Router();
+const app = new Hono<{ Bindings: CloudflareBindings }>();
 
 /* ──────────────────────────────────────────────────────────────
    1. Zod: expect an array of objects { langCode: "translation" }
@@ -18,7 +17,8 @@ const Payload = zod.array(WordEntry).min(1);
    2. Helper – ensure language row exists, cache ids in memory
    ────────────────────────────────────────────────────────────── */
 const langCache = new Map<string, number>();
-async function langId(code: string) {
+
+async function langId(code: string, prisma: PrismaClient) {
   if (langCache.has(code)) return langCache.get(code)!;
   const lc = code.toLowerCase();
 
@@ -34,13 +34,15 @@ async function langId(code: string) {
 /* ──────────────────────────────────────────────────────────────
    3. POST  /api/words/json
    ────────────────────────────────────────────────────────────── */
-router.post(
+app.post(
   '/json',
   authenticateJWT,              
-  async (req, res, next) => {
+  async (c, next) => {
+    const prisma = await getPrisma(c.env);
+
     try {
       /* 3-a validate body */
-      const data = Payload.parse(req.body);
+      const data = Payload.parse(c.body);
       
 
       /* 3-b process each entry serially (SQLite safe) */
@@ -71,7 +73,7 @@ router.post(
 
         /*  Step 3: add / upsert translations */
         for (const [code, text] of Object.entries(entry)) {
-          const languageId = await langId(code);
+          const languageId = await langId(code, prisma);
 
           await prisma.translation.upsert({
             where: {
@@ -82,7 +84,7 @@ router.post(
           });
         }
         
-        const userId = (req as RequestWithUser).user.id;
+        const userId = (c.req as unknown as RequestWithUser).user.id;
         /*  Step 4: initialise history for the uploader */
         await prisma.learningHistory.upsert({
           where: { userId_wordId: { userId: userId, wordId: wordId } },
@@ -91,11 +93,15 @@ router.post(
         });
       }
 
-      res.status(201).json({ message: 'Imported', count: data.length });
+      c.status(201)
+      const message = { message: 'Imported', count: data.length };
+      console.log(message)
+      c.json(message)
     } catch (err) {
-      next(err);
+      console.log(err)
+      next();
     }
   },
 );
 
-export default router;
+export default app;

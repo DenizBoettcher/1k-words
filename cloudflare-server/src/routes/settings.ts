@@ -1,22 +1,10 @@
-import {
-  Router,
-  Request,
-  Response,
-  NextFunction,
-  RequestHandler,
-} from 'express';
-import { PrismaClient } from '@prisma/client';
+import { Hono } from 'hono'
 import { z } from 'zod';
-import { authenticateJWT } from './login';
-import { RequestWithUser } from './types/RequestWithUser';
+import { authenticateJWT } from '../middleware/authenticateJWT';
+import { RequestWithUser } from '../types/RequestWithUser';
+import { getPrisma } from "../prisma/prismaHelper";
 
-const prisma  = new PrismaClient();
-const router  = Router();
-
-/* ------------ async wrapper keeps RequestHandler type ------------- */
-const asyncHandler =
-  (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>): RequestHandler =>
-  (req, res, next) => void fn(req, res, next).catch(next);
+const app = new Hono<{ Bindings: CloudflareBindings }>();
 
 /* ------------ validation for PUT body ------------------------------ */
 const SettingsBody = z.object({
@@ -27,11 +15,12 @@ const SettingsBody = z.object({
 });
 
 /* ================= GET /api/settings =============================== */
-router.get(
+app.get(
   '/',
   authenticateJWT,
-  asyncHandler(async (req, res) => {
-    const { id: userId } = (req as RequestWithUser).user;
+  async (c) => {
+    const prisma = await getPrisma(c.env)
+    const { id: userId } = (c.req as unknown as RequestWithUser).user;
 
     const settings = await prisma.userSettings.upsert({
       where:  { userId },
@@ -39,22 +28,25 @@ router.get(
       create: { userId },
     });
 
-    res.json(settings);
-  }),
+    c.json(settings);
+  },
 );
 
 /* ================= PUT /api/settings =============================== */
-router.put(
+app.put(
   '/',
   authenticateJWT,
-  asyncHandler(async (req, res) => {
-    const body = SettingsBody.parse(req.body);
+  async (c) => {
+    const prisma = await getPrisma(c.env);
+    const body = SettingsBody.parse(c.body);
+
     if (Object.keys(body).length === 0) {
-      res.status(400).json({ error: 'No settings supplied' });
+      c.status(400);
+      c.json({ error: 'No settings supplied' });
       return;
     }
 
-    const { id: userId } = (req as RequestWithUser).user;
+    const { id: userId } = (c.req as unknown as RequestWithUser).user;
 
     const updated = await prisma.userSettings.upsert({
       where:  { userId },
@@ -62,8 +54,8 @@ router.put(
       create: { userId, ...body },
     });
 
-    res.json(updated);
-  }),
+    c.json(updated);
+  },
 );
 
-export default router;
+export default app;

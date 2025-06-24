@@ -1,41 +1,28 @@
-import {
-  Router,
-  Request,
-  Response,
-  NextFunction,
-  RequestHandler,
-} from 'express';
-import { PrismaClient } from '@prisma/client';
-import { authenticateJWT } from './login';    
-import { RequestWithUser } from './types/RequestWithUser';
+import { Hono } from 'hono'
+import { authenticateJWT } from '../middleware/authenticateJWT';
+import { RequestWithUser } from '../types/RequestWithUser';
+import { getPrisma } from "../prisma/prismaHelper";
 
-const prisma = new PrismaClient();
-const router  = Router();
+const app = new Hono<{ Bindings: CloudflareBindings }>();
 
-/* ---------- async wrapper ---------- */
-const asyncHandler =
-  (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>): RequestHandler =>
-  (req, res, next) => {
-    fn(req, res, next).catch(next);
-  };
-
-router.get(
+app.get(
   '/lang/:pair',
   authenticateJWT,
-  asyncHandler(async (req, res) => {
-    /* --- parse path param "1,2" -------------------------- */
-    const [srcStr, tgtStr] = req.params.pair.split(',');
+  async (c) => {
+    const prisma = await getPrisma(c.env);
+    const [srcStr, tgtStr] = c.req.param('pair').split(',');
     const srcId = Number(srcStr);
     const tgtId = Number(tgtStr);
     
     console.log("Logged in and Getting words")
 
     if (!srcId || !tgtId || Number.isNaN(srcId) || Number.isNaN(tgtId)) {
-      res.status(400).json({ error: 'Path must be /langs/<srcId>,<tgtId>' });
+      c.status(400);
+      c.json({ error: 'Path must be /langs/<srcId>,<tgtId>' });
       return;
     }
 
-    const userId = (req as RequestWithUser).user.id;
+    const userId = (c.req as unknown as RequestWithUser).user.id;
 
     console.log(`loading words for user ${userId} SourceLang ${srcId}, TargetLang ${tgtId}`)
 
@@ -65,9 +52,9 @@ router.get(
     });
 
     /* --- reshape ------------------------------------------------------- */
-    const payload = words.map((w) => {
-      const sourceLang = w.translations.find((t) => t.languageId === srcId)!.text;
-      const targetLang = w.translations.find((t) => t.languageId === tgtId)!.text;
+    const payload = words.map((w : any) => {
+      const sourceLang = w.translations.find((t : any) => t.languageId === srcId)!.text;
+      const targetLang = w.translations.find((t : any) => t.languageId === tgtId)!.text;
       return {
         id: w.id,
         sourceLang,
@@ -76,16 +63,16 @@ router.get(
       };
     });
 
-    res.json(payload);
-  }),
+    c.json(payload);
+  },
 );
 
-router.get(
+app.get(
   '/lang',
   authenticateJWT,
-  asyncHandler(async (req, res) => {
-    const userId = (req as RequestWithUser).user.id;
-    const userOnly = req.query.user === 'true' && userId;
+  async (c) => {
+    const prisma = await getPrisma(c.env)
+    const userId = (c.req as unknown as RequestWithUser).user.id;
 
     const languages = await prisma.language.findMany({
           where: {
@@ -103,29 +90,31 @@ router.get(
           select: { id: true, code: true, name: true },
         });
       
-    res.json(languages);
-  }),
+    c.json(languages);
+  },
 );
 
 /* ==========================================================
    2) POST /api/words/update
    ========================================================= */
-router.post(
+app.post(
   '/update',
   authenticateJWT,
-  asyncHandler(async (req, res) => {
-    const { wordId, incrementCounter, learnResult } = req.body as {
+  async (c) => {
+    const prisma = await getPrisma(c.env);
+    const { wordId, incrementCounter, learnResult } = c.body as any as {
       wordId: number;
       incrementCounter?: boolean;
       learnResult?: boolean;
     };
 
     if (!wordId) {
-      res.status(400).json({ error: 'wordId required' });
+      c.status(400);
+      c.json({ error: 'wordId required' });
       return;
     }
 
-    const userId = (req as RequestWithUser).user.id;
+    const userId = (c.req as unknown as RequestWithUser).user.id;
 
     const history = await prisma.learningHistory.upsert({
       where: { userId_wordId: { userId, wordId } },
@@ -149,9 +138,9 @@ router.post(
       data,
     });
 
-    res.json({ success: true, updated });
-  }),
+    c.json({ success: true, updated });
+  },
 );
 
 
-export default router;
+export default app;

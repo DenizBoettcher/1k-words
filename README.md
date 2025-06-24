@@ -1,78 +1,122 @@
-# 1 K Words — Single‑User Vocabulary Trainer
+# 1 K Words — Personal Vocabulary Trainer
 
-**does not work right now implementing cloudflare pages**
+*A lightweight flash‑card app that helps you master the 1 000 most‑common words in any language. Easily import your own language packs.*
 
-A lightweight, flash‑card app to learn the 1 000 most common words, languages can now be importet.  
 
-| Feature                  | Summary                                                                                        |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| **Two Modes**            | **Vocabulary Mode** flip card **Learn Mode** type answer + feedback                            |
-| **Weighted Random**      | Words you miss (`learn = false`) appear 5 × more often than ones you get right.                |
-| **Per‑session Progress** | Compact progress bar shows “words covered” and the least‑seen repetition count (e.g. *2 / 3*). |
-| **Importing Languages**  | Import every language you like based on the provided json in test_data                         |
-| **User Specific**        | Support Multiple Users, user can only see there Imported words                                 |
-| **App**                  | .Net MAUI app that displayes the Website on Windows, Android (and maybe IOS, MACOS not tested) |
+## Features
+
+| Feature                   | Description                                                                                                          |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Two learning modes**    | *Vocabulary* — flip the card to reveal the translation.<br>*Learn* — type the answer and receive immediate feedback. |
+| **Smart repetition**      | Words you miss are shown **5 ×** more often than words you answer correctly.                                         |
+| **Session progress**      | A compact progress bar displays how many unique words you’ve seen and the lowest repetition count (e.g. **2 / 3**).  |
+| **Custom language packs** | Import any language using the JSON template in **`test_data/`**.                                                     |
+| **Multi‑user support**    | Each user sees only the words they imported.                                                                         |
+| **Cross‑platform app**    | .NET MAUI wrapper runs the web app on Windows and Android (iOS/macOS untested).                                      |
+
 
 ## Quick Start
 
-### client: 
+### 1 Client
 ```bash
 npm install
 npm run start
 ```
 
-### Server:
+The client starts at **[http://localhost:3000](http://localhost:3000)** by default.
+
+## 2 · Choose a back‑end
+
+You can self‑host with **Node.js** or deploy for free on **Cloudflare Workers-Pages**.
+
+## 2 a · Cloudflare Workers
+
+1. ### Install dependencies
+
+   ```bash
+   npm install
+   ```
+2. ### Create the database
+
+   ```bash
+   npx wrangler d1 create <DB_NAME>
+   npx wrangler d1 migrations create <DB_NAME> <MIGRATION_NAME>
+   npx prisma migrate diff --from-empty --to-schema-datamodel ./src/prisma/schema.prisma --script --output migrations/<MIGRATION_NAME>.sql # push migarion
+   npx wrangler d1 migrations apply <DB_NAME> --local   # local DB
+   npx wrangler d1 migrations apply <DB_NAME> --remote  # remote DB
+   ```
+3. ### Type generation & dev server
+
+   ```bash
+   npx prisma generate
+   npm run cf-typegen
+   npm run start
+   ```
+4. ### Deploy
+
+   ```bash
+   npm run deploy
+   ```
+
+## 2 b · Node.js (self‑host)
+
 ```bash
 npm install
 npx prisma migrate dev --name init
-npx ts-node index.ts 
+npm run start
 ```
 
-### Maui:  
-Enable Windows developer mode or install jdk 17 and add a Android phone  
-in the Developer-Powershell  
+### 3 · HTTP / HTTPS Configuration
+
+#### HTTP (default)
+
+1. Rename `.env.http.example` to `.env`.
+2. Set `APP_API_URL` in the client `.env` to `http://localhost:4000`.
+3. set `AppConfig` in the MAUI app to `http://localhost:4000`.
+
+#### HTTPS (optional)
+
+1. Copy `.env.https.example` to `.env` and set `KEY_PATH` & `CERT_PATH`.
+2. No need to Change `AppConfig` or `.env` the default runs on HTTPS
+2. Generate local certificates with **mkcert**:
+
+   ```bash
+   mkcert -install
+   mkcert localhost 127.0.0.1 ::1
+   ```
+
+
+### 4 · MAUI Desktop / Mobile App
+
+* **Windows** — Enable Developer Mode.  
+* **Android** — Install JDK 17 and connect a device or emulator.
+
+Then run:
+
 ```bash
 dotnet workload repair
 dotnet workload update
-```
+````
 
-### http 
-use the .env.http.example environment
-change .env for client and AppConfig for app to http://localhost:4000
 
-### https setup (optional)
-use the .env.https.example environment and create/put the files at KEY_PATH and CERT_PATH  
-the same for client copy the files and change .env SSL_CRT_FILE and SSL_KEY_FILE  
-change .env for client and AppConfig for app to https://localhost:4000
+## Roadmap
 
-``` bash
-choco install mkcert      # Windows
-brew install mkcert nss   # macOS
-sudo pacman -S mkcert     # Arch, etc.
+* **Word sequences** — Server sends batches of 5–50 words instead of the full list.
+* **Word sets** — Public sets can be shared and downloaded by other users.
+* **Database improvements** — Seamless switching between languages with accurate progress tracking.
+* **Responsive design** — Adapt to different screen sizes.
+* **User settings** — Dark mode and improved layout options.
+* **Mobile/Desktop apps** — Complete testing on all MAUI targets.
+* **Notifications** — Reminders in apps to keep learning.
+* **XP / gamification** — Increase user engagement.
 
-mkcert -install
-mkcert localhost 127.0.0.1 ::1
-```
-
-## Roadmap / Ideas
-
-* **WordSequenzes** WordSequenzes should be handled by the server to send a range from 5-50 words instead of all words
-* **WordSets** wordsets from people should be download/choosable by other users if flagged public
-* **Better DB** Support changing between languages and also track it correctly
-* **Better design** robust to screen changes 
-* **User settings** better design
-* **User settings** implement Darkmode
-* **Better Apps** Maui is just added in, testing needs to be done yet 
-* **App Notification** Notification by apps
-* **XP system** increase the will to open the webiste/app up again
-* **Deploy** deploy the webiste
 
 ## License
 
 ```text
 MIT License
 
-Copyright (c) 2025  1 K Words
+Copyright (c) 2025  1 K Words
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
