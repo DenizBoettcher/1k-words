@@ -1,5 +1,4 @@
-// simpler retrieval
-export const ApiUrl = process.env.APP_API_URL;
+export const ApiUrl = process.env.REACT_APP_API_URL;
 
 export function getAuthHeader(): HeadersInit {
   const token = localStorage.getItem('token');

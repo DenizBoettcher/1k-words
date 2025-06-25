@@ -33,30 +33,38 @@ You can self‑host with **Node.js** or deploy for free on **Cloudflare Workers
 
 1. ### Install dependencies
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 2. ### Create the database
 
-   ```bash
-   npx wrangler d1 create <DB_NAME>
-   npx wrangler d1 migrations create <DB_NAME> <MIGRATION_NAME>
-   npx prisma migrate diff --from-empty --to-schema-datamodel ./src/prisma/schema.prisma --script --output migrations/<MIGRATION_NAME>.sql # push migarion
-   npx wrangler d1 migrations apply <DB_NAME> --local   # local DB
-   npx wrangler d1 migrations apply <DB_NAME> --remote  # remote DB
-   ```
+```bash
+npx wrangler d1 create <DB_NAME>
+npx wrangler d1 migrations create <DB_NAME> <MIGRATION_NAME>
+npx prisma migrate diff --from-empty --to-schema-datamodel ./src/prisma/schema.prisma --script --output migrations/<MIGRATION_NAME>.sql # push migarion
+npx wrangler d1 migrations apply <DB_NAME> --local   # local DB
+npx wrangler d1 migrations apply <DB_NAME> --remote  # remote DB
+```
+
 3. ### Type generation & dev server
 
-   ```bash
-   npx prisma generate
-   npm run cf-typegen
-   npm run start
-   ```
+```bash
+npx prisma generate
+npm run cf-typegen
+npm run start
+```
 4. ### Deploy
 
-   ```bash
-   npm run deploy
-   ```
+```bash
+npm run deploy
+```
+
+5. ### Connect the Page to Server
+go to settings press add Variables and Secrets  
+![How it should look like](docs/looklike.PNG)
+
+then add it like below  
+![How it should look like](docs/addpopup.PNG)
 
 ## 2 b · Node.js (self‑host)
 
