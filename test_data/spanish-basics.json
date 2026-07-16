@@ -1,0 +1,12 @@
+{
+  "title": "Spanish Basics",
+  "sourceLang": "en",
+  "targetLang": "es",
+  "words": [
+    { "en": "hello", "es": "hola" },
+    { "en": "thank you", "es": "gracias" },
+    { "en": "water", "es": "agua" },
+    { "en": "house", "es": "casa" },
+    { "en": "friend", "es": "amigo/amiga" }
+  ]
+}

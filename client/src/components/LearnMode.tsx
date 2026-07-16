@@ -1,115 +1,91 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Stack, SegmentedControl, Paper, TextInput, Button, Text, Group } from '@mantine/core';
 import { EMPTY_WORD, WordEntry } from '../data/WordEntry';
-import { getWeightedRandomIndex, updateArrayInMemory } from '../utils/homeUtils';
-import { isAnswerCorrect, updateWordOnServer } from '../utils/wordUtils';
+import { getWeightedRandomIndex } from '../utils/homeUtils';
+import { isAnswerCorrect } from '../utils/wordUtils';
+import { submitReview, ReviewResult } from '../utils/studyApi';
 
 interface Props {
   words: WordEntry[];
   index: number;
   setIndex: (i: number) => void;
+  sourceLang: string;
+  targetLang: string;
+  onReviewed: (result: ReviewResult, wordId: number, correct: boolean) => void;
 }
 
-const LearnMode: React.FC<Props> = ({ words, index, setIndex }) => {
-  const [direction, setDirection] = useState<'tr-de' | 'de-tr'>('tr-de');
+export default function LearnMode({
+  words, index, setIndex, sourceLang, targetLang, onReviewed,
+}: Props) {
+  const [direction, setDirection] = useState<'t2s' | 's2t'>('t2s');
   const [input, setInput] = useState('');
-  const [feedback, setFeedback] = useState('');
-  const [showCorrect, setShowCorrect] = useState(false);
+  const [result, setResult] = useState<'ok' | 'wrong' | null>(null);
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (words.length && index === -1) {
-      setIndex(getWeightedRandomIndex(words));
-    }
+    if (words.length && index === -1) setIndex(getWeightedRandomIndex(words));
   }, [words, index, setIndex]);
 
-  const currentWord =
-    index >= 0 && index < words.length
-      ? words[index]
-      : EMPTY_WORD;
+  const word = index >= 0 && index < words.length ? words[index] : EMPTY_WORD;
+  const prompt = direction === 't2s' ? word.targetLang : word.sourceLang;
+  const expected = direction === 't2s' ? word.sourceLang : word.targetLang;
 
-  const checkAnswer = () => {
-    const correctRaw = direction === 'tr-de' ? currentWord.sourceLang : currentWord.targetLang;
-    const correct = isAnswerCorrect(input, correctRaw);
-
-    setFeedback(correct ? '✅ Correct!' : '❌ Wrong!');
-    setShowCorrect(!correct);
-    updateWord(correct);
-
+  const check = async () => {
+    if (busy || word.id === 0) return;
+    const correct = isAnswerCorrect(input, expected);
+    setResult(correct ? 'ok' : 'wrong');
+    setBusy(true);
+    try {
+      onReviewed(await submitReview(word.id, correct), word.id, correct);
+    } catch (e) {
+      console.error(e);
+    }
     setTimeout(() => {
       setInput('');
-      setFeedback('');
-      setShowCorrect(false);
-      setIndex(getWeightedRandomIndex(words));
-    }, 1500);
-  };
-
-  /** wrapper that updates local caches + server */
-  const updateWord = async (learnResult: boolean) => {
-    const wordId = words[index].id;
-    const edited = {
-      ...words[index],
-      history: {
-        ...words[index].history,
-        learn: [...words[index].history.learn, learnResult]
-      }
-    };
-
-    updateArrayInMemory(words, wordId, edited);
-    await updateWordOnServer({ wordId: wordId, learnResult: learnResult });
+      setResult(null);
+      setBusy(false);
+      setIndex(getWeightedRandomIndex(words, index));
+    }, 1200);
   };
 
   return (
-    <>
-      <div className="flash-app">
-        {/* --- toggle ------------------------------------------------ */}
-        <div className="toggle-row" style={{ marginTop: 33 }}>
-          {[
-            { val: 'tr-de', label: 'Türkisch ➜ Deutsch' },
-            { val: 'de-tr', label: 'Deutsch ➜ Türkisch' },
-          ].map(({ val, label }) => (
-            <label key={val}>
-              <input
-                type="radio"
-                value={val}
-                checked={direction === val}
-                onChange={() => setDirection(val as 'tr-de' | 'de-tr')}
-              />
-              <span>{label}</span>  {/* span lets us style text separately */}
-            </label>
-          ))}
-        </div>
+    <Stack align="center" gap="md" maw={460} mx="auto">
+      <SegmentedControl
+        value={direction}
+        onChange={(v) => setDirection(v as 't2s' | 's2t')}
+        data={[
+          { value: 't2s', label: `${targetLang.toUpperCase()} → ${sourceLang.toUpperCase()}` },
+          { value: 's2t', label: `${sourceLang.toUpperCase()} → ${targetLang.toUpperCase()}` },
+        ]}
+      />
 
-        {/* --- card -------------------------------------------------- */}
-        <div className="card-container learn-card">
-          <div className="card-static">
-            {direction === 'tr-de' ? currentWord.targetLang : currentWord.sourceLang}
-          </div>
+      <Paper withBorder radius="lg" p="lg" w="100%">
+        <div className="prompt-tile">{prompt.split('/').join(' / ')}</div>
+      </Paper>
 
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && checkAnswer()}
-            placeholder="Übersetzung…"
-          />
+      <TextInput
+        w="100%"
+        size="md"
+        placeholder="Type the translation…"
+        value={input}
+        disabled={busy}
+        onChange={(e) => setInput(e.currentTarget.value)}
+        onKeyDown={(e) => e.key === 'Enter' && check()}
+        error={result === 'wrong'}
+      />
 
-          <button onClick={checkAnswer}>Check</button>
+      <Button fullWidth size="md" onClick={check} disabled={busy}>
+        Check
+      </Button>
 
-          {feedback && (
-            <p className={`feedback ${feedback.includes('✅') ? 'ok' : 'error'}`}>
-              {feedback}
-            </p>
-          )}
-
-          {showCorrect && (
-            <p className="correct-answer">
-              Correct:&nbsp;
-              {direction === 'tr-de' ? currentWord.sourceLang : currentWord.targetLang}
-            </p>
-          )}
-        </div>
-      </div>
-    </>
-
+      {result && (
+        <Group justify="center" gap={6}>
+          <Text fw={600} c={result === 'ok' ? 'teal' : 'red'}>
+            {result === 'ok' ? '✓ Correct' : '✗ Not quite'}
+          </Text>
+          {result === 'wrong' && <Text c="dimmed">— {expected.split('/').join(' / ')}</Text>}
+        </Group>
+      )}
+    </Stack>
   );
-};
-
-export default LearnMode;
+}

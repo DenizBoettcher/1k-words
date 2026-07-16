@@ -1,7 +1,8 @@
 export type JwtPayload = {
-  sub: number;        // user-id
+  sub: number; // user id
   email: string;
+  username: string;
+  role: string; // "USER" | "ADMIN"
   exp: number;
-  iat: number;
-  tv?: number;        // tokenVersion (optional)
+  iat?: number;
 };

@@ -1,163 +1,77 @@
-/* src/pages/Settings.tsx */
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
+import { Stack, Title, Paper, Select, Switch, NumberInput, Text } from '@mantine/core';
+import { useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
+import AppLayout from '../components/AppLayout';
 import { useSettings } from '../utils/settingUtils';
-import WordImportButton from '../components/WordImportButton';
-import { Lang } from '../data/Lang';
-import { DEFAULT_SETTINGS, Settings } from '../data/Settings';
-import { RequestApi } from '../utils/apiUtils';
+import { getStudyableLists } from '../utils/listsApi';
+import { StudyableList } from '../data/List';
 
 export default function SettingsPage() {
   const { settings, setSettings } = useSettings();
+  const { setColorScheme } = useMantineColorScheme();
+  const scheme = useComputedColorScheme('dark');
+  const [lists, setLists] = useState<StudyableList[]>([]);
 
-  /* ---------- languages from server ---------- */
-  const [langs, setLangs] = useState<Lang[]>([]);
-  const [loadingLangs, setLoadingLangs] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-     
-        const res = await RequestApi("words/lang");
-        
-        setLangs((await res.json()) as Lang[]);
-        setLoadingLangs(false);
-    })();
-  }, []);
-
-  /* ---------- local form state ---------- */
-  const [form, setForm] = useState<Settings>(settings);
-
-  /* keep form in sync when settings change from elsewhere */
-  useEffect(() => setForm(settings), [settings]);
-
-  /* ---------- derived: is dirty? ---------- */
-  const dirty = useMemo(
-    () => JSON.stringify(form) !== JSON.stringify(settings),
-    [form, settings],
-  );
-
-  /* ---------- handlers ---------- */
-  const onSave = () => {
-    if (!dirty) return;
-    setSettings(form);                 // persists to backend (see util)
-  };
-
-  /* ---------- UI ---------- */
-  const langOptions = langs.map((l) => (
-    <option key={l.id} value={l.id}>
-      {l.code.toUpperCase()} – {l.name}
-    </option>
-  ));
+  useEffect(() => { getStudyableLists().then(setLists).catch(() => {}); }, []);
 
   return (
-    <div className="mx-auto max-w-md space-y-6 p-8">
-      <h1 className="text-2xl font-semibold">Settings</h1>
+    <AppLayout>
+      <Title order={1} mb="lg">Settings</Title>
+      <Stack gap="md" maw={460}>
+        <Paper withBorder radius="md" p="md">
+          <Select
+            label="Active list to study"
+            placeholder="None"
+            clearable
+            value={settings.activeListId ? String(settings.activeListId) : null}
+            onChange={(v) => setSettings({ activeListId: v ? Number(v) : null })}
+            data={lists.map((l) => ({
+              value: String(l.id),
+              label: `${l.title} (${l.sourceLang}→${l.targetLang})`,
+            }))}
+          />
+        </Paper>
 
-      {loadingLangs && <p>Loading languages…</p>}
+        <Paper withBorder radius="md" p="md">
+          <Switch
+            label="Dark mode"
+            description="VS Code-style muted greys"
+            checked={scheme === 'dark'}
+            onChange={(e) => {
+              const dark = e.currentTarget.checked;
+              setColorScheme(dark ? 'dark' : 'light');
+              setSettings({ darkMode: dark });
+            }}
+          />
+        </Paper>
 
-      {!loadingLangs && (
-        <>
-          {/* Language pair ------------------------------------------------ */}
-          <section className="space-y-2">
-            <label className="block">
-              <span className="text-sm font-medium">Source language</span>
-              <select
-                className="mt-1 w-full rounded border px-3 py-2"
-                value={form.sourceLangId}
-                onChange={(e) =>
-                  setForm({ ...form, sourceLangId: Number(e.target.value) })
-                }
-              >
-                {langOptions}
-              </select>
-            </label>
+        <Paper withBorder radius="md" p="md">
+          <Switch
+            label="Check capitalization"
+            description="When on, “berlin” is wrong for “Berlin”. Off: case is ignored."
+            checked={settings.checkCapitalization}
+            onChange={(e) => setSettings({ checkCapitalization: e.currentTarget.checked })}
+          />
+          <Switch
+            mt="md"
+            label="Accept base letters for special characters"
+            description="When on, ö→o, ç→c, ø→o, ß→ss … so answers count without those keys."
+            checked={settings.foldSpecialLetters}
+            onChange={(e) => setSettings({ foldSpecialLetters: e.currentTarget.checked })}
+          />
+        </Paper>
 
-            <label className="block">
-              <span className="text-sm font-medium">Target language</span>
-              <select
-                className="mt-1 w-full rounded border px-3 py-2"
-                value={form.targetLangId}
-                onChange={(e) =>
-                  setForm({ ...form, targetLangId: Number(e.target.value) })
-                }
-              >
-                {langOptions}
-              </select>
-            </label>
-          </section>
-
-          {/* Dark mode ---------------------------------------------------- */}
-          <section className="flex items-center gap-3">
-            <input
-              id="darkToggle"
-              type="checkbox"
-              checked={form.darkMode}
-              onChange={(e) =>
-                setForm({ ...form, darkMode: e.target.checked })
-              }
-            />
-            <label htmlFor="darkToggle">Enable dark mode</label>
-          </section>
-
-          {/* Words per session ------------------------------------------- */}
-          <section>
-            <label className="block">
-              <span className="text-sm font-medium">Words per study session</span>
-              <input
-                type="number"
-                min={5}
-                max={100}
-                className="mt-1 w-full rounded border px-3 py-2"
-                /* show empty string while the user is editing/clearing */
-                value={form.wordsPerSession === 0 ? '' : form.wordsPerSession}
-                onChange={(e) => {
-                  const num = parseInt(e.target.value, 10);
-                  setForm({
-                    ...form,
-                    /*  keep 0 as placeholder but never below min */
-                    wordsPerSession: Number.isNaN(num) ? 0 : num,
-                  });
-                }}
-                onBlur={() => {
-                  /* enforce min/max after focus leaves the field */
-                  setForm((prev) => ({
-                    ...prev,
-                    wordsPerSession: Math.min(
-                      100,
-                      Math.max(5, prev.wordsPerSession || DEFAULT_SETTINGS.wordsPerSession),
-                    ),
-                  }));
-                }}
-                placeholder={DEFAULT_SETTINGS.wordsPerSession.toString()}
-              />
-            </label>
-          </section>
-
-          {/* Save button -------------------------------------------------- */}
-          <button
-            type="button"
-            disabled={!dirty}
-            onClick={onSave}
-            className={`mt-2 rounded px-4 py-2 text-sm font-medium text-white
-              ${dirty ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400'}`}
-          >
-            {dirty ? 'Save changes' : '✓ Saved'}
-          </button>
-
-          {/* Reset -------------------------------------------------------- */}
-          <button
-            className="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white"
-            onClick={() => setForm(DEFAULT_SETTINGS)}
-          >
-            Reset Settings
-          </button>
-
-          {/* Bulk import -------------------------------------------------- */}
-          <section className="pt-6">
-            <h2 className="mb-3 text-lg font-semibold">Bulk import</h2>
-            <WordImportButton onDone={(n) => console.log(`${n} words added`)} />
-          </section>
-        </>
-      )}
-    </div>
+        <Paper withBorder radius="md" p="md">
+          <NumberInput
+            label="Words per study session"
+            description="How many cards you get each round"
+            min={5} max={200} clampBehavior="blur"
+            value={settings.wordsPerSession}
+            onChange={(v) => typeof v === 'number' && setSettings({ wordsPerSession: v })}
+          />
+          <Text c="dimmed" fz="xs" mt={6}>Between 5 and 200.</Text>
+        </Paper>
+      </Stack>
+    </AppLayout>
   );
 }

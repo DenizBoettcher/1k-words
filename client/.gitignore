@@ -1,25 +1,18 @@
-# Node modules
+# ── Dependencies & build ──────────────────────────────────────────────
 node_modules/
-
-# Build output
 dist/
 build/
+coverage/
+*.tsbuildinfo
 
-# Environment
-.env*
+# ── Secrets & environment (only .env.example is committed) ───────────
+.env
+.env.*
 !.env.example
 *.pem
 
-# System files
+# ── OS & editor ───────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
-
-# Editor/IDE
-.vscode/
 .idea/
-
-# Testing
-coverage/
-
-# TypeScript
-*.tsbuildinfo
+.vscode/

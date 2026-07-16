@@ -1,89 +1,74 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Group, Button } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons-react';
 import { EMPTY_WORD, WordEntry } from '../data/WordEntry';
-import { getRandomIndex, updateArrayInMemory } from '../utils/homeUtils';
-import { updateWordOnServer } from '../utils/wordUtils';
-import ProgressBar from './ProgressBar';
-import { registerVocabWord, getVocabCoverage } from '../utils/progressBarUtils';
+import { getRandomIndex } from '../utils/homeUtils';
+import { submitReview, ReviewResult } from '../utils/studyApi';
 
 interface Props {
-  sequenzeWords: WordEntry[];
+  words: WordEntry[];
   index: number;
   setIndex: (i: number) => void;
+  onReviewed: (result: ReviewResult, wordId: number, correct: boolean) => void;
 }
 
-const VocabularyMode: React.FC<Props> = ({ sequenzeWords, index, setIndex }) => {
+/** Flip-card mode. After flipping, "Knew it"/"Missed" feeds the scheduler. */
+export default function VocabularyMode({ words, index, setIndex, onReviewed }: Props) {
   const [flipped, setFlipped] = useState(false);
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (sequenzeWords.length && index === -1) {
-      setIndex(getRandomIndex(sequenzeWords, index));
-      registerVocabWord(sequenzeWords[index])
-    }
-  }, [sequenzeWords, index, setIndex]);
+    if (words.length && index === -1) setIndex(getRandomIndex(words, index));
+  }, [words, index, setIndex]);
 
-  const currentWord =
-    index >= 0 && index < sequenzeWords.length
-      ? sequenzeWords[index]
-      : EMPTY_WORD;
+  const word = index >= 0 && index < words.length ? words[index] : EMPTY_WORD;
 
-  const { covered, minHits } = getVocabCoverage(sequenzeWords.length);
-
-  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    window.getSelection()?.removeAllRanges();
-
-    if (!flipped) {
-      setFlipped(true); // show translation
-    } else {
-      setFlipped(false); // flip back
-      updateWord();
-      // delay change until flip animation finishes
-      setTimeout(() => {
-        nextWord()
-      }, 600);
-    }
+  const advance = () => {
+    setFlipped(false);
+    setTimeout(() => setIndex(getRandomIndex(words, index)), 300);
   };
 
-  const nextWord = () => {
-    registerVocabWord(sequenzeWords[index]);
-    setIndex(getRandomIndex(sequenzeWords, index));
-  };
-
-  /** wrapper that updates local caches + server */
-  const updateWord = async () => {
-    const wordId = currentWord.id;
-    const edited = {
-      ...sequenzeWords[index],
-      history: {
-        ...sequenzeWords[index].history,
-        counter: sequenzeWords[index].history.counter + 1
-      }
-    };
-
-    updateArrayInMemory(sequenzeWords, wordId, edited);
-    await updateWordOnServer({ wordId: wordId, incrementCounter: true });
+  const grade = async (correct: boolean) => {
+    if (busy || word.id === 0) return;
+    setBusy(true);
+    try {
+      onReviewed(await submitReview(word.id, correct), word.id, correct);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setBusy(false);
+      advance();
+    }
   };
 
   return (
-    <>
-      <div className="card-container">
-        <ProgressBar
-          covered={covered}
-          total={sequenzeWords.length}
-          minHits={minHits}
-          targetReps={3}
-        />
+    <div>
+      <div className="flip">
         <div
-          className={`card ${flipped ? 'flipped' : ''}`}
-          onClick={handleCardClick}
-          draggable="false"
+          className={`flip__inner ${flipped ? 'is-flipped' : ''}`}
+          onClick={() => !flipped && setFlipped(true)}
         >
-          <div className="card-face card-front">{currentWord.targetLang}</div>
-          <div className="card-face card-back">{currentWord.sourceLang}</div>
+          <div className="flip__face flip__front">{word.targetLang.split('/').join(' / ')}</div>
+          <div className="flip__face flip__back">{word.sourceLang.split('/').join(' / ')}</div>
         </div>
       </div>
-    </>
-  );
-};
 
-export default VocabularyMode;
+      {!flipped ? (
+        <p style={{ textAlign: 'center', color: 'var(--mantine-color-dimmed)', marginTop: 14 }}>
+          Tap the card to reveal
+        </p>
+      ) : (
+        <Group justify="center" mt="lg">
+          <Button color="red" variant="light" leftSection={<IconX size={18} />}
+            disabled={busy} onClick={() => grade(false)}>
+            Missed
+          </Button>
+          <Button color="teal" leftSection={<IconCheck size={18} />}
+            disabled={busy} onClick={() => grade(true)}>
+            Knew it
+          </Button>
+        </Group>
+      )}
+    </div>
+  );
+}

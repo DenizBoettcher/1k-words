@@ -1,1 +1,5 @@
-JWT_SECRET="super-long-random-string"
+# Local secrets for `wrangler dev`. Copy to .dev.vars and fill in.
+JWT_SECRET="a-long-random-string-change-me"
+# The account registered with this email is automatically ADMIN.
+# (If unset, the very first registered user becomes ADMIN instead.)
+ADMIN_EMAIL="admin@example.com"

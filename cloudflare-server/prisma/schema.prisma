@@ -1,0 +1,165 @@
+// Prisma schema — 1K Words (Cloudflare / D1).
+// Versioned, list-centric model with reference-based following.
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  role      String   @default("USER")
+  xp        Int      @default(0)
+  createdAt DateTime @default(now())
+
+  lists     WordList[]
+  follows   ListFollow[]
+  likes     ListLike[]
+  maintains ListMaintainer[]
+  progress  Progress[]
+  settings  UserSettings?
+}
+
+model WordList {
+  id           Int      @id @default(autoincrement())
+  ownerId      Int
+  title        String
+  description  String   @default("")
+  sourceLang   String
+  targetLang   String
+  isPublic     Boolean  @default(false)
+  isSystem     Boolean  @default(false)
+  originListId  Int? // set when this list is a fork of another
+  originVersion Int? // which version of the origin was forked
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  owner       User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  versions    ListVersion[]
+  items       WordItem[]
+  follows     ListFollow[]
+  likes       ListLike[]
+  maintainers ListMaintainer[]
+
+  @@index([ownerId])
+  @@index([isPublic])
+}
+
+model ListVersion {
+  id            Int      @id @default(autoincrement())
+  listId        Int
+  version       Int // 1,2,3… displayed as "1.<version>"
+  commitMessage String   @default("")
+  itemCount     Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  list    WordList      @relation(fields: [listId], references: [id], onDelete: Cascade)
+  items   VersionItem[]
+  follows ListFollow[]
+
+  @@unique([listId, version])
+  @@index([listId])
+}
+
+model WordItem {
+  id     Int     @id @default(autoincrement())
+  listId Int? // origin list; null once that list is deleted (items may be shared by forks)
+  source String
+  target String
+
+  list         WordList?     @relation(fields: [listId], references: [id], onDelete: SetNull)
+  versionItems VersionItem[]
+  progress     Progress[]
+
+  @@unique([listId, source, target])
+  @@index([listId])
+}
+
+model VersionItem {
+  versionId  Int
+  wordItemId Int
+  position   Int @default(0)
+
+  version  ListVersion @relation(fields: [versionId], references: [id], onDelete: Cascade)
+  wordItem WordItem    @relation(fields: [wordItemId], references: [id], onDelete: Cascade)
+
+  @@id([versionId, wordItemId])
+  @@index([versionId])
+  @@index([wordItemId])
+}
+
+model ListFollow {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  listId    Int
+  versionId Int // the version the user currently follows
+  createdAt DateTime @default(now())
+
+  user    User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  list    WordList    @relation(fields: [listId], references: [id], onDelete: Cascade)
+  version ListVersion @relation(fields: [versionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, listId])
+  @@index([userId])
+  @@index([listId])
+}
+
+model ListLike {
+  userId    Int
+  listId    Int
+  createdAt DateTime @default(now())
+
+  user User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  list WordList @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@id([userId, listId])
+  @@index([listId])
+}
+
+model ListMaintainer {
+  listId    Int
+  userId    Int
+  createdAt DateTime @default(now())
+
+  list WordList @relation(fields: [listId], references: [id], onDelete: Cascade)
+  user User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([listId, userId])
+  @@index([userId])
+}
+
+model Progress {
+  userId     Int
+  wordItemId Int
+
+  state      Json
+  masteredAt DateTime?
+  updatedAt  DateTime  @updatedAt
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wordItem WordItem @relation(fields: [wordItemId], references: [id], onDelete: Cascade)
+
+  @@id([userId, wordItemId])
+  @@index([userId])
+}
+
+model UserSettings {
+  id                  Int     @id @default(autoincrement())
+  userId              Int     @unique
+  activeListId        Int?
+  darkMode            Boolean @default(false)
+  wordsPerSession     Int     @default(15)
+  checkCapitalization Boolean @default(false)
+  foldSpecialLetters  Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

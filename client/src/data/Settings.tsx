@@ -1,13 +1,15 @@
 export interface Settings {
-  sourceLangId: number;
-  targetLangId: number;
+  activeListId: number | null;
   darkMode: boolean;
   wordsPerSession: number;
+  checkCapitalization: boolean;
+  foldSpecialLetters: boolean;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
-  sourceLangId: 1,
-  targetLangId: 2,
+  activeListId: null,
   darkMode: false,
   wordsPerSession: 15,
-} as const;
+  checkCapitalization: false,
+  foldSpecialLetters: false,
+};

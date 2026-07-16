@@ -1,61 +1,123 @@
--- CreateTable
+-- 1K Words — initial schema (versioned, reference-based following)
+
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "email" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "role" TEXT NOT NULL DEFAULT 'USER',
+    "xp" INTEGER NOT NULL DEFAULT 0,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- CreateTable
-CREATE TABLE "Language" (
+CREATE TABLE "WordList" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "code" TEXT NOT NULL,
-    "name" TEXT NOT NULL
+    "ownerId" INTEGER NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL DEFAULT '',
+    "sourceLang" TEXT NOT NULL,
+    "targetLang" TEXT NOT NULL,
+    "isPublic" BOOLEAN NOT NULL DEFAULT false,
+    "isSystem" BOOLEAN NOT NULL DEFAULT false,
+    "originListId" INTEGER,
+    "originVersion" INTEGER,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    CONSTRAINT "WordList_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- CreateTable
-CREATE TABLE "Word" (
+CREATE TABLE "ListVersion" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "listId" INTEGER NOT NULL,
+    "version" INTEGER NOT NULL,
+    "commitMessage" TEXT NOT NULL DEFAULT '',
+    "itemCount" INTEGER NOT NULL DEFAULT 0,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "ListVersion_listId_fkey" FOREIGN KEY ("listId") REFERENCES "WordList" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- CreateTable
-CREATE TABLE "Translation" (
+CREATE TABLE "WordItem" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "text" TEXT NOT NULL,
-    "wordId" INTEGER NOT NULL,
-    "languageId" INTEGER NOT NULL,
-    CONSTRAINT "Translation_wordId_fkey" FOREIGN KEY ("wordId") REFERENCES "Word" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "Translation_languageId_fkey" FOREIGN KEY ("languageId") REFERENCES "Language" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "listId" INTEGER,
+    "source" TEXT NOT NULL,
+    "target" TEXT NOT NULL,
+    CONSTRAINT "WordItem_listId_fkey" FOREIGN KEY ("listId") REFERENCES "WordList" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
--- CreateTable
-CREATE TABLE "LearningHistory" (
+CREATE TABLE "VersionItem" (
+    "versionId" INTEGER NOT NULL,
+    "wordItemId" INTEGER NOT NULL,
+    "position" INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY ("versionId", "wordItemId"),
+    CONSTRAINT "VersionItem_versionId_fkey" FOREIGN KEY ("versionId") REFERENCES "ListVersion" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "VersionItem_wordItemId_fkey" FOREIGN KEY ("wordItemId") REFERENCES "WordItem" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE "ListFollow" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "userId" INTEGER NOT NULL,
-    "wordId" INTEGER NOT NULL,
-    "counter" INTEGER NOT NULL DEFAULT 0,
-    "learn" JSONB NOT NULL DEFAULT [],
-
-    PRIMARY KEY ("userId", "wordId"),
-    CONSTRAINT "LearningHistory_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "LearningHistory_wordId_fkey" FOREIGN KEY ("wordId") REFERENCES "Word" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "listId" INTEGER NOT NULL,
+    "versionId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "ListFollow_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "ListFollow_listId_fkey" FOREIGN KEY ("listId") REFERENCES "WordList" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "ListFollow_versionId_fkey" FOREIGN KEY ("versionId") REFERENCES "ListVersion" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- CreateTable
+CREATE TABLE "ListLike" (
+    "userId" INTEGER NOT NULL,
+    "listId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ("userId", "listId"),
+    CONSTRAINT "ListLike_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "ListLike_listId_fkey" FOREIGN KEY ("listId") REFERENCES "WordList" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE "ListMaintainer" (
+    "listId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ("listId", "userId"),
+    CONSTRAINT "ListMaintainer_listId_fkey" FOREIGN KEY ("listId") REFERENCES "WordList" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "ListMaintainer_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE "Progress" (
+    "userId" INTEGER NOT NULL,
+    "wordItemId" INTEGER NOT NULL,
+    "state" JSONB NOT NULL,
+    "masteredAt" DATETIME,
+    "updatedAt" DATETIME NOT NULL,
+    PRIMARY KEY ("userId", "wordItemId"),
+    CONSTRAINT "Progress_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Progress_wordItemId_fkey" FOREIGN KEY ("wordItemId") REFERENCES "WordItem" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE "UserSettings" (
-    "userId" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "sourceLangId" INTEGER NOT NULL DEFAULT 1,
-    "targetLangId" INTEGER NOT NULL DEFAULT 2,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "userId" INTEGER NOT NULL,
+    "activeListId" INTEGER,
     "darkMode" BOOLEAN NOT NULL DEFAULT false,
     "wordsPerSession" INTEGER NOT NULL DEFAULT 15,
-    CONSTRAINT "UserSettings_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "checkCapitalization" BOOLEAN NOT NULL DEFAULT false,
+    "foldSpecialLetters" BOOLEAN NOT NULL DEFAULT false,
+    CONSTRAINT "UserSettings_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Language_code_key" ON "Language"("code");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Translation_wordId_languageId_key" ON "Translation"("wordId", "languageId");
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+CREATE INDEX "WordList_ownerId_idx" ON "WordList"("ownerId");
+CREATE INDEX "WordList_isPublic_idx" ON "WordList"("isPublic");
+CREATE INDEX "ListVersion_listId_idx" ON "ListVersion"("listId");
+CREATE UNIQUE INDEX "ListVersion_listId_version_key" ON "ListVersion"("listId", "version");
+CREATE INDEX "WordItem_listId_idx" ON "WordItem"("listId");
+CREATE UNIQUE INDEX "WordItem_listId_source_target_key" ON "WordItem"("listId", "source", "target");
+CREATE INDEX "VersionItem_versionId_idx" ON "VersionItem"("versionId");
+CREATE INDEX "VersionItem_wordItemId_idx" ON "VersionItem"("wordItemId");
+CREATE INDEX "ListFollow_userId_idx" ON "ListFollow"("userId");
+CREATE INDEX "ListFollow_listId_idx" ON "ListFollow"("listId");
+CREATE UNIQUE INDEX "ListFollow_userId_listId_key" ON "ListFollow"("userId", "listId");
+CREATE INDEX "ListLike_listId_idx" ON "ListLike"("listId");
+CREATE INDEX "ListMaintainer_userId_idx" ON "ListMaintainer"("userId");
+CREATE INDEX "Progress_userId_idx" ON "Progress"("userId");
+CREATE UNIQUE INDEX "UserSettings_userId_key" ON "UserSettings"("userId");

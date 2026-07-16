@@ -1,6 +1,55 @@
-﻿################################################################################
-# Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
+################################################################################
+# 1K Words — repo-wide ignore net (defense in depth).
+# Every subproject also has its own .gitignore; these top-level rules make sure
+# secrets never slip through even from a newly added folder.
 ################################################################################
 
+# ── Secrets & environment ─────────────────────────────────────────────────
+# Templates that forkers copy end in ".example" and ARE committed.
+**/.env
+**/.env.*
+!**/.env.example
+**/.dev.vars
+**/.dev.vars.*
+!**/.dev.vars.example
+**/*.pem
+**/*.key
+**/secrets.json
+# .NET user secrets / per-env appsettings (keep the base one)
+**/appsettings.*.json
+!**/appsettings.json
+
+# ── Cloudflare (personal ids / local state) ───────────────────────────────
 /cloudflare-server/wrangler.jsonc
 /client/wrangler.toml
+**/.wrangler/
+
+# ── Dependencies, build output, generated code ────────────────────────────
+**/node_modules/
+**/dist/
+**/build/
+**/.prisma/
+**/src/generated/
+**/*.tsbuildinfo
+
+# ── Local databases (dev only) ────────────────────────────────────────────
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+
+# ── Logs, OS & editor clutter ─────────────────────────────────────────────
+**/*.log
+**/npm-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+coverage/
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/*
+!.vscode/launch.json
+!.vscode/settings.json
+# ── System word-set content (imported via scripts/import-system-sets.mjs) ──
+/systemdata/*
+!/systemdata/README.md

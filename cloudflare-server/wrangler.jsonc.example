@@ -1,23 +1,27 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "cloudflare-server",
-	"main": "src/index.ts",
-	"compatibility_date": "2025-06-17",
-	"assets": {
-		"binding": "ASSETS",
-		"directory": "./public"
-	},
-	"observability": {
-		"enabled": true
-	},
-	"compatibility_flags": [
-		"nodejs_compat"
-	],
-	"d1_databases": [
-		{
-			"binding": "DB NAME",
-			"database_name": "DB NAME",
-			"database_id": "YOUR ID"
-		}
-	]
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "1k-words",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-06-17",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Serve the built React client (client/ -> npm run build) from the same Worker.
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "../client/build"
+  },
+
+  "observability": { "enabled": true },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      // Keep this as "1k-words" so it matches the db:migrate scripts.
+      "database_name": "1k-words",
+      // Local dev ignores this id. For remote/deploy run:
+      //   npx wrangler d1 create 1k-words
+      // and paste the returned database_id here.
+      "database_id": "local-placeholder"
+    }
+  ]
 }

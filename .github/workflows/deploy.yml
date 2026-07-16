@@ -1,0 +1,76 @@
+# Builds the .NET MAUI Android app (release APK) and publishes it as a GitHub
+# Release. The Cloudflare Worker itself deploys via the Cloudflare Git
+# integration (Workers Builds) — this workflow only covers the native app.
+#
+# Versioning: MAJOR.MINOR is pinned below (2.0); the PATCH counts up
+# automatically with every workflow run. Run #1 => 2.0.0, run #2 => 2.0.1, …
+# ApplicationVersion (Android versionCode) uses the raw run number, which
+# keeps it a monotonically increasing integer as Android requires.
+name: Build MAUI app
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch: {}
+
+env:
+  VERSION_PREFIX: '2.0'
+
+permissions:
+  contents: write # create releases
+
+concurrency:
+  group: maui-build
+  cancel-in-progress: true
+
+jobs:
+  build-android:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compute version (2.0.N, first run = 2.0.0)
+        shell: bash
+        run: |
+          PATCH=$(( ${{ github.run_number }} - 1 ))
+          echo "APP_VERSION=${VERSION_PREFIX}.${PATCH}" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=${{ github.run_number }}" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install MAUI Android workload
+        run: dotnet workload install maui-android
+
+      - name: Publish Android APK
+        working-directory: app/VocabApp
+        run: >
+          dotnet publish -f net8.0-android -c Release
+          -p:ApplicationDisplayVersion=${{ env.APP_VERSION }}
+          -p:ApplicationVersion=${{ env.VERSION_CODE }}
+          -p:AndroidPackageFormats=apk
+
+      - name: Collect APK
+        shell: bash
+        run: |
+          mkdir -p out
+          find app/VocabApp/bin/Release/net8.0-android -name "*-Signed.apk" -exec cp {} "out/1k-words-${APP_VERSION}.apk" \;
+          ls -la out
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 1k-words-android-${{ env.APP_VERSION }}
+          path: out/*.apk
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.APP_VERSION }}
+          name: 1K Words ${{ env.APP_VERSION }}
+          files: out/*.apk
+          generate_release_notes: true
