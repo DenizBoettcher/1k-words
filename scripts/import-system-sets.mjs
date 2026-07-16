@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Imports every JSON file in systemdata/ as an official SYSTEM word list, via
- * the admin API. Works against ANY running deployment — node-server, local
- * wrangler dev, or the deployed Cloudflare Worker — because the import logic
+ * the admin API. Works against ANY running deployment  node-server, local
+ * wrangler dev, or the deployed Cloudflare Worker  because the import logic
  * (dedup, versioning, idempotency) lives server-side in POST /api/admin/system-sets.
  *
  * Usage:
@@ -55,7 +55,7 @@ async function main() {
   // 2. import every json in systemdata/
   const files = (await readdir(dir)).filter((f) => f.toLowerCase().endsWith('.json'));
   if (files.length === 0) {
-    console.log(`No .json files in ${dir} — nothing to do.`);
+    console.log(`No .json files in ${dir}  nothing to do.`);
     return;
   }
 

@@ -125,7 +125,7 @@ export default function Home() {
           {loading ? (
             <Center mih={200}><Loader color="brand" /></Center>
           ) : words.length === 0 ? (
-            <Text c="dimmed" mt="xl">No words due right now — nicely done. Try another list.</Text>
+            <Text c="dimmed" mt="xl">No words due right now  nicely done. Try another list.</Text>
           ) : mode === 'vocabulary' ? (
             <VocabularyMode
               words={words} index={index.vocabulary}

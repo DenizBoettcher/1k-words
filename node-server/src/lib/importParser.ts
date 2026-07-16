@@ -74,7 +74,7 @@ export function normaliseImport(
     };
   }
 
-  // Shape B — pull the array out
+  // Shape B  pull the array out
   const arr = Array.isArray(raw)
     ? raw
     : raw && typeof raw === 'object' && Array.isArray((raw as any).words)

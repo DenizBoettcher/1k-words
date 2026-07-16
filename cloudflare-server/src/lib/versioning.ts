@@ -4,7 +4,7 @@
  * Storage model: WordItem rows are immutable (source,target) pairs. A version
  * is just a set of references (VersionItem) to items. Deduplication happens on
  * two levels:
- *   1. Against the PREVIOUS version — unchanged words keep the same wordItemId,
+ *   1. Against the PREVIOUS version  unchanged words keep the same wordItemId,
  *      even across forks (a fork's v1 references the origin's items directly,
  *      copying nothing). Only actually-changed pairs create new rows.
  *   2. Against the list's own item pool (re-added words are reused).
@@ -97,7 +97,7 @@ export async function createVersion(
 
 /**
  * Fork: create version 1 of `forkListId` referencing EXACTLY the items of
- * `sourceVersionId` — zero WordItem rows are copied.
+ * `sourceVersionId`  zero WordItem rows are copied.
  */
 export async function forkVersion(
   prisma: any,

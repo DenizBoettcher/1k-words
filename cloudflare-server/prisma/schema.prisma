@@ -1,4 +1,4 @@
-// Prisma schema — 1K Words (Cloudflare / D1).
+// Prisma schema  1K Words (Cloudflare / D1).
 // Versioned, list-centric model with reference-based following.
 
 generator client {

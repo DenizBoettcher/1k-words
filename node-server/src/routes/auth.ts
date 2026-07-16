@@ -74,7 +74,7 @@ router.post(
     const hash = await argon2.hash(password);
     const user = await prisma.user.create({ data: { email, username, password: hash, role } });
 
-    // No token on register — the user is sent to the login page afterwards.
+    // No token on register  the user is sent to the login page afterwards.
     res.status(201).json({ user: { id: user.id, email: user.email, username: user.username, role: user.role } });
   }),
 );

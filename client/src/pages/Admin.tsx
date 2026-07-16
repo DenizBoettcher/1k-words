@@ -32,7 +32,7 @@ export default function Admin() {
 
   return (
     <AppLayout>
-      <Title order={1} mb="lg">Admin — users</Title>
+      <Title order={1} mb="lg">Admin  users</Title>
       {error && <Alert color="red" mb="md">{error}</Alert>}
       <Table.ScrollContainer minWidth={560}>
         <Table verticalSpacing="sm" highlightOnHover withTableBorder>

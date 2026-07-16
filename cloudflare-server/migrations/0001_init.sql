@@ -1,4 +1,4 @@
--- 1K Words — initial schema (versioned, reference-based following)
+-- 1K Words  initial schema (versioned, reference-based following)
 
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,

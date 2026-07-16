@@ -135,7 +135,7 @@ export default function Library() {
       <Group justify="space-between" align="flex-end" mb="md">
         <Title order={1}>Your Library</Title>
         <Text c="dimmed" fz="sm">
-          {admin ? 'Admin — unlimited lists' : `${ownedOriginals}/${MAX_LISTS} uploaded lists · forks & follows are free`}
+          {admin ? 'Admin  unlimited lists' : `${ownedOriginals}/${MAX_LISTS} uploaded lists · forks & follows are free`}
         </Text>
       </Group>
 
@@ -144,7 +144,7 @@ export default function Library() {
         <Group justify="space-between" wrap="wrap">
           <div>
             <Text fw={600}>Upload a list (JSON)</Text>
-            <Switch mt={8} label="Make public — others can find & follow it"
+            <Switch mt={8} label="Make public  others can find & follow it"
               checked={uploadPublic} onChange={(e) => setUploadPublic(e.currentTarget.checked)} />
           </div>
           <Group gap="xs">
@@ -166,7 +166,7 @@ export default function Library() {
 
       {/* My lists */}
       <Title order={2} mb="sm">My lists</Title>
-      {mine.length === 0 && <Text c="dimmed">Nothing yet — upload a list above.</Text>}
+      {mine.length === 0 && <Text c="dimmed">Nothing yet  upload a list above.</Text>}
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md" mb="xl">
         {mine.map((l) => (
           <Card key={l.id} withBorder radius="md" padding="md">

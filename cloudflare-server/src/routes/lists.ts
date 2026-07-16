@@ -32,7 +32,7 @@ function canManage(list: any, userId: number, role: string) {
   return list.ownerId === userId || isAdmin(role);
 }
 
-/* GET /mine — owned + maintained */
+/* GET /mine  owned + maintained */
 app.get('/mine', async (c) => {
   const prisma = getPrisma(c.env);
   const userId = c.get('user').id;
@@ -62,7 +62,7 @@ app.get('/mine', async (c) => {
       originListId: l.originListId, originVersion: l.originVersion,
       originTitle: l.originListId ? originTitle.get(l.originListId) ?? null : null,
       isOwner: l.ownerId === userId, owner: l.owner.username,
-      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '—',
+      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '',
       itemCount: v?.itemCount ?? 0,
       likes: l._count.likes, followers: l._count.follows,
     };
@@ -141,7 +141,7 @@ app.get('/public', async (c) => {
       id: l.id, title: l.title, description: l.description,
       sourceLang: l.sourceLang, targetLang: l.targetLang,
       author: l.owner.username, isSystem: l.isSystem,
-      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '—',
+      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '',
       itemCount: v?.itemCount ?? 0,
       likes, followers,
       isOwn: l.ownerId === userId,
@@ -150,7 +150,7 @@ app.get('/public', async (c) => {
   }));
 });
 
-/* POST / — upload */
+/* POST /  upload */
 app.post('/', async (c) => {
   const prisma = getPrisma(c.env);
   const user = c.get('user');
@@ -196,7 +196,7 @@ app.post('/:id/version', async (c) => {
   return c.json({ version: v.version, itemCount: v.itemCount }, 201);
 });
 
-/* GET /:id — detail */
+/* GET /:id  detail */
 app.get('/:id', async (c) => {
   const prisma = getPrisma(c.env);
   const user = c.get('user');
@@ -386,14 +386,14 @@ app.delete('/:id/follow', async (c) => {
   return c.json({ unfollowed: id });
 });
 
-/* POST /:id/fork — reference-based, zero-copy */
+/* POST /:id/fork  reference-based, zero-copy */
 app.post('/:id/fork', async (c) => {
   const prisma = getPrisma(c.env);
   const user = c.get('user');
   const id = Number(c.req.param('id'));
   const source = await prisma.wordList.findUnique({ where: { id } });
   if (!source) return c.json({ message: 'Not found' }, 404);
-  if (source.isSystem) return c.json({ message: 'System lists cannot be forked — follow them instead' }, 403);
+  if (source.isSystem) return c.json({ message: 'System lists cannot be forked  follow them instead' }, 403);
   if (!source.isPublic && source.ownerId !== user.id) return c.json({ message: 'That list is private' }, 403);
 
   const latest = await latestVersion(prisma, id);

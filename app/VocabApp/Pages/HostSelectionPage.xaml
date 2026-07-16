@@ -37,7 +37,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
-                <Label Text="No servers yet — add one below."
+                <Label Text="No servers yet  add one below."
                        HorizontalOptions="Center" VerticalOptions="Center" Opacity="0.6" />
             </CollectionView.EmptyView>
         </CollectionView>

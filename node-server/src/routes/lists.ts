@@ -27,7 +27,7 @@ async function isMaintainer(listId: number, userId: number) {
 }
 
 /**
- * Edit rights: system lists — admin only. Otherwise owner, maintainer, admin.
+ * Edit rights: system lists  admin only. Otherwise owner, maintainer, admin.
  */
 async function canEdit(list: { id: number; ownerId: number; isSystem: boolean }, userId: number, role: string) {
   if (list.isSystem) return isAdmin(role);
@@ -41,7 +41,7 @@ function canManage(list: { ownerId: number; isSystem: boolean }, userId: number,
   return list.ownerId === userId || isAdmin(role);
 }
 
-/* ───────────── GET /mine — owned + maintained ───────────── */
+/* ───────────── GET /mine  owned + maintained ───────────── */
 router.get('/mine', asyncHandler(async (req, res) => {
   const userId = uid(req);
   const maintained = await prisma.listMaintainer.findMany({ where: { userId }, select: { listId: true } });
@@ -74,7 +74,7 @@ router.get('/mine', asyncHandler(async (req, res) => {
       originTitle: l.originListId ? originTitle.get(l.originListId) ?? null : null,
       isOwner: l.ownerId === userId,
       owner: l.owner.username,
-      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '—',
+      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '',
       itemCount: v?.itemCount ?? 0,
       likes: l._count.likes, followers: l._count.follows,
     };
@@ -152,7 +152,7 @@ router.get('/public', asyncHandler(async (req, res) => {
       id: l.id, title: l.title, description: l.description,
       sourceLang: l.sourceLang, targetLang: l.targetLang,
       author: l.owner.username, isSystem: l.isSystem,
-      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '—',
+      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '',
       itemCount: v?.itemCount ?? 0,
       likes, followers,
       isOwn: l.ownerId === userId,
@@ -162,7 +162,7 @@ router.get('/public', asyncHandler(async (req, res) => {
   }));
 }));
 
-/* ───────────── POST / — upload (v1) ───────────── */
+/* ───────────── POST /  upload (v1) ───────────── */
 router.post('/', asyncHandler(async (req, res) => {
   const userId = uid(req);
   let parsedList;
@@ -188,7 +188,7 @@ router.post('/', asyncHandler(async (req, res) => {
   res.status(201).json({ id: list.id, version: v.version, itemCount: v.itemCount });
 }));
 
-/* ───────────── POST /:id/version — owner/maintainer adds a version ───────────── */
+/* ───────────── POST /:id/version  owner/maintainer adds a version ───────────── */
 const VersionBody = z.object({
   commitMessage: z.string().max(200).optional(),
   items: z.array(z.object({ source: z.string().min(1), target: z.string().min(1) })).min(1),
@@ -213,7 +213,7 @@ router.post('/:id/version', asyncHandler(async (req, res) => {
   res.status(201).json({ version: v.version, itemCount: v.itemCount });
 }));
 
-/* ───────────── GET /:id — detail ───────────── */
+/* ───────────── GET /:id  detail ───────────── */
 router.get('/:id', asyncHandler(async (req, res) => {
   const userId = uid(req);
   const id = Number(req.params.id);
@@ -275,7 +275,7 @@ router.get('/:id/diff', asyncHandler(async (req, res) => {
   res.json(await diffVersions(prisma, fromV.id, toV.id));
 }));
 
-/* ───────────── PATCH /:id — meta (owner/admin; system: admin) ───────────── */
+/* ───────────── PATCH /:id  meta (owner/admin; system: admin) ───────────── */
 const PatchBody = z.object({
   title: z.string().min(1).max(120).optional(),
   description: z.string().max(500).optional(),
@@ -392,13 +392,13 @@ router.delete('/:id/follow', asyncHandler(async (req, res) => {
   res.json({ unfollowed: id });
 }));
 
-/* ───────────── POST /:id/fork — reference-based editable copy ───────────── */
+/* ───────────── POST /:id/fork  reference-based editable copy ───────────── */
 router.post('/:id/fork', asyncHandler(async (req, res) => {
   const userId = uid(req);
   const id = Number(req.params.id);
   const source = await prisma.wordList.findUnique({ where: { id } });
   if (!source) { res.status(404).json({ message: 'Not found' }); return; }
-  if (source.isSystem) { res.status(403).json({ message: 'System lists cannot be forked — follow them instead' }); return; }
+  if (source.isSystem) { res.status(403).json({ message: 'System lists cannot be forked  follow them instead' }); return; }
   if (!source.isPublic && source.ownerId !== userId) { res.status(403).json({ message: 'That list is private' }); return; }
 
   // Forks don't count toward the owned-lists cap (originListId is set).
@@ -414,7 +414,7 @@ router.post('/:id/fork', asyncHandler(async (req, res) => {
   });
   // Zero-copy: fork v1 references the exact items of the source version.
   const v = await forkVersion(prisma, fork.id, latest.id, `Forked from “${source.title}” ${formatVersion(latest.version)}`);
-  // Forking replaces following (progress carries over — same item ids).
+  // Forking replaces following (progress carries over  same item ids).
   await prisma.listFollow.deleteMany({ where: { userId, listId: id } });
   res.status(201).json({ id: fork.id, version: v.version, itemCount: v.itemCount });
 }));

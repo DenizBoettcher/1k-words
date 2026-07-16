@@ -83,7 +83,7 @@ export default function LearnMode({
           <Text fw={600} c={result === 'ok' ? 'teal' : 'red'}>
             {result === 'ok' ? '✓ Correct' : '✗ Not quite'}
           </Text>
-          {result === 'wrong' && <Text c="dimmed">— {expected.split('/').join(' / ')}</Text>}
+          {result === 'wrong' && <Text c="dimmed"> {expected.split('/').join(' / ')}</Text>}
         </Group>
       )}
     </Stack>

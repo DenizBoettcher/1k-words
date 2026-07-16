@@ -9,7 +9,7 @@ import adminRoutes from './routes/admin';
 /**
  * Single Worker that serves BOTH the JSON API (under /api/*) and the built
  * React SPA (everything else, via the ASSETS binding). Because the app and API
- * share an origin there is no CORS and no dashboard env-var wiring — one
+ * share an origin there is no CORS and no dashboard env-var wiring  one
  * `wrangler deploy` ships the whole thing.
  */
 const app = new Hono<AppEnv>();

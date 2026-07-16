@@ -1,4 +1,4 @@
-// Prisma schema — 1K Words self-host (node-server).
+// Prisma schema  1K Words self-host (node-server).
 // Versioned, list-centric model with reference-based following.
 
 generator client {

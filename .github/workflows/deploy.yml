@@ -1,6 +1,6 @@
 # Builds the .NET MAUI Android app (release APK) and publishes it as a GitHub
 # Release. The Cloudflare Worker itself deploys via the Cloudflare Git
-# integration (Workers Builds) — this workflow only covers the native app.
+# integration (Workers Builds)  this workflow only covers the native app.
 #
 # Versioning: MAJOR.MINOR is pinned below (2.0); the PATCH counts up
 # automatically with every workflow run. Run #1 => 2.0.0, run #2 => 2.0.1, …

@@ -8,7 +8,7 @@ import { ROLES } from '../lib/config';
 /**
  * Verifies the bearer token AND confirms the user still exists, reading the
  * fresh role/username from the database. The extra PK lookup per request is
- * cheap and eliminates stale-token bugs (e.g. after a DB reset) — a 401 makes
+ * cheap and eliminates stale-token bugs (e.g. after a DB reset)  a 401 makes
  * the client log out and return to the login page automatically.
  */
 export const authenticateJWT: MiddlewareHandler<AppEnv> = async (c, next) => {
@@ -37,7 +37,7 @@ export const authenticateJWT: MiddlewareHandler<AppEnv> = async (c, next) => {
     select: { id: true, email: true, username: true, role: true },
   });
   if (!user) {
-    return c.json({ message: 'Account no longer exists — please sign in again' }, 401);
+    return c.json({ message: 'Account no longer exists  please sign in again' }, 401);
   }
 
   c.set('user', {

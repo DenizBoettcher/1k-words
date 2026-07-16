@@ -49,7 +49,7 @@ export default function LoginPage() {
       if (isLogin) {
         const { token } = await loginRequest(email, pw, remember);
         setToken(token, remember);
-        await refreshSettings(); // one fetch per session — pages read the cache
+        await refreshSettings(); // one fetch per session  pages read the cache
         nav((loc.state as any)?.from?.pathname ?? '/');
       } else {
         await registerRequest(email, username, pw);
@@ -84,7 +84,7 @@ export default function LoginPage() {
           1K<span style={{ opacity: 0.7 }}>·</span>Words
         </Title>
         <Text fz="xl" maw={340} style={{ lineHeight: 1.5 }}>
-          Master a thousand words — ten at a time, and never forget them.
+          Master a thousand words  ten at a time, and never forget them.
         </Text>
         <List
           spacing="sm" mt="md"

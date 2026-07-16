@@ -1,6 +1,6 @@
 {
   "short_name": "1K Words",
-  "name": "1K Words — Vocabulary Trainer",
+  "name": "1K Words  Vocabulary Trainer",
   "icons": [
     { "src": "favicon.ico", "sizes": "64x64 32x32 24x24 16x16", "type": "image/x-icon" },
     { "src": "logo192.png", "type": "image/png", "sizes": "192x192", "purpose": "any maskable" },

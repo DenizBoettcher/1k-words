@@ -147,7 +147,7 @@ app.post('/review', async (c) => {
       update: {
         state: after as any,
         // Mastery is live: gained on first mastering, lost again below the
-        // threshold — the level reflects what the user currently knows.
+        // threshold  the level reflects what the user currently knows.
         ...(firstTimeMastered ? { masteredAt: new Date() } : {}),
         ...(lostMastery ? { masteredAt: null } : {}),
       },

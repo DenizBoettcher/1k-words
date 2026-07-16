@@ -77,7 +77,7 @@ router.get('/summary', asyncHandler(async (req, res) => {
   res.json(await librarySummary(uid(req)));
 }));
 
-/* GET /api/study/:listId — weighted batch from the active version */
+/* GET /api/study/:listId  weighted batch from the active version */
 router.get('/:listId', asyncHandler(async (req, res) => {
   const userId = uid(req);
   const listId = Number(req.params.listId);
@@ -158,7 +158,7 @@ router.post('/review', asyncHandler(async (req, res) => {
       update: {
         state: after as any,
         // Mastery is a live measure: gained on first mastering, LOST again when
-        // the word drops below the threshold — the level reflects what the
+        // the word drops below the threshold  the level reflects what the
         // user currently knows, so it can go down.
         ...(firstTimeMastered ? { masteredAt: new Date() } : {}),
         ...(lostMastery ? { masteredAt: null } : {}),

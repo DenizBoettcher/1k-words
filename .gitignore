@@ -1,5 +1,5 @@
 ################################################################################
-# 1K Words — repo-wide ignore net (defense in depth).
+# 1K Words  repo-wide ignore net (defense in depth).
 # Every subproject also has its own .gitignore; these top-level rules make sure
 # secrets never slip through even from a newly added folder.
 ################################################################################

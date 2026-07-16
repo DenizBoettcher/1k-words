@@ -26,7 +26,7 @@ namespace VocabApp.Services
                 }
                 catch
                 {
-                    // Corrupted storage — fall through and reseed the defaults.
+                    // Corrupted storage  fall through and reseed the defaults.
                 }
             }
 
