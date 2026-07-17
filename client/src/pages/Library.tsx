@@ -22,7 +22,7 @@ import {
 import { setSettings } from '../utils/settingUtils';
 import { isAdmin } from '../utils/authUtils';
 
-const MAX_ITEMS = 2000;
+const MAX_ITEMS = 3000;
 const MAX_LISTS = 4;
 
 async function parseFile(file: File, isPublic: boolean): Promise<UploadBody> {

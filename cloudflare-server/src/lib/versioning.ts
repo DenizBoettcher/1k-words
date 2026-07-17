@@ -6,6 +6,39 @@
 
 export interface Pair { source: string; target: string; }
 
+async function insertWordItemsJson(
+  prisma: any,
+  listId: number,
+  rows: { source: string; target: string }[],
+): Promise<void> {
+  for (let i = 0; i < rows.length; i += 500) {
+    const payload = JSON.stringify(
+      rows.slice(i, i + 500).map((r) => ({ s: r.source, t: r.target })),
+    );
+    await prisma.$executeRaw`
+      INSERT INTO "WordItem" ("listId", "source", "target")
+      SELECT ${listId}, json_extract(value, '$.s'), json_extract(value, '$.t')
+      FROM json_each(${payload})`;
+  }
+}
+
+/** Same single-parameter JSON trick for the version↔item join rows. */
+async function insertVersionItemsJson(
+  prisma: any,
+  versionId: number,
+  rows: { wordItemId: number; position: number }[],
+): Promise<void> {
+  for (let i = 0; i < rows.length; i += 500) {
+    const payload = JSON.stringify(
+      rows.slice(i, i + 500).map((r) => ({ i: r.wordItemId, p: r.position })),
+    );
+    await prisma.$executeRaw`
+      INSERT INTO "VersionItem" ("versionId", "wordItemId", "position")
+      SELECT ${versionId}, json_extract(value, '$.i'), json_extract(value, '$.p')
+      FROM json_each(${payload})`;
+  }
+}
+
 /** Display form: internal version 1,2,3… is shown as "1.1", "1.2", … */
 export const formatVersion = (version: number) => `1.${version}`;
 
@@ -65,10 +98,12 @@ async function resolveItemIds(
     missing.push({ listId, source: p.source, target: p.target });
   }
 
-  // Few queries: bulk-insert the missing items (small chunks — D1 also caps
-  // bound parameters per query at ~100; 3 columns x 30 rows = 90).
-  for (let i = 0; i < missing.length; i += 30) {
-    await prisma.wordItem.createMany({ data: missing.slice(i, i + 30) });
+  // ONE query regardless of size: bind the whole set as a single JSON
+  // parameter and unpack it with SQLite's json_each. This sidesteps both the
+  // Worker subrequest cap (only 50/invocation on the free plan) and D1's
+  // ~100 bound-parameters-per-query limit.
+  if (missing.length > 0) {
+    await insertWordItemsJson(prisma, listId, missing);
   }
 
   // 1 query: reload the pool to learn the ids of the freshly created rows.
@@ -103,10 +138,11 @@ export async function createVersion(
     data: { listId, version, commitMessage: commitMessage || '', itemCount: itemIds.length },
   });
 
-  const rows = itemIds.map((wordItemId, position) => ({ versionId: created.id, wordItemId, position }));
-  for (let i = 0; i < rows.length; i += 30) {
-    await prisma.versionItem.createMany({ data: rows.slice(i, i + 30) });
-  }
+  await insertVersionItemsJson(
+    prisma,
+    created.id,
+    itemIds.map((wordItemId, position) => ({ wordItemId, position })),
+  );
 
   await prisma.wordList.update({ where: { id: listId }, data: { updatedAt: new Date() } });
   return { id: created.id, version, itemCount: itemIds.length };
@@ -132,12 +168,11 @@ export async function forkVersion(
     data: { listId: forkListId, version: 1, commitMessage, itemCount: sourceItems.length },
   });
 
-  const rows = sourceItems.map((s: any) => ({
-    versionId: created.id, wordItemId: s.wordItemId, position: s.position,
-  }));
-  for (let i = 0; i < rows.length; i += 30) {
-    await prisma.versionItem.createMany({ data: rows.slice(i, i + 30) });
-  }
+  await insertVersionItemsJson(
+    prisma,
+    created.id,
+    sourceItems.map((s: any) => ({ wordItemId: s.wordItemId, position: s.position })),
+  );
   return { id: created.id, version: 1, itemCount: sourceItems.length };
 }
 

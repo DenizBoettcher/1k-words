@@ -6,6 +6,7 @@
  * (dedup, versioning, idempotency) lives server-side in POST /api/admin/system-sets.
  *
  * Usage:
+ *   Put your jsons in systemdata then
  *   node scripts/import-system-sets.mjs --url http://localhost:8787 --email admin@you.de --password ...
  *
  * Typical targets:

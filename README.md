@@ -41,7 +41,7 @@ test_data/          sample import files
   stars (default), followers, or combined popularity.
 - **System sets**: official lists (badge "official"), public, not forkable,
   editable only by admins, imported via script (below).
-- **Caps** (non-admin): 2000 word pairs per list, 4 uploaded original lists.
+- **Caps** (non-admin): 3000 word pairs per list, 4 uploaded original lists.
   Forks and follows are free. Admins are uncapped.
 - **SRS + XP**: SM-2-style scheduling (missed words resurface sooner), level =
   mastery of what you *currently* know  it rises when words are mastered and

@@ -4,7 +4,7 @@
  */
 export const LIMITS = {
   /** Max word-pairs in a single list, for non-admins. */
-  maxItemsPerList: 2000,
+  maxItemsPerList: 3000,
   /** Max *uploaded* (original) lists a non-admin may own. Clones don't count. */
   maxOwnedLists: 4,
 } as const;
