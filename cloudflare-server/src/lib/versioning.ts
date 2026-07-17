@@ -1,15 +1,7 @@
 /**
- * Versioning helpers shared by both servers.
- *
- * Storage model: WordItem rows are immutable (source,target) pairs. A version
- * is just a set of references (VersionItem) to items. Deduplication happens on
- * two levels:
- *   1. Against the PREVIOUS version  unchanged words keep the same wordItemId,
- *      even across forks (a fork's v1 references the origin's items directly,
- *      copying nothing). Only actually-changed pairs create new rows.
- *   2. Against the list's own item pool (re-added words are reused).
- * Because progress hangs off wordItemId, it survives version updates AND the
- * follow→fork transition for unchanged words.
+ * Usage: 
+ * put all system jsons into systemdata folder then run
+ * node scripts/import-system-sets.mjs --url https://1k-words.[your-domian].workers.dev --email "[Admin E-Mail]" --password "[Admin Password]"
  */
 
 export interface Pair { source: string; target: string; }
@@ -38,6 +30,11 @@ async function versionItemMap(prisma: any, versionId: number): Promise<Map<strin
 /**
  * Resolve an item id for every pair: prefer the base version's item (sharing,
  * possibly cross-list), then the list's own pool, else create under this list.
+ *
+ * BATCHED on purpose: Cloudflare caps a single Worker invocation at ~1000
+ * subrequests and every D1 query counts. A per-word findFirst/create (N+1)
+ * blows that cap on a 600-word import, so this resolves everything with a
+ * constant handful of queries instead.
  */
 async function resolveItemIds(
   prisma: any,
@@ -45,29 +42,49 @@ async function resolveItemIds(
   pairs: Pair[],
   baseVersionId: number | null,
 ): Promise<number[]> {
+  const keyOf = (source: string, target: string) => `${source}\u0000${target}`;
+  const trimmed = pairs.map((p) => ({ source: p.source.trim(), target: p.target.trim() }));
+
+  // 1 query: the base version's items (may reference other lists — fork sharing).
   const baseMap = baseVersionId ? await versionItemMap(prisma, baseVersionId) : new Map<string, number>();
-  const ids: number[] = [];
-  for (const p of pairs) {
-    const source = p.source.trim();
-    const target = p.target.trim();
-    const key = `${source}\u0000${target}`;
 
-    const fromBase = baseMap.get(key);
-    if (fromBase) { ids.push(fromBase); continue; }
+  // 1 query: this list's whole item pool.
+  const poolRows = await prisma.wordItem.findMany({
+    where: { listId },
+    select: { id: true, source: true, target: true },
+  });
+  const poolMap = new Map<string, number>(poolRows.map((r: any) => [keyOf(r.source, r.target), r.id]));
 
-    const existing = await prisma.wordItem.findFirst({
-      where: { listId, source, target },
-      select: { id: true },
-    });
-    if (existing) { ids.push(existing.id); continue; }
-
-    const created = await prisma.wordItem.create({
-      data: { listId, source, target },
-      select: { id: true },
-    });
-    ids.push(created.id);
+  // Collect pairs that exist nowhere yet (deduplicated within the upload).
+  const missing: { listId: number; source: string; target: string }[] = [];
+  const seenMissing = new Set<string>();
+  for (const p of trimmed) {
+    const key = keyOf(p.source, p.target);
+    if (baseMap.has(key) || poolMap.has(key) || seenMissing.has(key)) continue;
+    seenMissing.add(key);
+    missing.push({ listId, source: p.source, target: p.target });
   }
-  return ids;
+
+  // Few queries: bulk-insert the missing items (small chunks — D1 also caps
+  // bound parameters per query at ~100; 3 columns x 30 rows = 90).
+  for (let i = 0; i < missing.length; i += 30) {
+    await prisma.wordItem.createMany({ data: missing.slice(i, i + 30) });
+  }
+
+  // 1 query: reload the pool to learn the ids of the freshly created rows.
+  if (missing.length > 0) {
+    const reloaded = await prisma.wordItem.findMany({
+      where: { listId },
+      select: { id: true, source: true, target: true },
+    });
+    poolMap.clear();
+    for (const r of reloaded) poolMap.set(keyOf(r.source, r.target), r.id);
+  }
+
+  return trimmed.map((p) => {
+    const key = keyOf(p.source, p.target);
+    return baseMap.get(key) ?? poolMap.get(key)!;
+  });
 }
 
 /** Create the next version of a list from a full set of pairs. */
@@ -87,8 +104,8 @@ export async function createVersion(
   });
 
   const rows = itemIds.map((wordItemId, position) => ({ versionId: created.id, wordItemId, position }));
-  for (let i = 0; i < rows.length; i += 50) {
-    await prisma.versionItem.createMany({ data: rows.slice(i, i + 50) });
+  for (let i = 0; i < rows.length; i += 30) {
+    await prisma.versionItem.createMany({ data: rows.slice(i, i + 30) });
   }
 
   await prisma.wordList.update({ where: { id: listId }, data: { updatedAt: new Date() } });
@@ -97,7 +114,7 @@ export async function createVersion(
 
 /**
  * Fork: create version 1 of `forkListId` referencing EXACTLY the items of
- * `sourceVersionId`  zero WordItem rows are copied.
+ * `sourceVersionId` — zero WordItem rows are copied.
  */
 export async function forkVersion(
   prisma: any,
@@ -118,8 +135,8 @@ export async function forkVersion(
   const rows = sourceItems.map((s: any) => ({
     versionId: created.id, wordItemId: s.wordItemId, position: s.position,
   }));
-  for (let i = 0; i < rows.length; i += 50) {
-    await prisma.versionItem.createMany({ data: rows.slice(i, i + 50) });
+  for (let i = 0; i < rows.length; i += 30) {
+    await prisma.versionItem.createMany({ data: rows.slice(i, i + 30) });
   }
   return { id: created.id, version: 1, itemCount: sourceItems.length };
 }
