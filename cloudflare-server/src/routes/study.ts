@@ -49,27 +49,109 @@ async function activeVersionIds(prisma: any, userId: number): Promise<number[]> 
   return Array.from(new Set(ids));
 }
 
-async function librarySummary(prisma: any, userId: number) {
-  const versionIds = await activeVersionIds(prisma, userId);
+/**
+ * All actively studied lists in ONE place (3 queries). Returns
+ * listId -> { versionId, itemCount }. Summaries below filter progress
+ * RELATIONALLY (versionItems.some) instead of `wordItemId: { in: [...] }` —
+ * D1 caps bound parameters at ~100/query, so a 3000-word IN list explodes.
+ */
+async function activeVersionMap(prisma: any, userId: number): Promise<Map<number, { versionId: number; itemCount: number }>> {
+  const maintained = await prisma.listMaintainer.findMany({ where: { userId }, select: { listId: true } });
+  const owned = await prisma.wordList.findMany({
+    where: { OR: [{ ownerId: userId }, { id: { in: maintained.map((m: any) => m.listId) } }] },
+    include: { versions: { orderBy: { version: 'desc' }, take: 1, select: { id: true, itemCount: true } } },
+  });
+  const follows = await prisma.listFollow.findMany({
+    where: { userId },
+    include: { version: { select: { id: true, itemCount: true } } },
+  });
+
+  const map = new Map<number, { versionId: number; itemCount: number }>();
+  for (const follow of follows) {
+    map.set(follow.listId, { versionId: follow.version.id, itemCount: follow.version.itemCount });
+  }
+  for (const list of owned) {
+    const latest = list.versions[0];
+    if (latest) map.set(list.id, { versionId: latest.id, itemCount: latest.itemCount });
+  }
+  return map;
+}
+
+/** Mastered/encountered counts of one version, without giant IN lists. */
+function versionProgressCounts(prisma: any, userId: number, versionId: number) {
+  return Promise.all([
+    prisma.progress.count({
+      where: {
+        userId,
+        masteredAt: { not: null },
+        wordItem: { versionItems: { some: { versionId } } },
+      },
+    }),
+    prisma.progress.count({
+      where: {
+        userId,
+        wordItem: { versionItems: { some: { versionId } } },
+      },
+    }),
+  ]);
+}
+
+/** Level/mastery numbers for ONE list (xp injected by the caller). */
+async function listSummary(prisma: any, userId: number, listId: number, versionMap: Map<number, { versionId: number; itemCount: number }>, xp: number) {
+  const active = versionMap.get(listId);
+  if (!active) return summarize(0, 0, 0, xp);
+  const [mastered, encountered] = await versionProgressCounts(prisma, userId, active.versionId);
+  return summarize(mastered, encountered, active.itemCount, xp);
+}
+
+/** Account level = SUM of the levels of every actively studied list. */
+async function accountSummary(prisma: any, userId: number, versionMap: Map<number, { versionId: number; itemCount: number }>, xp: number) {
+  let accountLevel = 0;
+  for (const [listId] of versionMap) {
+    const summary = await listSummary(prisma, userId, listId, versionMap, xp);
+    accountLevel += summary.level;
+  }
+  return { level: accountLevel, lists: versionMap.size, xp };
+}
+
+async function librarySummary(prisma: any, userId: number, versionIds: number[], xp: number) {
   const vItems = versionIds.length
     ? await prisma.versionItem.findMany({ where: { versionId: { in: versionIds } }, select: { wordItemId: true } })
     : [];
-  const wordItemIds = Array.from(new Set(vItems.map((v: any) => v.wordItemId))) as number[];
-  const [mastered, encountered, user] = await Promise.all([
-    wordItemIds.length
-      ? prisma.progress.count({ where: { userId, masteredAt: { not: null }, wordItemId: { in: wordItemIds } } })
-      : Promise.resolve(0),
-    wordItemIds.length
-      ? prisma.progress.count({ where: { userId, wordItemId: { in: wordItemIds } } })
-      : Promise.resolve(0),
-    prisma.user.findUnique({ where: { id: userId }, select: { xp: true } }),
-  ]);
-  return summarize(mastered, encountered, wordItemIds.length, user?.xp ?? 0);
+  const totalWords = new Set(vItems.map((v: any) => v.wordItemId)).size;
+
+  const [mastered, encountered] = versionIds.length
+    ? await Promise.all([
+        prisma.progress.count({
+          where: {
+            userId,
+            masteredAt: { not: null },
+            wordItem: { versionItems: { some: { versionId: { in: versionIds } } } },
+          },
+        }),
+        prisma.progress.count({
+          where: {
+            userId,
+            wordItem: { versionItems: { some: { versionId: { in: versionIds } } } },
+          },
+        }),
+      ])
+    : [0, 0];
+  return summarize(mastered, encountered, totalWords, xp);
 }
 
 app.get('/summary', async (c) => {
   const prisma = getPrisma(c.env);
-  return c.json(await librarySummary(prisma, c.get('user').id));
+  const userId = c.get('user').id;
+  const versionMap = await activeVersionMap(prisma, userId);
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { xp: true } });
+  const xp = user?.xp ?? 0;
+  const versionIds = Array.from(new Set(Array.from(versionMap.values()).map((entry) => entry.versionId)));
+  const [library, account] = await Promise.all([
+    librarySummary(prisma, userId, versionIds, xp),
+    accountSummary(prisma, userId, versionMap, xp),
+  ]);
+  return c.json({ ...library, account });
 });
 
 app.get('/:listId', async (c) => {
@@ -89,7 +171,7 @@ app.get('/:listId', async (c) => {
 
   const pairs = await versionPairs(prisma, versionId);
   const progressRows = await prisma.progress.findMany({
-    where: { userId, wordItemId: { in: pairs.map((p) => p.id) } },
+    where: { userId, wordItem: { versionItems: { some: { versionId } } } },
     select: { wordItemId: true, state: true },
   });
   const byId = new Map(progressRows.map((p: any) => [p.wordItemId, p.state]));
@@ -104,20 +186,28 @@ app.get('/:listId', async (c) => {
   scored.sort((a, b) => b.sortKey - a.sortKey);
   const words = scored.slice(0, batchSize).map(({ sortKey, ...rest }) => rest);
 
-  return c.json({ list, words, summary: await librarySummary(prisma, userId) });
+  const versionMap = await activeVersionMap(prisma, userId);
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { xp: true } });
+  const xp = user?.xp ?? 0;
+  const [summary, account] = await Promise.all([
+    listSummary(prisma, userId, listId, versionMap, xp),
+    accountSummary(prisma, userId, versionMap, xp),
+  ]);
+  return c.json({ list, words, summary: { ...summary, account } });
 });
 
 const ReviewBody = z.object({
   wordItemId: z.number().int().positive(),
   correct: z.boolean(),
   quality: z.number().int().min(0).max(5).optional(),
+  listId: z.number().int().positive().optional(), // list being studied, for a list-scoped summary
 });
 app.post('/review', async (c) => {
   const prisma = getPrisma(c.env);
   const userId = c.get('user').id;
   const parsed = ReviewBody.safeParse(await c.req.json().catch(() => null));
   if (!parsed.success) return c.json({ message: 'wordItemId + correct required' }, 400);
-  const { wordItemId, correct, quality } = parsed.data;
+  const { wordItemId, correct, quality, listId } = parsed.data;
 
   const item = await prisma.wordItem.findUnique({ where: { id: wordItemId }, select: { id: true } });
   if (!item) return c.json({ message: 'Word not found' }, 404);
@@ -147,14 +237,22 @@ app.post('/review', async (c) => {
       update: {
         state: after as any,
         // Mastery is live: gained on first mastering, lost again below the
-        // threshold  the level reflects what the user currently knows.
+        // threshold — the level reflects what the user currently knows.
         ...(firstTimeMastered ? { masteredAt: new Date() } : {}),
         ...(lostMastery ? { masteredAt: null } : {}),
       },
     }),
     prisma.user.update({ where: { id: userId }, data: { xp: { increment: xpGain } } }),
   ]);
-  return c.json({ state: after, xpGain, firstTimeMastered, summary: await librarySummary(prisma, userId) });
+  const versionMap = await activeVersionMap(prisma, userId);
+  const freshUser = await prisma.user.findUnique({ where: { id: userId }, select: { xp: true } });
+  const xp = freshUser?.xp ?? 0;
+  const versionIds = Array.from(new Set(Array.from(versionMap.values()).map((entry) => entry.versionId)));
+  const [summary, account] = await Promise.all([
+    listId ? listSummary(prisma, userId, listId, versionMap, xp) : librarySummary(prisma, userId, versionIds, xp),
+    accountSummary(prisma, userId, versionMap, xp),
+  ]);
+  return c.json({ state: after, xpGain, firstTimeMastered, summary: { ...summary, account } });
 });
 
 export default app;

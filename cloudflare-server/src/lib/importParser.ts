@@ -74,11 +74,20 @@ export function normaliseImport(
     };
   }
 
-  // Shape B  pull the array out
+  // Shape B — pull the array out. A wrapping object may still carry a title
+  // and description even without sourceLang/targetLang fields; keep them.
+  const wrapper = raw && typeof raw === 'object' && !Array.isArray(raw) ? (raw as any) : null;
+  const wrapperTitle = typeof wrapper?.title === 'string' && wrapper.title.trim().length > 0
+    ? wrapper.title.trim().slice(0, 120)
+    : null;
+  const wrapperDescription = typeof wrapper?.description === 'string'
+    ? wrapper.description.trim().slice(0, 500)
+    : '';
+
   const arr = Array.isArray(raw)
     ? raw
-    : raw && typeof raw === 'object' && Array.isArray((raw as any).words)
-      ? (raw as any).words
+    : wrapper && Array.isArray(wrapper.words)
+      ? wrapper.words
       : null;
 
   if (!arr) {
@@ -119,8 +128,8 @@ export function normaliseImport(
   }
 
   return {
-    title: fallbackTitle,
-    description: '',
+    title: wrapperTitle ?? fallbackTitle,
+    description: wrapperDescription,
     sourceLang,
     targetLang,
     isPublic: false,
