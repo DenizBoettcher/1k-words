@@ -7,14 +7,13 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 export default defineConfig({
   plugins: [
     react(),
-    // piper-tts-web ships its onnx/piper/worker runtime files inside the npm
+    // piper-tts-web ships its onnx/piper runtime files inside the npm
     // package; this copies them next to the app (documented setup) fully
     // self-hosted neural TTS, no CDN.
     viteStaticCopy({
       targets: [
         { src: 'node_modules/piper-tts-web/dist/onnx', dest: '.' },
         { src: 'node_modules/piper-tts-web/dist/piper', dest: '.' },
-        { src: 'node_modules/piper-tts-web/dist/worker', dest: '.' },
       ],
     }),
   ],
