@@ -1,11 +1,24 @@
 /**
- * Usage: 
- * put all system jsons into systemdata folder then run
- * node scripts/import-system-sets.mjs --url https://1k-words.[your-domian].workers.dev --email "[Admin E-Mail]" --password "[Admin Password]"
+ * Versioning helpers shared by both servers.
+ *
+ * Storage model: WordItem rows are immutable (source,target) pairs. A version
+ * is just a set of references (VersionItem) to items. Deduplication happens on
+ * two levels:
+ *   1. Against the PREVIOUS version unchanged words keep the same wordItemId,
+ *      even across forks (a fork's v1 references the origin's items directly,
+ *      copying nothing). Only actually-changed pairs create new rows.
+ *   2. Against the list's own item pool (re-added words are reused).
+ * Because progress hangs off wordItemId, it survives version updates AND the
+ * follow→fork transition for unchanged words.
  */
 
 export interface Pair { source: string; target: string; }
 
+/**
+ * Insert word items with a single query: the rows travel as ONE bound JSON
+ * parameter, unpacked server-side via SQLite's json_each. Chunked at 500 rows
+ * purely to keep individual parameter payloads small.
+ */
 async function insertWordItemsJson(
   prisma: any,
   listId: number,
@@ -18,6 +31,28 @@ async function insertWordItemsJson(
     await prisma.$executeRaw`
       INSERT INTO "WordItem" ("listId", "source", "target")
       SELECT ${listId}, json_extract(value, '$.s'), json_extract(value, '$.t')
+      FROM json_each(${payload})`;
+  }
+}
+
+/** Replace a list's grammar exercises (json_each bulk insert, 2-3 queries). */
+export async function replaceGrammarItems(
+  prisma: any,
+  listId: number,
+  grammar: { text: string; answers: string; wordItemIds: number[] }[],
+): Promise<void> {
+  await prisma.grammarItem.deleteMany({ where: { listId } });
+  if (grammar.length === 0) return;
+  for (let i = 0; i < grammar.length; i += 250) {
+    const payload = JSON.stringify(
+      grammar.slice(i, i + 250).map((g, index) => ({
+        t: g.text, a: g.answers, w: JSON.stringify(g.wordItemIds), p: i + index,
+      })),
+    );
+    await prisma.$executeRaw`
+      INSERT INTO "GrammarItem" ("listId", "text", "answers", "wordItemIds", "position")
+      SELECT ${listId}, json_extract(value, '$.t'), json_extract(value, '$.a'),
+             json_extract(value, '$.w'), json_extract(value, '$.p')
       FROM json_each(${payload})`;
   }
 }
@@ -78,7 +113,7 @@ async function resolveItemIds(
   const keyOf = (source: string, target: string) => `${source}\u0000${target}`;
   const trimmed = pairs.map((p) => ({ source: p.source.trim(), target: p.target.trim() }));
 
-  // 1 query: the base version's items (may reference other lists — fork sharing).
+  // 1 query: the base version's items (may reference other lists fork sharing).
   const baseMap = baseVersionId ? await versionItemMap(prisma, baseVersionId) : new Map<string, number>();
 
   // 1 query: this list's whole item pool.
@@ -150,7 +185,7 @@ export async function createVersion(
 
 /**
  * Fork: create version 1 of `forkListId` referencing EXACTLY the items of
- * `sourceVersionId` — zero WordItem rows are copied.
+ * `sourceVersionId` zero WordItem rows are copied.
  */
 export async function forkVersion(
   prisma: any,
@@ -200,10 +235,9 @@ export async function versionPairs(
 
 /** Diff two versions by source term: added / removed / changed. */
 export async function diffVersions(prisma: any, fromVersionId: number, toVersionId: number) {
-  const [from, to] = await Promise.all([
-    versionPairs(prisma, fromVersionId),
-    versionPairs(prisma, toVersionId),
-  ]);
+  // Sequential: the Prisma D1 adapter can hang on concurrent queries.
+  const from = await versionPairs(prisma, fromVersionId);
+  const to = await versionPairs(prisma, toVersionId);
   const fromMap = new Map(from.map((p) => [p.source, p.target]));
   const toMap = new Map(to.map((p) => [p.source, p.target]));
 

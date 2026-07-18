@@ -4,6 +4,7 @@ export interface Settings {
   wordsPerSession: number;
   checkCapitalization: boolean;
   foldSpecialLetters: boolean;
+  speakWords: boolean;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -12,4 +13,5 @@ export const DEFAULT_SETTINGS: Settings = {
   wordsPerSession: 15,
   checkCapitalization: false,
   foldSpecialLetters: false,
+  speakWords: true,
 };

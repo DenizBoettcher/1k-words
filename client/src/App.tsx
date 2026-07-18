@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'rea
 import Home from './pages/Home';
 import LoginPage from './pages/Login';
 import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 import Library from './pages/Library';
 import Admin from './pages/Admin';
 import { isLoggedIn, isAdmin } from './utils/authUtils';
@@ -24,6 +25,7 @@ export default function App() {
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<Library />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
           <Route element={<RequireAdmin />}>
             <Route path="/admin" element={<Admin />} />

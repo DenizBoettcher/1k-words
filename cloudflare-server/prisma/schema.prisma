@@ -1,4 +1,4 @@
-// Prisma schema  1K Words (Cloudflare / D1).
+// Prisma schema 1K Words (Cloudflare / D1).
 // Versioned, list-centric model with reference-based following.
 
 generator client {
@@ -27,6 +27,8 @@ model User {
   maintains ListMaintainer[]
   progress  Progress[]
   settings  UserSettings?
+  dailySessions DailySession[]
+  reviewLogs    ReviewLog[]
 }
 
 model WordList {
@@ -49,6 +51,8 @@ model WordList {
   follows     ListFollow[]
   likes       ListLike[]
   maintainers ListMaintainer[]
+  grammarItems GrammarItem[]
+  dailySessions DailySession[]
 
   @@index([ownerId])
   @@index([isPublic])
@@ -137,6 +141,41 @@ model ListMaintainer {
   @@index([userId])
 }
 
+model GrammarItem {
+  id          Int      @id @default(autoincrement())
+  listId      Int
+  text        String
+  answers     String
+  wordItemIds String   @default("[]")
+  position    Int      @default(0)
+  list     WordList @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@index([listId])
+}
+
+model ReviewLog {
+  userId Int
+  day    String
+  count  Int    @default(0)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, day])
+}
+
+model DailySession {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  listId      Int
+  sessionDate String
+  wordItemIds String
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  list        WordList @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, listId, sessionDate])
+  @@index([userId])
+}
+
 model Progress {
   userId     Int
   wordItemId Int
@@ -160,6 +199,7 @@ model UserSettings {
   wordsPerSession     Int     @default(15)
   checkCapitalization Boolean @default(false)
   foldSpecialLetters  Boolean @default(false)
+  speakWords          Boolean @default(true)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

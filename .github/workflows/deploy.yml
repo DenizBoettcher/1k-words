@@ -1,11 +1,9 @@
 # Builds the .NET MAUI Android app (release APK) and publishes it as a GitHub
 # Release. The Cloudflare Worker itself deploys via the Cloudflare Git
-# integration (Workers Builds)  this workflow only covers the native app.
+# integration (Workers Builds) this workflow only covers the native app.
 #
 # Versioning: MAJOR.MINOR is pinned below (2.0); the PATCH counts up
 # automatically with every workflow run. Run #1 => 2.0.0, run #2 => 2.0.1, …
-# ApplicationVersion (Android versionCode) uses the raw run number, which
-# keeps it a monotonically increasing integer as Android requires.
 name: Build MAUI app
 
 on:
@@ -18,9 +16,11 @@ on:
 
 env:
   VERSION_PREFIX: '2.0'
+  # SDK matches the net10.0-android target of the app.
+  DOTNET_VERSION: '10.0.x'
 
 permissions:
-  contents: write # create releases
+  contents: write
 
 concurrency:
   group: maui-build
@@ -41,15 +41,21 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Install MAUI Android workload
+      # Install the MAUI workload matching the pinned SDK. This is what provides
+      # $(MauiVersion) and resolves Microsoft.Maui.Controls (fixes NU1015).
+      - name: Install MAUI workload
         run: dotnet workload install maui-android
+
+      - name: Restore
+        working-directory: app/VocabApp
+        run: dotnet restore -f net10.0-android
 
       - name: Publish Android APK
         working-directory: app/VocabApp
         run: >
-          dotnet publish -f net8.0-android -c Release
+          dotnet publish -f net10.0-android -c Release --no-restore
           -p:ApplicationDisplayVersion=${{ env.APP_VERSION }}
           -p:ApplicationVersion=${{ env.VERSION_CODE }}
           -p:AndroidPackageFormats=apk
@@ -58,7 +64,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p out
-          find app/VocabApp/bin/Release/net8.0-android -name "*-Signed.apk" -exec cp {} "out/1k-words-${APP_VERSION}.apk" \;
+          find app/VocabApp/bin/Release/net10.0-android -name "*-Signed.apk" -exec cp {} "out/1k-words-${APP_VERSION}.apk" \;
           ls -la out
 
       - name: Upload build artifact

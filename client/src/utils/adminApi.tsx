@@ -14,7 +14,9 @@ export function getUsers(): Promise<AdminUser[]> {
   return RequestApi('admin/users').then((r) => jsonOrThrow<AdminUser[]>(r));
 }
 
-export function setRole(id: number, role: 'USER' | 'ADMIN') {
+export type AdminRole = 'USER' | 'MAINTAINER' | 'ADMIN';
+
+export function setRole(id: number, role: AdminRole) {
   return RequestApi(`admin/users/${id}/role`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

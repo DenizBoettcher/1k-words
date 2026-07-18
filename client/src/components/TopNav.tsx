@@ -5,6 +5,7 @@ import {
 import {
   IconBook2, IconLibrary, IconSettings, IconShieldHalf, IconLogout, IconSun, IconMoon,
 } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 import { isAdmin, logout, getUsername } from '../utils/authUtils';
 import { setSettings } from '../utils/settingUtils';
 
@@ -15,6 +16,7 @@ const links = [
 ];
 
 export default function TopNav() {
+  const nav = useNavigate();
   const { pathname } = useLocation();
   const { setColorScheme } = useMantineColorScheme();
   const scheme = useComputedColorScheme('dark');
@@ -86,11 +88,12 @@ export default function TopNav() {
             {scheme === 'dark' ? <IconSun size={18} /> : <IconMoon size={18} />}
           </ActionIcon>
 
-          <Group gap={6} pl={4}>
+          <Group style={{ cursor: 'pointer' }} title="Profile & stats" onClick={() => nav('/profile')} gap={6} pl={4}>
             <Avatar color="brand" radius="xl" size={26}>
               {(getUsername() ?? '?').slice(0, 2).toUpperCase()}
             </Avatar>
             <Text fz="sm" fw={500} visibleFrom="xs">{getUsername()}</Text>
+            <Text fz="xs" c="dimmed" visibleFrom="sm">Profile</Text>
           </Group>
 
           <ActionIcon

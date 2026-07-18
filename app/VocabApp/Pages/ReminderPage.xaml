@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VocabApp.Pages.ReminderPage"
+             Title="App settings · Reminder">
+
+    <VerticalStackLayout Padding="20" Spacing="16">
+        <Label Text="Get a notification every day so you never forget to study."
+               Opacity="0.7" />
+
+        <HorizontalStackLayout Spacing="12">
+            <Switch x:Name="EnabledSwitch" Toggled="OnEnabledToggled" />
+            <Label Text="Remind me daily" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Spacing="12">
+            <Label Text="Time" VerticalOptions="Center" />
+            <TimePicker x:Name="TimeSelector" PropertyChanged="OnTimeChanged" />
+        </HorizontalStackLayout>
+
+        <Label x:Name="StatusLabel" FontSize="12" Opacity="0.7" />
+    </VerticalStackLayout>
+</ContentPage>

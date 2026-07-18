@@ -78,7 +78,7 @@ app.post('/register', async (c) => {
     data: { email, username, password: hash, role },
   });
 
-  // No token on register  the user is sent to the login page afterwards.
+  // No token on register the user is sent to the login page afterwards.
   return c.json({ user: { id: user.id, email: user.email, username: user.username, role: user.role } }, 201);
 });
 

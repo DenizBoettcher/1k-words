@@ -2,12 +2,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VocabApp.MainPage"
-             Title="1K Words">
+             Title="">
 
+    <!-- Only ONE visible title row: the web app's own top bar. The native nav
+         bar stays as a slim strip that hosts the app-level actions in the
+         overflow (⋮) menu, clearly separated from in-app settings. -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Servers" Clicked="OnServersClicked" Order="Primary" Priority="0" />
+        <ToolbarItem Text="Reload" Clicked="OnReloadClicked" Order="Secondary" Priority="0" />
+        <ToolbarItem Text="App: Servers" Clicked="OnServersClicked" Order="Secondary" Priority="1" />
+        <ToolbarItem Text="App: Reminder" Clicked="OnReminderClicked" Order="Secondary" Priority="2" />
     </ContentPage.ToolbarItems>
 
-    <WebView x:Name="Viewer" />
+    <WebView x:Name="Viewer" Navigated="OnViewerNavigated" />
 
 </ContentPage>

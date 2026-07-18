@@ -52,6 +52,12 @@ export const getListDetail = (id: number, version?: number) =>
 export const getDiff = (id: number, from: number, to: number) =>
   RequestApi(`lists/${id}/diff?from=${from}&to=${to}`).then((r) => jsonOrThrow<VersionDiff>(r));
 
+export const uploadGrammar = (id: number, grammarJson: unknown) =>
+  RequestApi(`lists/${id}/grammar`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(grammarJson),
+  }).then((r) => jsonOrThrow<{ count: number; unresolvedWordRefs: number }>(r));
+
 export const patchList = (id: number, patch: Partial<Pick<OwnedList, 'title' | 'description' | 'isPublic'>>) =>
   RequestApi(`lists/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(patch) })
     .then((r) => jsonOrThrow(r));

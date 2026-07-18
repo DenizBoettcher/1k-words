@@ -14,12 +14,13 @@ const AI_PROMPT = `Create a vocabulary word list as a single JSON file in exactl
 }
 
 Rules:
+- Words only grammar/sentence exercises are uploaded separately on the list.
 - Use the two ISO codes as the JSON keys of every entry (e.g. "de" and "es").
 - Pick the ~600 most useful/common words for a beginner-to-intermediate learner
-  (1000 is often too much for one list  600 is a good size).
+  (1000 is often too much for one list 600 is a good size).
 - One entry per word. If a word has several equally valid translations
   (e.g. gendered forms, articles: "ein"/"eine"), use a JSON ARRAY of strings
-  as the value  every alternative counts as a correct answer.
+  as the value every alternative counts as a correct answer.
 - No duplicates, no numbering, no comments, no trailing commas.
 - Respond with ONLY the JSON, nothing else.
 
@@ -37,7 +38,7 @@ export default function UploadHelp({ opened, onClose }: { opened: boolean; onClo
   "words": [ { "en": "hello", "es": "hola" },
              { "en": "friend", "es": ["amigo", "amiga"] } ] }`}</Code>
         <Text fz="sm" c="dimmed">
-          Alternatives (both accepted as correct) go in an array  a “/”-joined
+          Alternatives (both accepted as correct) go in an array a “/”-joined
           string like "amigo/amiga" works too. A bare array of two-language
           objects is also accepted.
         </Text>

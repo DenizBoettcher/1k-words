@@ -3,41 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:VocabApp.Models"
              x:Class="VocabApp.Pages.HostSelectionPage"
-             Title="Servers">
+             Title="App settings · Servers">
 
     <Grid RowDefinitions="*,Auto" Padding="16" RowSpacing="12">
 
-        <CollectionView x:Name="HostsView"
-                        Grid.Row="0"
-                        SelectionMode="None">
+        <CollectionView x:Name="HostsView" Grid.Row="0" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:KnownHost">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Delete"
-                                           BackgroundColor="#d3543f"
-                                           Invoked="OnDeleteInvoked"
-                                           CommandParameter="{Binding .}" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-
-                        <Border Padding="14,10" Margin="0,4" StrokeThickness="1"
-                                Stroke="#33888888" StrokeShape="RoundRectangle 10">
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnHostTapped"
-                                                      CommandParameter="{Binding .}" />
-                            </Border.GestureRecognizers>
-                            <VerticalStackLayout Spacing="2">
+                    <Border Padding="14,10" Margin="0,4" StrokeThickness="1"
+                            Stroke="#33888888" StrokeShape="RoundRectangle 10">
+                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="6">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnHostTapped" CommandParameter="{Binding .}" />
+                                </VerticalStackLayout.GestureRecognizers>
                                 <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
                                 <Label Text="{Binding Url}" FontSize="12" Opacity="0.7" LineBreakMode="TailTruncation" />
                             </VerticalStackLayout>
-                        </Border>
-                    </SwipeView>
+
+                            <!-- Favorite star: gold when set -->
+                            <Button Grid.Column="1" Text="★" FontSize="20" Padding="8,2"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{Binding IsFavorite, Converter={StaticResource FavColor}}"
+                                    Clicked="OnFavoriteClicked" CommandParameter="{Binding .}" />
+                            <!-- Delete: red trash -->
+                            <Button Grid.Column="2" Text="🗑" FontSize="18" Padding="8,2"
+                                    BackgroundColor="Transparent" TextColor="#d3543f"
+                                    Clicked="OnDeleteClicked" CommandParameter="{Binding .}" />
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
-                <Label Text="No servers yet  add one below."
+                <Label Text="No servers yet add one below."
                        HorizontalOptions="Center" VerticalOptions="Center" Opacity="0.6" />
             </CollectionView.EmptyView>
         </CollectionView>
@@ -45,7 +43,7 @@
         <VerticalStackLayout Grid.Row="1" Spacing="8">
             <Label Text="Add a server" FontAttributes="Bold" />
             <Entry x:Name="NameEntry" Placeholder="Name (e.g. Home server)" />
-            <Entry x:Name="UrlEntry" Placeholder="URL (e.g. https://1k-words.you.workers.dev or 192.168.1.20:8787)"
+            <Entry x:Name="UrlEntry" Placeholder="URL (e.g. 1k-words.dbdev.workers.dev or 192.168.1.20:8787)"
                    Keyboard="Url" />
             <Button Text="Add and connect" Clicked="OnAddClicked" />
             <Label x:Name="ErrorLabel" TextColor="#d3543f" FontSize="12" IsVisible="False" />

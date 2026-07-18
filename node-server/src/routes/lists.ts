@@ -2,10 +2,11 @@ import { Router } from 'express';
 import { z } from 'zod';
 import { prisma } from '../prisma';
 import { authenticateJWT, asyncHandler } from '../middleware/auth';
-import { LIMITS, ROLES } from '../lib/config';
-import { normaliseImport } from '../lib/importParser';
+import { LIMITS, isStaffRole } from '../lib/config';
+import { normaliseImport, normaliseGrammarFile } from '../lib/importParser';
 import {
-  createVersion, forkVersion, latestVersion, versionPairs, diffVersions,
+  createVersion,
+  replaceGrammarItems, forkVersion, latestVersion, versionPairs, diffVersions,
   cleanupOrphanItems, formatVersion, type Pair,
 } from '../lib/versioning';
 import type { RequestWithUser } from '../types';
@@ -13,7 +14,8 @@ import type { RequestWithUser } from '../types';
 const router = Router();
 router.use(authenticateJWT);
 
-const isAdmin = (role: string) => role === ROLES.admin;
+/** ADMIN or MAINTAINER content privileges (system lists, no upload limits). */
+const isStaff = (role: string) => isStaffRole(role);
 const uid = (req: any) => (req as RequestWithUser).user.id;
 const urole = (req: any) => (req as RequestWithUser).user.role;
 
@@ -27,21 +29,21 @@ async function isMaintainer(listId: number, userId: number) {
 }
 
 /**
- * Edit rights: system lists  admin only. Otherwise owner, maintainer, admin.
+ * Edit rights: system lists admin only. Otherwise owner, maintainer, admin.
  */
 async function canEdit(list: { id: number; ownerId: number; isSystem: boolean }, userId: number, role: string) {
-  if (list.isSystem) return isAdmin(role);
-  if (list.ownerId === userId || isAdmin(role)) return true;
+  if (list.isSystem) return isStaff(role);
+  if (list.ownerId === userId || isStaff(role)) return true;
   return isMaintainer(list.id, userId);
 }
 
 /** Manage rights (delete, visibility, maintainers): owner/admin; system: admin. */
 function canManage(list: { ownerId: number; isSystem: boolean }, userId: number, role: string) {
-  if (list.isSystem) return isAdmin(role);
-  return list.ownerId === userId || isAdmin(role);
+  if (list.isSystem) return isStaff(role);
+  return list.ownerId === userId || isStaff(role);
 }
 
-/* ───────────── GET /mine  owned + maintained ───────────── */
+/* ───────────── GET /mine owned + maintained ───────────── */
 router.get('/mine', asyncHandler(async (req, res) => {
   const userId = uid(req);
   const maintained = await prisma.listMaintainer.findMany({ where: { userId }, select: { listId: true } });
@@ -74,7 +76,7 @@ router.get('/mine', asyncHandler(async (req, res) => {
       originTitle: l.originListId ? originTitle.get(l.originListId) ?? null : null,
       isOwner: l.ownerId === userId,
       owner: l.owner.username,
-      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '',
+      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : ' ',
       itemCount: v?.itemCount ?? 0,
       likes: l._count.likes, followers: l._count.follows,
     };
@@ -130,10 +132,12 @@ router.get('/public', asyncHandler(async (req, res) => {
     },
   });
 
-  const [followedRows, likedRows] = await Promise.all([
-    prisma.listFollow.findMany({ where: { userId, listId: { in: lists.map((l) => l.id) } }, select: { listId: true } }),
-    prisma.listLike.findMany({ where: { userId, listId: { in: lists.map((l) => l.id) } }, select: { listId: true } }),
-  ]);
+  const followedRows = await prisma.listFollow.findMany({
+    where: { userId, listId: { in: lists.map((l) => l.id) } }, select: { listId: true },
+  });
+  const likedRows = await prisma.listLike.findMany({
+    where: { userId, listId: { in: lists.map((l) => l.id) } }, select: { listId: true },
+  });
   const followed = new Set(followedRows.map((f) => f.listId));
   const liked = new Set(likedRows.map((f) => f.listId));
 
@@ -152,7 +156,7 @@ router.get('/public', asyncHandler(async (req, res) => {
       id: l.id, title: l.title, description: l.description,
       sourceLang: l.sourceLang, targetLang: l.targetLang,
       author: l.owner.username, isSystem: l.isSystem,
-      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '',
+      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : ' ',
       itemCount: v?.itemCount ?? 0,
       likes, followers,
       isOwn: l.ownerId === userId,
@@ -162,18 +166,18 @@ router.get('/public', asyncHandler(async (req, res) => {
   }));
 }));
 
-/* ───────────── POST /  upload (v1) ───────────── */
+/* ───────────── POST / upload (v1) ───────────── */
 router.post('/', asyncHandler(async (req, res) => {
   const userId = uid(req);
   let parsedList;
   try { parsedList = normaliseImport(req.body); }
   catch (e: any) { res.status(400).json({ message: e?.message ?? 'Invalid list JSON' }); return; }
 
-  if (!isAdmin(urole(req)) && parsedList.items.length > LIMITS.maxItemsPerList) {
+  if (!isStaff(urole(req)) && parsedList.items.length > LIMITS.maxItemsPerList) {
     res.status(422).json({ message: `Lists are limited to ${LIMITS.maxItemsPerList} words (this one has ${parsedList.items.length}).` });
     return;
   }
-  if (!isAdmin(urole(req)) && (await countOwnedOriginals(userId)) >= LIMITS.maxOwnedLists) {
+  if (!isStaff(urole(req)) && (await countOwnedOriginals(userId)) >= LIMITS.maxOwnedLists) {
     res.status(422).json({ message: `You already have ${LIMITS.maxOwnedLists} lists. Delete one before uploading another.` });
     return;
   }
@@ -188,7 +192,7 @@ router.post('/', asyncHandler(async (req, res) => {
   res.status(201).json({ id: list.id, version: v.version, itemCount: v.itemCount });
 }));
 
-/* ───────────── POST /:id/version  owner/maintainer adds a version ───────────── */
+/* ───────────── POST /:id/version owner/maintainer adds a version ───────────── */
 const VersionBody = z.object({
   commitMessage: z.string().max(200).optional(),
   items: z.array(z.object({ source: z.string().min(1), target: z.string().min(1) })).min(1),
@@ -205,7 +209,7 @@ router.post('/:id/version', asyncHandler(async (req, res) => {
 
   const parsed = VersionBody.safeParse(req.body);
   if (!parsed.success) { res.status(400).json({ message: 'items required' }); return; }
-  if (!isAdmin(urole(req)) && parsed.data.items.length > LIMITS.maxItemsPerList) {
+  if (!isStaff(urole(req)) && parsed.data.items.length > LIMITS.maxItemsPerList) {
     res.status(422).json({ message: `Lists are limited to ${LIMITS.maxItemsPerList} words.` }); return;
   }
 
@@ -213,7 +217,7 @@ router.post('/:id/version', asyncHandler(async (req, res) => {
   res.status(201).json({ version: v.version, itemCount: v.itemCount });
 }));
 
-/* ───────────── GET /:id  detail ───────────── */
+/* ───────────── GET /:id detail ───────────── */
 router.get('/:id', asyncHandler(async (req, res) => {
   const userId = uid(req);
   const id = Number(req.params.id);
@@ -275,7 +279,7 @@ router.get('/:id/diff', asyncHandler(async (req, res) => {
   res.json(await diffVersions(prisma, fromV.id, toV.id));
 }));
 
-/* ───────────── PATCH /:id  meta (owner/admin; system: admin) ───────────── */
+/* ───────────── PATCH /:id meta (owner/admin; system: admin) ───────────── */
 const PatchBody = z.object({
   title: z.string().min(1).max(120).optional(),
   description: z.string().max(500).optional(),
@@ -392,13 +396,13 @@ router.delete('/:id/follow', asyncHandler(async (req, res) => {
   res.json({ unfollowed: id });
 }));
 
-/* ───────────── POST /:id/fork  reference-based editable copy ───────────── */
+/* ───────────── POST /:id/fork reference-based editable copy ───────────── */
 router.post('/:id/fork', asyncHandler(async (req, res) => {
   const userId = uid(req);
   const id = Number(req.params.id);
   const source = await prisma.wordList.findUnique({ where: { id } });
   if (!source) { res.status(404).json({ message: 'Not found' }); return; }
-  if (source.isSystem) { res.status(403).json({ message: 'System lists cannot be forked  follow them instead' }); return; }
+  if (source.isSystem) { res.status(403).json({ message: 'System lists cannot be forked follow them instead' }); return; }
   if (!source.isPublic && source.ownerId !== userId) { res.status(403).json({ message: 'That list is private' }); return; }
 
   // Forks don't count toward the owned-lists cap (originListId is set).
@@ -414,7 +418,7 @@ router.post('/:id/fork', asyncHandler(async (req, res) => {
   });
   // Zero-copy: fork v1 references the exact items of the source version.
   const v = await forkVersion(prisma, fork.id, latest.id, `Forked from “${source.title}” ${formatVersion(latest.version)}`);
-  // Forking replaces following (progress carries over  same item ids).
+  // Forking replaces following (progress carries over same item ids).
   await prisma.listFollow.deleteMany({ where: { userId, listId: id } });
   res.status(201).json({ id: fork.id, version: v.version, itemCount: v.itemCount });
 }));
@@ -429,7 +433,7 @@ router.get('/:id/export', asyncHandler(async (req, res) => {
   });
   if (!list) { res.status(404).json({ message: 'Not found' }); return; }
   const follow = await prisma.listFollow.findUnique({ where: { userId_listId: { userId, listId: id } } });
-  const mayRead = list.ownerId === userId || list.isPublic || !!follow || isAdmin(urole(req)) || (await isMaintainer(id, userId));
+  const mayRead = list.ownerId === userId || list.isPublic || !!follow || isStaff(urole(req)) || (await isMaintainer(id, userId));
   if (!mayRead) { res.status(403).json({ message: 'Not allowed' }); return; }
 
   const wanted = Number(req.query.version);
@@ -448,6 +452,50 @@ router.get('/:id/export', asyncHandler(async (req, res) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Content-Disposition', `attachment; filename="${safeName}.json"`);
   res.send(JSON.stringify(file, null, 2));
+}));
+
+
+/* ───────────── POST /:id/grammar upload/replace grammar exercises ─────────────
+ * Standalone JSON (array or { grammar: [...] }). Word references arrive as BASE
+ * FORMS; we resolve them here against the latest version's target words (any
+ * "a/b" alternative counts) and store real WordItem ids conjugated forms in
+ * the sentence can't break the link. First ref = the gap word. */
+router.post('/:id/grammar', asyncHandler(async (req, res) => {
+  const userId = uid(req);
+  const id = Number(req.params.id);
+  const list = await prisma.wordList.findUnique({ where: { id }, select: { ownerId: true, isSystem: true } });
+  if (!list) { res.status(404).json({ message: 'Not found' }); return; }
+  const staff = isStaff(urole(req));
+  const maintainer = await isMaintainer(id, userId);
+  if (list.isSystem ? !staff : (list.ownerId !== userId && !maintainer && !staff)) {
+    res.status(403).json({ message: 'Not allowed' }); return;
+  }
+
+  let grammar;
+  try { grammar = normaliseGrammarFile(req.body); }
+  catch (e: any) { res.status(422).json({ message: e.message ?? 'Invalid grammar file' }); return; }
+
+  const latest = await latestVersion(prisma, id);
+  const pairs = latest ? await versionPairs(prisma, latest.id) : [];
+  const idByForm = new Map<string, number>();
+  for (const pair of pairs) {
+    for (const alternative of pair.target.split('/')) {
+      idByForm.set(alternative.trim().toLowerCase(), pair.id);
+    }
+  }
+
+  const rows = grammar.map((g) => ({
+    text: g.text,
+    answers: g.answers,
+    wordItemIds: g.words
+      .map((form) => idByForm.get(form.toLowerCase()))
+      .filter((wordItemId): wordItemId is number => typeof wordItemId === 'number'),
+  }));
+  await replaceGrammarItems(prisma, id, rows);
+
+  const unresolved = grammar.reduce(
+    (count, g, i) => count + (g.words.length - rows[i].wordItemIds.length), 0);
+  res.json({ count: rows.length, unresolvedWordRefs: unresolved });
 }));
 
 export default router;

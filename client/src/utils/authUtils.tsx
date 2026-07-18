@@ -61,6 +61,12 @@ export function isAdmin(): boolean {
   return getRole() === 'ADMIN';
 }
 
+/** ADMIN or MAINTAINER content privileges (no upload limits, system-list editing). */
+export function isStaff(): boolean {
+  const role = getRole();
+  return role === 'ADMIN' || role === 'MAINTAINER';
+}
+
 export function logout(): void {
   clearToken();
   localStorage.removeItem('appSettings'); // settings cache belongs to the account

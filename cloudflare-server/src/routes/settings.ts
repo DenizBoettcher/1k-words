@@ -13,6 +13,7 @@ const SettingsBody = z.object({
   wordsPerSession: z.number().int().min(5).max(200).optional(),
   checkCapitalization: z.boolean().optional(),
   foldSpecialLetters: z.boolean().optional(),
+  speakWords: z.boolean().optional(),
 });
 
 app.get('/', async (c) => {
@@ -40,10 +41,12 @@ app.put('/', async (c) => {
   // If activeListId is set, make sure it belongs to the user.
   if (parsed.data.activeListId != null) {
     const listId = parsed.data.activeListId;
-    const [owns, follows] = await Promise.all([
-      prisma.wordList.findFirst({ where: { id: listId, ownerId: userId }, select: { id: true } }),
-      prisma.listFollow.findUnique({ where: { userId_listId: { userId, listId } }, select: { id: true } }),
-    ]);
+    const owns = await prisma.wordList.findFirst({
+      where: { id: listId, ownerId: userId }, select: { id: true },
+    });
+    const follows = await prisma.listFollow.findUnique({
+      where: { userId_listId: { userId, listId } }, select: { id: true },
+    });
     if (!owns && !follows) return c.json({ message: 'activeListId is not in your library' }, 422);
   }
 

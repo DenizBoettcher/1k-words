@@ -1,19 +1,15 @@
 # 1K Words
 
-[![Live app](https://img.shields.io/badge/%F0%9F%9A%80_live_app-open-brightgreen?style=for-the-badge)](https://1k-words.dbdev.workers.dev)
-
-> **Live:** deployed from `main` on every push.
-
 A vocabulary trainer with spaced repetition, XP/levels, and Git-style shared
 word lists: versioned lists, follows, forks, maintainers, and official system
-sets. One React client, two interchangeable backends  a **Cloudflare Worker**
-(free-tier deployable) and a **self-host Node/Express server**  speaking the
+sets. One React client, two interchangeable backends a **Cloudflare Worker**
+(free-tier deployable) and a **self-host Node/Express server** speaking the
 same API on the same list-centric schema.
 
 ```
 client/             React 19 + Vite + Mantine (VS Code-style dark mode)
-cloudflare-server/  Hono + Prisma(D1) Worker  serves the API AND the built client
-node-server/        Express + Prisma(SQLite)  self-host alternative, same API
+cloudflare-server/  Hono + Prisma(D1) Worker serves the API AND the built client
+node-server/        Express + Prisma(SQLite) self-host alternative, same API
 app/                .NET MAUI WebView wrapper (optional; the web app is a PWA)
 scripts/            import-system-sets.mjs (official set importer)
 systemdata/         official set JSONs (git-ignored content)
@@ -30,13 +26,13 @@ test_data/          sample import files
   for unchanged words.
 - **Follow** a public list (a reference, not a copy): you study it, keep
   progress, and get an "update available" banner when the owner publishes a new
-  version  with a version picker and a diff (added / changed / removed).
+  version with a version picker and a diff (added / changed / removed).
 - **Fork** for editing: creates your own list with its own version counter
   (starting at 1.1), linked back to the origin ("forked from X 1.2").
   **Zero-copy**: the fork references the origin's word rows; only words you
   actually change create new rows.
 - **Maintainers**: owners can add other users (by username) as maintainers who
-  may publish new versions  like collaborators on Git.
+  may publish new versions like collaborators on Git.
 - **Likes (stars) + follower counts**; Browse shows the top 25, sortable by
   stars (default), followers, or combined popularity.
 - **System sets**: official lists (badge "official"), public, not forkable,
@@ -44,12 +40,20 @@ test_data/          sample import files
 - **Caps** (non-admin): 3000 word pairs per list, 4 uploaded original lists.
   Forks and follows are free. Admins are uncapped.
 - **SRS + XP**: SM-2-style scheduling (missed words resurface sooner), level =
-  mastery of what you *currently* know  it rises when words are mastered and
+  mastery of what you *currently* know it rises when words are mastered and
   drops again when you forget them. XP is a lifetime score. The study screen
   shows seen/total and mastered counts.
+- **Four study modes**: flash cards, written answers (only words already met
+  as cards), **Speak** (pronounce the word checked by the browser's built-in
+  speech recognition + fuzzy match), and **Grammar** (cloze sentences with a
+  ___ gap; translations of not-yet-learned words show as hints). Grammar
+  exercises are a **separate JSON** uploaded per list (Library → Grammar
+  button, format + AI prompt in the dialog); word references use base forms
+  and are resolved to real word ids server-side, so conjugations can't break
+  the link. Lists can be renamed via the Rename button (owner).
 - **Answer checking** is fully client-side and configurable per account:
   capitalization checking (off by default) and special-letter folding
-  (ö→o, ç→c, ø→o, ß→ss, …  see `client/src/utils/charFold.ts`) for people
+  (ö→o, ç→c, ø→o, ß→ss, … see `client/src/utils/charFold.ts`) for people
   without those keys. Words can list several accepted answers.
 - **"Keep me signed in"**: checked (default) keeps the session for 30 days;
   unchecked signs you out when the browser closes.
@@ -59,10 +63,10 @@ test_data/          sample import files
 
 ## Quick start (pick ONE backend)
 
-Both servers listen on **http://localhost:8787**  run only one at a time.
+Both servers listen on **http://localhost:8787** run only one at a time.
 The client dev server (Vite, port 3000) proxies `/api` to 8787 automatically.
 
-### Option A  Cloudflare Worker (local)
+### Option A Cloudflare Worker (local)
 
 ```bash
 cd cloudflare-server
@@ -77,7 +81,7 @@ npm start                                     # wrangler dev on :8787 (runs pris
 > Worker serves it via the ASSETS binding. Build it once:
 > `cd ../client && npm install && npm run build`.
 
-### Option B  Node self-host
+### Option B Node self-host
 
 ```bash
 cd node-server
@@ -95,7 +99,7 @@ npm install
 npm run dev                                   # http://localhost:3000, /api proxied to :8787
 ```
 
-Register  use your `ADMIN_EMAIL` (or just be the first account) to become
+Register use your `ADMIN_EMAIL` (or just be the first account) to become
 admin. Registration sends you to the login page; sign in afterwards.
 
 ---
@@ -178,7 +182,7 @@ migrations and deploys. So `wrangler.jsonc` itself stays git-ignored.
 Notes:
 
 - Build variables exist only at build time. The Worker's **runtime** secrets
-  (`JWT_SECRET`, `ADMIN_EMAIL`) are separate  set once via
+  (`JWT_SECRET`, `ADMIN_EMAIL`) are separate set once via
   `npx wrangler secret put …` and untouched by builds.
 - If the repo was previously connected to a Cloudflare **Pages** project (the
   old split setup), disconnect/delete it so the two don't fight over deploys.
@@ -237,7 +241,7 @@ node scripts/import-system-sets.mjs --url http://localhost:8787 --email <admin> 
 ```
 
 Run once per target: node-server, `wrangler dev` (= **local** D1), and the
-deployed Worker URL (= **remote** D1). The import is idempotent  unchanged
+deployed Worker URL (= **remote** D1). The import is idempotent unchanged
 sets are skipped, changed sets get a new version. System sets are public,
 badged "official", cannot be forked, and only admins can edit them.
 
@@ -253,7 +257,7 @@ badged "official", cannot be forked, and only admins can edit them.
 [ { "en": "and", "de": "und" }, { "en": "a", "de": ["ein", "eine"] } ]
 ```
 
-A word value is a string or an **array of accepted alternatives**  every
+A word value is a string or an **array of accepted alternatives** every
 alternative counts as correct (a legacy `"ein/eine"` string works too). The
 upload dialog has a help button with an AI prompt that generates a ~600-word
 list in this exact format.
@@ -283,7 +287,7 @@ The app has a **known-hosts list** (toolbar → *Servers*): saved servers with
 name + URL, tap to connect, swipe to delete, add your own (Cloudflare Worker,
 self-hosted node-server on a LAN IP, …). The selection persists on the device.
 On first launch the server picker opens automatically. `AppConfig.ApiUrl` only
-seeds the default "Cloud" entry  set it to your Worker URL before building so
+seeds the default "Cloud" entry set it to your Worker URL before building so
 fresh installs get a working default. Plain `http://` hosts are allowed on
 Android and iOS (for LAN self-hosting); the Android back button navigates
 inside the web app before closing.
@@ -295,7 +299,7 @@ Every push to `main` that touches `app/**` (or a manual run via
 and attaches it to a GitHub Release.
 
 **Versioning:** `MAJOR.MINOR` is pinned in the workflow (`VERSION_PREFIX: '2.0'`);
-the patch counts up automatically per run  run #1 = `2.0.0`, run #2 = `2.0.1`, …
+the patch counts up automatically per run run #1 = `2.0.0`, run #2 = `2.0.1`, …
 Android's `versionCode` uses the raw run number, so it stays a monotonically
 increasing integer. Bumping to `2.1`/`3.0` = edit `VERSION_PREFIX`.
 

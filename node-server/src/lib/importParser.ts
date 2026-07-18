@@ -33,6 +33,58 @@ const Pair = z.object({
   target: WordValue,
 });
 
+/**
+ * Optional grammar (cloze) exercises. `text` contains a ___ gap; `answers`
+ * lists every accepted fill (conjugated form AND base form, e.g.
+ * ["schaue", "schauen"]); `hint` is the translation shown while the word is
+ * still unlearned; `wordRef` optionally links the sentence to a vocabulary
+ * word (matched against the list's target words) so answering feeds its SRS.
+ */
+const GrammarEntry = z.object({
+  text: z.string().min(3).max(300),
+  answers: WordValue,
+  answer: WordValue.optional(), // tolerated alias
+  words: z.array(z.string().min(1).max(120)).max(20).optional(),
+  word: z.string().max(120).optional(), // tolerated alias (single ref)
+});
+
+export interface NormalisedGrammar {
+  text: string;
+  /** "a/b" alternative form, same convention as word targets. */
+  answers: string;
+  /** Base forms of every referenced vocabulary word; first = the gap word. */
+  words: string[];
+}
+
+/**
+ * Parse a STANDALONE grammar file: a bare array of entries or
+ * { "grammar": [...] }. Uploaded separately from the word list.
+ */
+export function normaliseGrammarFile(raw: unknown): NormalisedGrammar[] {
+  const arr = Array.isArray(raw)
+    ? raw
+    : raw && typeof raw === 'object' && Array.isArray((raw as any).grammar)
+      ? (raw as any).grammar
+      : null;
+  if (!arr) throw new Error('Expected a JSON array of grammar entries (or { "grammar": [...] })');
+
+  const out: NormalisedGrammar[] = [];
+  for (const entry of arr.slice(0, 500)) {
+    const parsed = GrammarEntry.safeParse(entry);
+    if (!parsed.success) continue;
+    const g = parsed.data;
+    if (!g.text.includes('___')) continue;
+    const answers = joinAlternatives(g.answers ?? g.answer ?? '');
+    if (!answers) continue;
+    const words = (g.words ?? (g.word ? [g.word] : []))
+      .map((w) => w.trim())
+      .filter(Boolean);
+    out.push({ text: g.text.trim(), answers, words });
+  }
+  if (out.length === 0) throw new Error('No usable grammar entries found (each needs "text" with ___ and "answers")');
+  return out;
+}
+
 const StructuredBody = z.object({
   title: z.string().min(1).max(120),
   description: z.string().max(500).optional().default(''),
@@ -74,7 +126,7 @@ export function normaliseImport(
     };
   }
 
-  // Shape B — pull the array out. A wrapping object may still carry a title
+  // Shape B pull the array out. A wrapping object may still carry a title
   // and description even without sourceLang/targetLang fields; keep them.
   const wrapper = raw && typeof raw === 'object' && !Array.isArray(raw) ? (raw as any) : null;
   const wrapperTitle = typeof wrapper?.title === 'string' && wrapper.title.trim().length > 0

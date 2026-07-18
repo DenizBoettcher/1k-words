@@ -1,6 +1,6 @@
 import { getToken, clearToken } from './authUtils';
 // The client is served by the same Worker as the API, so calls are same-origin
-// under /api  no CORS, no build-time API URL to configure. An override is only
+// under /api no CORS, no build-time API URL to configure. An override is only
 // needed when running the CRA dev server against a remote worker.
 export const ApiUrl = import.meta.env.VITE_API_URL ?? '';
 
@@ -19,7 +19,7 @@ export async function RequestApi(
   });
 
   if (res.status === 401) {
-    // Token expired / invalid  bounce to login.
+    // Token expired / invalid bounce to login.
     clearToken();
     if (!window.location.pathname.startsWith('/login')) {
       window.location.assign('/login');

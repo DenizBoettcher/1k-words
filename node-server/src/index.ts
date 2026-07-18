@@ -45,7 +45,7 @@ if (fs.existsSync(path.join(clientDir, 'index.html'))) {
   console.log(`Serving client from ${clientDir}`);
 } else {
   console.log(
-    `No client build at ${clientDir}  running API-only ` +
+    `No client build at ${clientDir} running API-only ` +
       `(use the Vite dev server, which proxies /api here).`,
   );
 }

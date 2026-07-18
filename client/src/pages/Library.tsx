@@ -15,12 +15,13 @@ import ListEditor from '../components/ListEditor';
 import UpdateModal from '../components/UpdateModal';
 import { OwnedList, FollowedList, PublicList } from '../data/List';
 import UploadHelp from '../components/UploadHelp';
+import { RenameListModal, GrammarUploadModal } from '../components/ListMetaActions';
 import {
   getMyLists, getFollowing, getPublicLists, deleteList, patchList, followList, unfollowList,
   forkList, likeList, unlikeList, downloadListJson, uploadList, UploadBody, PublicSort,
 } from '../utils/listsApi';
 import { setSettings } from '../utils/settingUtils';
-import { isAdmin } from '../utils/authUtils';
+import { isStaff } from '../utils/authUtils';
 
 const MAX_ITEMS = 3000;
 const MAX_LISTS = 4;
@@ -54,6 +55,8 @@ async function parseFile(file: File, isPublic: boolean): Promise<UploadBody> {
 }
 
 export default function Library() {
+  const [renameFor, setRenameFor] = useState<any>(null);
+  const [grammarFor, setGrammarFor] = useState<any>(null);
   const nav = useNavigate();
   const [mine, setMine] = useState<OwnedList[]>([]);
   const [following, setFollowing] = useState<FollowedList[]>([]);
@@ -66,7 +69,7 @@ export default function Library() {
   const [editor, setEditor] = useState<OwnedList | null>(null);
   const [updater, setUpdater] = useState<FollowedList | null>(null);
 
-  const admin = isAdmin();
+  const admin = isStaff();
   const ownedOriginals = mine.filter((l) => !l.isFork).length;
   const atCap = !admin && ownedOriginals >= MAX_LISTS;
 
@@ -135,7 +138,7 @@ export default function Library() {
       <Group justify="space-between" align="flex-end" mb="md">
         <Title order={1}>Your Library</Title>
         <Text c="dimmed" fz="sm">
-          {admin ? 'Admin  unlimited lists' : `${ownedOriginals}/${MAX_LISTS} uploaded lists · forks & follows are free`}
+          {admin ? 'Admin unlimited lists' : `${ownedOriginals}/${MAX_LISTS} uploaded lists · forks & follows are free`}
         </Text>
       </Group>
 
@@ -144,7 +147,7 @@ export default function Library() {
         <Group justify="space-between" wrap="wrap">
           <div>
             <Text fw={600}>Upload a list (JSON)</Text>
-            <Switch mt={8} label="Make public  others can find & follow it"
+            <Switch mt={8} label="Make public others can find & follow it"
               checked={uploadPublic} onChange={(e) => setUploadPublic(e.currentTarget.checked)} />
           </div>
           <Group gap="xs">
@@ -166,7 +169,7 @@ export default function Library() {
 
       {/* My lists */}
       <Title order={2} mb="sm">My lists</Title>
-      {mine.length === 0 && <Text c="dimmed">Nothing yet  upload a list above.</Text>}
+      {mine.length === 0 && <Text c="dimmed">Nothing yet upload a list above.</Text>}
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md" mb="xl">
         {mine.map((l) => (
           <Card key={l.id} withBorder radius="md" padding="md">
@@ -197,6 +200,16 @@ export default function Library() {
                   leftSection={l.isPublic ? <IconLock size={14} /> : <IconWorld size={14} />}
                   onClick={async () => { await patchList(l.id, { isPublic: !l.isPublic }); await reload(); }}>
                   {l.isPublic ? 'Private' : 'Public'}
+                </Button>
+              )}
+              {l.isOwner && (
+                <Button size="xs" variant="light" color="gray" onClick={() => setRenameFor(l)}>
+                  Rename
+                </Button>
+              )}
+              {l.isOwner && (
+                <Button size="xs" variant="light" color="grape" onClick={() => setGrammarFor(l)}>
+                  Grammar
                 </Button>
               )}
               {l.isOwner && (
@@ -305,6 +318,12 @@ export default function Library() {
         ))}
       </SimpleGrid>
       <Box h={40} />
+
+      <RenameListModal
+        list={renameFor}
+        onClose={async (changed) => { setRenameFor(null); if (changed) await reload(); }}
+      />
+      <GrammarUploadModal list={grammarFor} onClose={() => setGrammarFor(null)} />
 
       <UploadHelp opened={helpOpen} onClose={() => setHelpOpen(false)} />
       <ListEditor

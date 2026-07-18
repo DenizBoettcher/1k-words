@@ -3,17 +3,19 @@ import { z } from 'zod';
 import { getPrisma } from '../prisma/prismaHelper';
 import { authenticateJWT } from '../middleware/authenticateJWT';
 import type { AppEnv } from '../types/AppContext';
-import { LIMITS, ROLES } from '../lib/config';
-import { normaliseImport } from '../lib/importParser';
+import { LIMITS, isStaffRole } from '../lib/config';
+import { normaliseImport, normaliseGrammarFile } from '../lib/importParser';
 import {
-  createVersion, forkVersion, latestVersion, versionPairs, diffVersions,
+  createVersion,
+  replaceGrammarItems, forkVersion, latestVersion, versionPairs, diffVersions,
   cleanupOrphanItems, formatVersion, type Pair,
 } from '../lib/versioning';
 
 const app = new Hono<AppEnv>();
 app.use('*', authenticateJWT);
 
-const isAdmin = (role: string) => role === ROLES.admin;
+/** ADMIN or MAINTAINER content privileges (system lists, no upload limits). */
+const isStaff = (role: string) => isStaffRole(role);
 const countOwnedOriginals = (prisma: any, userId: number) =>
   prisma.wordList.count({ where: { ownerId: userId, originListId: null, isSystem: false } });
 
@@ -23,16 +25,16 @@ async function isMaintainer(prisma: any, listId: number, userId: number) {
   }));
 }
 async function canEdit(prisma: any, list: any, userId: number, role: string) {
-  if (list.isSystem) return isAdmin(role);
-  if (list.ownerId === userId || isAdmin(role)) return true;
+  if (list.isSystem) return isStaff(role);
+  if (list.ownerId === userId || isStaff(role)) return true;
   return isMaintainer(prisma, list.id, userId);
 }
 function canManage(list: any, userId: number, role: string) {
-  if (list.isSystem) return isAdmin(role);
-  return list.ownerId === userId || isAdmin(role);
+  if (list.isSystem) return isStaff(role);
+  return list.ownerId === userId || isStaff(role);
 }
 
-/* GET /mine  owned + maintained */
+/* GET /mine owned + maintained */
 app.get('/mine', async (c) => {
   const prisma = getPrisma(c.env);
   const userId = c.get('user').id;
@@ -62,7 +64,7 @@ app.get('/mine', async (c) => {
       originListId: l.originListId, originVersion: l.originVersion,
       originTitle: l.originListId ? originTitle.get(l.originListId) ?? null : null,
       isOwner: l.ownerId === userId, owner: l.owner.username,
-      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '',
+      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : ' ',
       itemCount: v?.itemCount ?? 0,
       likes: l._count.likes, followers: l._count.follows,
     };
@@ -119,10 +121,12 @@ app.get('/public', async (c) => {
       _count: { select: { likes: true, follows: true } },
     },
   });
-  const [followedRows, likedRows] = await Promise.all([
-    prisma.listFollow.findMany({ where: { userId, listId: { in: lists.map((l: any) => l.id) } }, select: { listId: true } }),
-    prisma.listLike.findMany({ where: { userId, listId: { in: lists.map((l: any) => l.id) } }, select: { listId: true } }),
-  ]);
+  const followedRows = await prisma.listFollow.findMany({
+    where: { userId, listId: { in: lists.map((l: any) => l.id) } }, select: { listId: true },
+  });
+  const likedRows = await prisma.listLike.findMany({
+    where: { userId, listId: { in: lists.map((l: any) => l.id) } }, select: { listId: true },
+  });
   const followed = new Set(followedRows.map((f: any) => f.listId));
   const liked = new Set(likedRows.map((f: any) => f.listId));
 
@@ -141,7 +145,7 @@ app.get('/public', async (c) => {
       id: l.id, title: l.title, description: l.description,
       sourceLang: l.sourceLang, targetLang: l.targetLang,
       author: l.owner.username, isSystem: l.isSystem,
-      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : '',
+      version: v?.version ?? 0, versionLabel: v ? formatVersion(v.version) : ' ',
       itemCount: v?.itemCount ?? 0,
       likes, followers,
       isOwn: l.ownerId === userId,
@@ -150,7 +154,7 @@ app.get('/public', async (c) => {
   }));
 });
 
-/* POST /  upload */
+/* POST / upload */
 app.post('/', async (c) => {
   const prisma = getPrisma(c.env);
   const user = c.get('user');
@@ -158,9 +162,9 @@ app.post('/', async (c) => {
   try { parsedList = normaliseImport(await c.req.json()); }
   catch (e: any) { return c.json({ message: e?.message ?? 'Invalid list JSON' }, 400); }
 
-  if (!isAdmin(user.role) && parsedList.items.length > LIMITS.maxItemsPerList)
+  if (!isStaff(user.role) && parsedList.items.length > LIMITS.maxItemsPerList)
     return c.json({ message: `Lists are limited to ${LIMITS.maxItemsPerList} words (this one has ${parsedList.items.length}).` }, 422);
-  if (!isAdmin(user.role) && (await countOwnedOriginals(prisma, user.id)) >= LIMITS.maxOwnedLists)
+  if (!isStaff(user.role) && (await countOwnedOriginals(prisma, user.id)) >= LIMITS.maxOwnedLists)
     return c.json({ message: `You already have ${LIMITS.maxOwnedLists} lists. Delete one before uploading another.` }, 422);
 
   const list = await prisma.wordList.create({
@@ -185,18 +189,18 @@ app.post('/:id/version', async (c) => {
   const list = await prisma.wordList.findUnique({ where: { id } });
   if (!list) return c.json({ message: 'Not found' }, 404);
   if (!(await canEdit(prisma, list, user.id, user.role)))
-    return c.json({ message: list.isSystem ? 'System lists can only be edited by an admin' : 'Not allowed to edit this list' }, 403);
+    return c.json({ message: list.isSystem ? 'System lists can only be edited by staff' : 'Not allowed to edit this list' }, 403);
 
   const parsed = VersionBody.safeParse(await c.req.json().catch(() => null));
   if (!parsed.success) return c.json({ message: 'items required' }, 400);
-  if (!isAdmin(user.role) && parsed.data.items.length > LIMITS.maxItemsPerList)
+  if (!isStaff(user.role) && parsed.data.items.length > LIMITS.maxItemsPerList)
     return c.json({ message: `Lists are limited to ${LIMITS.maxItemsPerList} words.` }, 422);
 
   const v = await createVersion(prisma, id, parsed.data.items as Pair[], parsed.data.commitMessage ?? '');
   return c.json({ version: v.version, itemCount: v.itemCount }, 201);
 });
 
-/* GET /:id  detail */
+/* GET /:id detail */
 app.get('/:id', async (c) => {
   const prisma = getPrisma(c.env);
   const user = c.get('user');
@@ -386,14 +390,14 @@ app.delete('/:id/follow', async (c) => {
   return c.json({ unfollowed: id });
 });
 
-/* POST /:id/fork  reference-based, zero-copy */
+/* POST /:id/fork reference-based, zero-copy */
 app.post('/:id/fork', async (c) => {
   const prisma = getPrisma(c.env);
   const user = c.get('user');
   const id = Number(c.req.param('id'));
   const source = await prisma.wordList.findUnique({ where: { id } });
   if (!source) return c.json({ message: 'Not found' }, 404);
-  if (source.isSystem) return c.json({ message: 'System lists cannot be forked  follow them instead' }, 403);
+  if (source.isSystem) return c.json({ message: 'System lists cannot be forked follow them instead' }, 403);
   if (!source.isPublic && source.ownerId !== user.id) return c.json({ message: 'That list is private' }, 403);
 
   const latest = await latestVersion(prisma, id);
@@ -421,7 +425,7 @@ app.get('/:id/export', async (c) => {
   });
   if (!list) return c.json({ message: 'Not found' }, 404);
   const follow = await prisma.listFollow.findUnique({ where: { userId_listId: { userId: user.id, listId: id } } });
-  const mayRead = list.ownerId === user.id || list.isPublic || follow || isAdmin(user.role) || (await isMaintainer(prisma, id, user.id));
+  const mayRead = list.ownerId === user.id || list.isPublic || follow || isStaff(user.role) || (await isMaintainer(prisma, id, user.id));
   if (!mayRead) return c.json({ message: 'Not allowed' }, 403);
 
   const wanted = Number(c.req.query('version'));
@@ -442,6 +446,48 @@ app.get('/:id/export', async (c) => {
       'Content-Disposition': `attachment; filename="${safeName}.json"`,
     },
   });
+});
+
+
+/* POST /:id/grammar upload/replace grammar exercises (standalone JSON).
+ * Base-form word refs are resolved to real WordItem ids here. */
+app.post('/:id/grammar', async (c) => {
+  const prisma = getPrisma(c.env);
+  const userId = c.get('user').id;
+  const id = Number(c.req.param('id'));
+  const list = await prisma.wordList.findUnique({ where: { id }, select: { ownerId: true, isSystem: true } });
+  if (!list) return c.json({ message: 'Not found' }, 404);
+  const staff = isStaff(c.get('user').role);
+  const maintainer = await isMaintainer(prisma, id, userId);
+  if (list.isSystem ? !staff : (list.ownerId !== userId && !maintainer && !staff)) {
+    return c.json({ message: 'Not allowed' }, 403);
+  }
+
+  let grammar;
+  try { grammar = normaliseGrammarFile(await c.req.json().catch(() => null)); }
+  catch (e: any) { return c.json({ message: e.message ?? 'Invalid grammar file' }, 422); }
+
+  const latest = await latestVersion(prisma, id);
+  const pairs = latest ? await versionPairs(prisma, latest.id) : [];
+  const idByForm = new Map<string, number>();
+  for (const pair of pairs) {
+    for (const alternative of pair.target.split('/')) {
+      idByForm.set(alternative.trim().toLowerCase(), pair.id);
+    }
+  }
+
+  const rows = grammar.map((g) => ({
+    text: g.text,
+    answers: g.answers,
+    wordItemIds: g.words
+      .map((form) => idByForm.get(form.toLowerCase()))
+      .filter((wordItemId): wordItemId is number => typeof wordItemId === 'number'),
+  }));
+  await replaceGrammarItems(prisma, id, rows);
+
+  const unresolved = grammar.reduce(
+    (count, g, i) => count + (g.words.length - rows[i].wordItemIds.length), 0);
+  return c.json({ count: rows.length, unresolvedWordRefs: unresolved });
 });
 
 export default app;

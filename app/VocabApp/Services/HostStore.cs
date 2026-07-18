@@ -35,6 +35,10 @@ namespace VocabApp.Services
             return defaults;
         }
 
+        /// <summary>Favorites first, then by name.</summary>
+        public static List<KnownHost> SortHosts(List<KnownHost> hosts)
+            => hosts.OrderByDescending(host => host.IsFavorite).ThenBy(host => host.Name).ToList();
+
         public static void SaveHosts(List<KnownHost> hosts)
         {
             Preferences.Default.Set(HostsPreferenceKey, JsonSerializer.Serialize(hosts, SerializerOptions));

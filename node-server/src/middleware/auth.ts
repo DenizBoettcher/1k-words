@@ -43,7 +43,7 @@ export const authenticateJWT: RequestHandler = async (req, res, next) => {
     select: { id: true, email: true, username: true, role: true },
   });
   if (!user) {
-    res.status(401).json({ message: 'Account no longer exists  please sign in again' });
+    res.status(401).json({ message: 'Account no longer exists please sign in again' });
     return;
   }
 

@@ -15,6 +15,9 @@
 
 export interface LevelSummary {
   level: number; // 0..100, mastery-based
+  xpLevel: number; // XP-based level for the progress bar
+  xpIntoLevel: number; // XP gathered inside the current level
+  xpForNext: number; // XP needed to finish the current level
   masteredWords: number;
   encounteredWords: number; // words reviewed at least once
   totalWords: number;
@@ -55,8 +58,12 @@ export function summarize(
     nextLevelAt = Math.ceil(((level + 1) / 100) * totalWords);
   }
 
+  const xpInfo = levelFromXp(xp);
   return {
     level,
+    xpLevel: xpInfo.level,
+    xpIntoLevel: xpInfo.intoLevel,
+    xpForNext: xpInfo.forNext,
     masteredWords,
     encounteredWords,
     totalWords,
@@ -64,4 +71,57 @@ export function summarize(
     xp,
     nextLevelAt,
   };
+}
+
+/* ---------------- XP levels (progress bar) ----------------
+ * The bar levels on XP, not mastery. Rising cost per level:
+ * total XP needed for level L = 100 * L^1.6  → L1=100, L5≈1320,
+ * L10≈4000, L25≈17k, L50≈52k, L100≈250k. Mastery stays a separate %.
+ */
+export function totalXpForLevel(level: number): number {
+  return Math.round(100 * Math.pow(level, 1.6));
+}
+
+export function levelFromXp(xp: number): { level: number; intoLevel: number; forNext: number } {
+  let level = 0;
+  while (totalXpForLevel(level + 1) <= xp) level += 1;
+  const floor = totalXpForLevel(level);
+  const ceil = totalXpForLevel(level + 1);
+  return { level, intoLevel: xp - floor, forNext: ceil - floor };
+}
+
+/* ---------------- proportional XP per review ----------------
+ * - First-ever encounter of a word pays the most base XP.
+ * - A comeback (correct after recent misses) pays a bonus that grows with
+ *   how many misses it overcame fixing a hard word beats grinding an easy
+ *   one.
+ * - Repeated correct answers pay less and less (diminishing streak).
+ * - Getting a well-known/mastered word WRONG costs XP.
+ */
+export function computeXpGain(
+  previous: { reviews: number; recent: { ok: boolean }[]; intervalDays: number },
+  correct: boolean,
+  wasMastered: boolean,
+): number {
+  const recent = previous.recent ?? [];
+  let trailing = 0; // how many same-outcome answers directly before this one
+  for (let i = recent.length - 1; i >= 0; i--) {
+    if (recent[i].ok === !correct) trailing += 1;
+    else break;
+  }
+
+  if (correct) {
+    if (previous.reviews === 0) return 25;             // first time ever seeing it
+    if (trailing > 0) return 12 + Math.min(trailing * 8, 40); // comeback: more misses fixed = more XP
+    let okStreak = 0;
+    for (let i = recent.length - 1; i >= 0; i--) { if (recent[i].ok) okStreak += 1; else break; }
+    return Math.max(3, Math.round(10 / (1 + okStreak * 0.35))); // 10, 7, 6, 5, 4, 3…
+  }
+
+  // Wrong: small consolation, but forgetting known words costs.
+  if (wasMastered) return -50;
+  let okStreak = 0;
+  for (let i = recent.length - 1; i >= 0; i--) { if (recent[i].ok) okStreak += 1; else break; }
+  if (okStreak >= 3 || previous.intervalDays >= 3) return -Math.min(25, 5 + okStreak * 4);
+  return 2;
 }

@@ -39,7 +39,7 @@ app.get('/users', async (c) => {
   );
 });
 
-/* Promote / demote a user. Cannot demote yourself to avoid lockout. */
+/* Set a user's role (USER | MAINTAINER | ADMIN). Cannot demote yourself to avoid lockout. */
 app.post('/users/:id/role', async (c) => {
   const prisma = getPrisma(c.env);
   const self = c.get('user');
@@ -47,7 +47,11 @@ app.post('/users/:id/role', async (c) => {
   if (Number.isNaN(id)) return c.json({ message: 'Bad id' }, 400);
 
   const body = (await c.req.json().catch(() => ({}))) as { role?: string };
-  const role = body.role === ROLES.admin ? ROLES.admin : ROLES.user;
+  const validRoles: string[] = Object.values(ROLES);
+  if (!body.role || !validRoles.includes(body.role)) {
+    return c.json({ message: `Role must be one of: ${validRoles.join(', ')}` }, 400);
+  }
+  const role = body.role;
 
   if (id === self.id && role !== ROLES.admin) {
     return c.json({ message: 'You cannot demote yourself' }, 409);

@@ -20,12 +20,19 @@ export const getRandomIndex = (words: WordEntry[], currentIndex: number): number
 
 /** Weight recently-missed words higher (mirrors the server-side scheduler).
  *  Never returns `excludeIndex`, so the same card can't repeat back-to-back. */
-export function getWeightedRandomIndex(words: WordEntry[], excludeIndex = -1): number {
+export function getWeightedRandomIndex(
+  words: WordEntry[],
+  excludeIndex = -1,
+  allowedIndices?: number[],
+): number {
   if (words.length === 0) return -1;
+  const allowed = allowedIndices ? new Set(allowedIndices) : null;
+  if (allowed && allowed.size === 0) return -1;
   if (words.length === 1) return 0;
 
   const weights = words.map((w, i) => {
-    if (i === excludeIndex) return 0; // no immediate repeats
+    if (allowed && !allowed.has(i)) return 0; // outside the eligible pool
+    if (i === excludeIndex && (!allowed || allowed.size > 1)) return 0; // no immediate repeats
     const learn = w.history.learn ?? [];
     if (learn.length === 0) return 4; // unseen → high priority
     const recent = learn.slice(-5);
@@ -35,7 +42,10 @@ export function getWeightedRandomIndex(words: WordEntry[], excludeIndex = -1): n
   });
 
   const total = weights.reduce((a, b) => a + b, 0);
-  if (total <= 0) return excludeIndex === 0 && words.length > 1 ? 1 : 0;
+  if (total <= 0) {
+    if (allowed) return allowedIndices![0];
+    return excludeIndex === 0 && words.length > 1 ? 1 : 0;
+  }
   let r = Math.random() * total;
   for (let i = 0; i < weights.length; i++) {
     r -= weights[i];

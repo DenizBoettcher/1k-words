@@ -33,7 +33,11 @@ router.post(
     const id = Number(req.params.id);
     if (Number.isNaN(id)) { res.status(400).json({ message: 'Bad id' }); return; }
 
-    const role = req.body?.role === ROLES.admin ? ROLES.admin : ROLES.user;
+    const validRoles: string[] = Object.values(ROLES);
+    if (!req.body?.role || !validRoles.includes(req.body.role)) {
+      res.status(400).json({ message: `Role must be one of: ${validRoles.join(', ')}` }); return;
+    }
+    const role = req.body.role as string;
     if (id === self.id && role !== ROLES.admin) {
       res.status(409).json({ message: 'You cannot demote yourself' }); return;
     }

@@ -8,6 +8,7 @@ namespace VocabApp
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(HostSelectionPage), typeof(HostSelectionPage));
+            Routing.RegisterRoute(nameof(ReminderPage), typeof(ReminderPage));
         }
     }
 }

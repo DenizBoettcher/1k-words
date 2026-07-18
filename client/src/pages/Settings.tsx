@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { Stack, Title, Paper, Select, Switch, NumberInput, Text } from '@mantine/core';
 import { useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
 import AppLayout from '../components/AppLayout';
+import { getTtsEngine, setTtsEngine, type TtsEngine } from '../utils/speech';
 import { useSettings } from '../utils/settingUtils';
 import { getStudyableLists } from '../utils/listsApi';
 import { StudyableList } from '../data/List';
 
 export default function SettingsPage() {
+  const [ttsEngine, setTtsEngineState] = useState<TtsEngine>(getTtsEngine());
   const { settings, setSettings } = useSettings();
   const { setColorScheme } = useMantineColorScheme();
   const scheme = useComputedColorScheme('dark');
@@ -59,12 +61,30 @@ export default function SettingsPage() {
             checked={settings.foldSpecialLetters}
             onChange={(e) => setSettings({ foldSpecialLetters: e.currentTarget.checked })}
           />
+          <Switch
+            mt="md"
+            label="Speak words aloud"
+            description="Reads cards and prompts out loud using your device's text-to-speech voices."
+            checked={settings.speakWords}
+            onChange={(e) => setSettings({ speakWords: e.currentTarget.checked })}
+          />
+          <Select
+            mt="md"
+            label="Voice engine (this device)"
+            description="Neural downloads a ~60 MB voice per language once, then speaks offline with far better quality (recommended for Turkish)."
+            data={[
+              { value: 'system', label: 'System voices (instant)' },
+              { value: 'neural', label: 'Neural voices (Piper, downloaded)' },
+            ]}
+            value={ttsEngine}
+            onChange={(v) => { if (v) { setTtsEngineState(v as TtsEngine); setTtsEngine(v as TtsEngine); } }}
+          />
         </Paper>
 
         <Paper withBorder radius="md" p="md">
           <NumberInput
-            label="Words per study session"
-            description="How many cards you get each round"
+            label="Words per day"
+            description="Your DAILY word set size drawn once per day, same words all day"
             min={5} max={200} clampBehavior="blur"
             value={settings.wordsPerSession}
             onChange={(v) => typeof v === 'number' && setSettings({ wordsPerSession: v })}

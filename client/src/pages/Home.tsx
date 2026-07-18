@@ -9,13 +9,15 @@ import { WordEntry } from '../data/WordEntry';
 import { LevelSummary, EMPTY_SUMMARY } from '../data/LevelSummary';
 import VocabularyMode from '../components/VocabularyMode';
 import LearnMode from '../components/LearnMode';
+import SpeakMode from '../components/SpeakMode';
+import GrammarMode from '../components/GrammarMode';
 import XpBar from '../components/XpBar';
 import { getStudyBatch, getSummary, ReviewResult } from '../utils/studyApi';
 import { useSettings, ensureSettingsLoaded } from '../utils/settingUtils';
 import { getStudyableLists } from '../utils/listsApi';
 import { StudyableList } from '../data/List';
 
-type Mode = 'vocabulary' | 'learn';
+type Mode = 'vocabulary' | 'learn' | 'speak' | 'grammar';
 
 export default function Home() {
   const { settings } = useSettings();
@@ -64,7 +66,7 @@ export default function Home() {
 
   useEffect(() => { if (activeList) loadBatch(activeList.id); }, [activeList, loadBatch]);
 
-  const onReviewed = (r: ReviewResult, wordId: number, correct: boolean) => {
+  const onReviewed = (r: ReviewResult, wordId: number, correct: boolean, mode: 'flip' | 'write') => {
     setSummary(r.summary);
     // Keep the in-session weighting honest: record the result locally so a
     // just-answered word is immediately re-weighted (not only after the next
@@ -76,7 +78,9 @@ export default function Home() {
               ...w,
               history: {
                 counter: w.history.counter + 1,
-                learn: [...(w.history.learn ?? []), correct].slice(-8),
+                flips: w.history.flips + (mode === 'flip' ? 1 : 0),
+                writes: w.history.writes + (mode === 'write' ? 1 : 0),
+                learn: [...(w.history.learn ?? []), correct].slice(-20),
               },
             }
           : w,
@@ -117,28 +121,43 @@ export default function Home() {
             value={mode}
             onChange={(v) => setMode(v as Mode)}
             data={[
-              { value: 'vocabulary', label: 'Vocabulary' },
-              { value: 'learn', label: 'Learn' },
+              { value: 'vocabulary', label: 'Cards' },
+              { value: 'learn', label: 'Write' },
+              { value: 'speak', label: 'Speak' },
+              { value: 'grammar', label: 'Grammar' },
             ]}
           />
 
           {loading ? (
             <Center mih={200}><Loader color="brand" /></Center>
           ) : words.length === 0 ? (
-            <Text c="dimmed" mt="xl">No words due right now  nicely done. Try another list.</Text>
+            <Text c="dimmed" mt="xl">No words due right now nicely done. Try another list.</Text>
           ) : mode === 'vocabulary' ? (
             <VocabularyMode
-              words={words} index={index.vocabulary}
+              words={words} listId={activeList?.id ?? 0}
+              langSource={activeList?.sourceLang ?? 'en'}
+              langTarget={activeList?.targetLang ?? 'en'}
+              index={index.vocabulary}
               setIndex={(i) => setIndex('vocabulary', i)} onReviewed={onReviewed}
             />
-          ) : (
+          ) : mode === 'learn' ? (
             <LearnMode
-              words={words} index={index.learn}
+              words={words} listId={activeList?.id ?? 0} index={index.learn}
               setIndex={(i) => setIndex('learn', i)}
               sourceLang={activeList?.sourceLang ?? 'src'}
               targetLang={activeList?.targetLang ?? 'tgt'}
               onReviewed={onReviewed}
             />
+          ) : mode === 'speak' ? (
+            <SpeakMode
+              words={words} listId={activeList?.id ?? 0}
+              langTarget={activeList?.targetLang ?? 'en'}
+              index={index.learn}
+              setIndex={(i) => setIndex('learn', i)}
+              onReviewed={onReviewed}
+            />
+          ) : (
+            <GrammarMode listId={activeList?.id ?? 0} onReviewed={onReviewed} />
           )}
         </Stack>
       )}

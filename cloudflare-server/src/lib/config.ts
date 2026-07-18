@@ -11,8 +11,13 @@ export const LIMITS = {
 
 export const ROLES = {
   user: 'USER',
+  maintainer: 'MAINTAINER',
   admin: 'ADMIN',
 } as const;
+
+/** Content-privileged roles: no upload limits, may edit system lists. */
+export const STAFF_ROLES: readonly string[] = [ROLES.maintainer, ROLES.admin];
+export const isStaffRole = (role: string) => STAFF_ROLES.includes(role);
 
 export type Role = (typeof ROLES)[keyof typeof ROLES];
 

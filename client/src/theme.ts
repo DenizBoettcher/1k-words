@@ -14,7 +14,7 @@ const brand: MantineColorsTuple = [
   '#301e99',
 ];
 
-// VS Code-style dark greys  muted, low-contrast, easy on the eyes.
+// VS Code-style dark greys muted, low-contrast, easy on the eyes.
 // Index mapping (Mantine): 0 = text … 7 = body background.
 const dark: MantineColorsTuple = [
   '#d4d4d4', // 0  primary text (VS editor foreground)

@@ -69,7 +69,7 @@ export default function ListEditor({ listId, sourceLang, targetLang, opened, onC
   };
 
   return (
-    <Modal opened={opened} onClose={onClose} title="Edit list  saves a new version" size="lg">
+    <Modal opened={opened} onClose={onClose} title="Edit list saves a new version" size="lg">
       {loading ? (
         <Center mih={200}><Loader color="brand" /></Center>
       ) : (
