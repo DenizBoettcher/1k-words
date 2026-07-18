@@ -9,7 +9,7 @@ import adminRoutes from './routes/admin';
 /**
  * Single Worker that serves BOTH the JSON API (under /api/*) and the built
  * React SPA (everything else, via the ASSETS binding). Because the app and API
- * share an origin there is no CORS and no dashboard env-var wiring one
+ * share an origin there is no CORS and no dashboard env-var wiring — one
  * `wrangler deploy` ships the whole thing.
  */
 const app = new Hono<AppEnv>();
@@ -25,13 +25,18 @@ api.route('/admin', adminRoutes);
 api.notFound((c) => c.json({ message: 'Unknown API route' }, 404));
 api.onError((err, c) => {
   console.error(err);
+  // With DEBUG_ERRORS=1 (e.g. in .dev.vars) the real error is returned to the
+  // client — for local debugging against the remote DB. Never set it in prod.
+  if ((c.env as any).DEBUG_ERRORS === '1') {
+    return c.json({ message: err.message, stack: err.stack, name: err.name }, 500);
+  }
   return c.json({ message: 'Server error' }, 500);
 });
 
 app.route('/api', api);
 
 /* ---------- Static SPA (client build) with history fallback ---------- */
-// NOTE: do NOT add COOP/COEP (cross-origin isolation) headers here see the
+// NOTE: do NOT add COOP/COEP (cross-origin isolation) headers here — see the
 // matching note in client/vite.config.ts (onnxruntime pthread workers break).
 app.get('*', async (c) => {
   const res = await c.env.ASSETS.fetch(c.req.raw);

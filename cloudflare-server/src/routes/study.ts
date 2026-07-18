@@ -10,15 +10,11 @@ import { versionPairs, latestVersion } from '../lib/versioning';
 const app = new Hono<AppEnv>();
 app.use('*', authenticateJWT);
 
+/** Parse a stored Progress.state via normalizeState — the ONE upgrade path for
+ *  every stored shape, incl. legacy states (which e.g. lack `streakDays`;
+ *  hand-rolling the mapping here once caused a 500 on exactly those rows). */
 function stateFrom(row: { state: unknown } | null | undefined): ReviewState {
-  if (!row) return initialState();
-  const s = row.state as Partial<ReviewState> | null;
-  if (!s || typeof s.ease !== 'number') return initialState();
-  return {
-    repetitions: s.repetitions ?? 0, ease: s.ease, intervalDays: s.intervalDays ?? 0,
-    dueAt: s.dueAt ?? Date.now(), lapses: s.lapses ?? 0, reviews: s.reviews ?? 0,
-    correct: s.correct ?? 0, recent: Array.isArray(s.recent) ? s.recent : [],
-  };
+  return normalizeState(row?.state ?? null);
 }
 
 async function activeVersionId(prisma: any, userId: number, listId: number): Promise<number | null> {
@@ -52,7 +48,7 @@ async function activeVersionIds(prisma: any, userId: number): Promise<number[]> 
 /**
  * All actively studied lists in ONE place (3 queries). Returns
  * listId -> { versionId, itemCount }. Summaries below filter progress
- * RELATIONALLY (versionItems.some) instead of `wordItemId: { in: [...] }`  
+ * RELATIONALLY (versionItems.some) instead of `wordItemId: { in: [...] }` —
  * D1 caps bound parameters at ~100/query, so a 3000-word IN list explodes.
  */
 async function activeVersionMap(prisma: any, userId: number): Promise<Map<number, { versionId: number; itemCount: number }>> {
@@ -80,7 +76,7 @@ async function activeVersionMap(prisma: any, userId: number): Promise<Map<number
 /**
  * Mastered/encountered counts of one version, without giant IN lists.
  * SEQUENTIAL on purpose: the Prisma D1 adapter can hang on concurrent
- * queries (Promise.all) D1 has a single connection anyway, so running
+ * queries (Promise.all) — D1 has a single connection anyway, so running
  * queries one after another costs nothing and never deadlocks.
  */
 async function versionProgressCounts(prisma: any, userId: number, versionId: number): Promise<[number, number]> {
@@ -174,7 +170,7 @@ app.get('/summary', async (c) => {
   return c.json({ ...library, account });
 });
 
-/* GET /api/study/activity per-day review counts (last ~180 days) */
+/* GET /api/study/activity — per-day review counts (last ~180 days) */
 app.get('/activity', async (c) => {
   const prisma = getPrisma(c.env);
   const rows = await prisma.reviewLog.findMany({
@@ -183,7 +179,7 @@ app.get('/activity', async (c) => {
   return c.json({ days: rows.map((r: any) => ({ day: r.day, count: r.count })) });
 });
 
-/* GET /api/study/:listId/grammar cloze exercises + learned-status of refs */
+/* GET /api/study/:listId/grammar — cloze exercises + learned-status of refs */
 app.get('/:listId/grammar', async (c) => {
   const prisma = getPrisma(c.env);
   const userId = c.get('user').id;
@@ -227,7 +223,7 @@ app.get('/:listId/grammar', async (c) => {
 });
 
 /**
- * GET /api/study/:listId?date=YYYY-MM-DD the DAILY SESSION.
+ * GET /api/study/:listId?date=YYYY-MM-DD — the DAILY SESSION.
  * First call of a (local) day draws and STORES the day's words; every further
  * call returns the same set. Half needs-work (overdue, then shaky), half new;
  * empty pools donate their slots. Each word carries a `reason`.
@@ -387,7 +383,7 @@ app.post('/review', async (c) => {
       update: {
         state: after as any,
         // Mastery is live: gained on first mastering, lost again below the
-        // threshold the level reflects what the user currently knows.
+        // threshold — the level reflects what the user currently knows.
         ...(firstTimeMastered ? { masteredAt: new Date() } : {}),
         ...(lostMastery ? { masteredAt: null } : {}),
       },
