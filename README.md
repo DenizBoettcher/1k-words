@@ -1,5 +1,11 @@
 # 1K Words
 
+[![Live app](https://img.shields.io/badge/%F0%9F%9A%80_live_app-open-brightgreen?style=for-the-badge)](https://1k-words.dbdev.workers.dev)  
+[![Dev preview](https://img.shields.io/badge/%F0%9F%A7%AA_dev_preview-open-orange?style=for-the-badge)](https://dev-1k-words.dbdev.workers.dev)  
+
+> **Live:** deployed from `main` on every push.  
+> **Preview:** deployed from `dev` on every push.  
+
 A vocabulary trainer with spaced repetition, XP/levels, and Git-style shared
 word lists: versioned lists, follows, forks, maintainers, and official system
 sets. One React client, two interchangeable backends a **Cloudflare Worker**
