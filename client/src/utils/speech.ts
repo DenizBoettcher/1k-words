@@ -1,27 +1,27 @@
 /**
  * Text-to-speech with two engines:
- *  - 'system': the browser/OS voices (Web Speech API) instant, quality varies.
+ *  - 'system': the browser/OS voices (Web Speech API) — instant, quality varies.
  *  - 'neural': Piper neural voices via the `piper-tts-web` package (files self-hosted
- *    via vite-plugin-static-copy, WASM/WebGPU) downloads a voice per language once,
+ *    via vite-plugin-static-copy, WASM/WebGPU) — downloads a voice per language once,
  *    caches it, then speaks offline with far better quality (Turkish!).
  * Engine choice persists per device in localStorage; neural falls back to
  * system on any error (unavailable model, first-load failure, etc.).
  *
  * Performance design (words repeat constantly in a vocab trainer):
  *  1. Generated audio is cached twice: an in-memory LRU of object URLs for
- *     instant replay, and Cache Storage so clips survive reloads each word
+ *     instant replay, and Cache Storage so clips survive reloads — each word
  *     is synthesized ONCE ever per device.
  *  2. `prefetchSpeech()` lets the study modes synthesize the whole daily set
  *     in the background; by the time a card appears its audio is usually ready.
  *  3. All generations run serialized (the engine is not reentrant); foreground
  *     speak() requests pause the prefetch loop so they are never queued behind it.
  *  4. Every generate is wrapped in a timeout: a wedged engine can never block
- *     the chain forever it throws, the engine is recreated, system voice
+ *     the chain forever — it throws, the engine is recreated, system voice
  *     takes over for that utterance.
  *
  * NOTE: this package's worker engines (PiperWebWorkerEngine / OnnxWebGPUWorker)
  * are broken at runtime ("Unknown type undefined" loop, promise never settles)
- * do NOT use them. The main-thread PiperWebEngine is the known-good path and
+ * — do NOT use them. The main-thread PiperWebEngine is the known-good path and
  * gets multithreaded WASM via the COOP/COEP headers anyway.
  *
  * Package API notes (verified against the official piper-tts-web example):
@@ -70,7 +70,7 @@ function systemSpeak(text: string, lang: string): void {
 }
 
 /* ---------- neural engine (Piper) ---------- */
-// Best default Piper voice per language prefix. Extend as needed the full
+// Best default Piper voice per language prefix. Extend as needed — the full
 // catalog is visible in the admin panel ("Piper voices" section).
 const NEURAL_VOICES: Record<string, string> = {
   tr: 'tr_TR-dfki-medium', // fahrettin is not in the provider's catalog snapshot
@@ -104,20 +104,23 @@ let voiceCatalog: Record<string, any> | null = null;
 let currentAudio: HTMLAudioElement | null = null;
 let currentAudioUrl: string | null = null;
 
-/** Version-pinned CDN URL for the piper-tts-web module.
- *  The package inlines its WASM as base64 inside the JS, so bundling it (even
- *  as a lazy chunk via `import('piper-tts-web')`) produces a ~43 MiB asset 
- *  Cloudflare Workers rejects assets over 25 MiB and the deploy fails.
- *  Loading it from jsdelivr at runtime keeps it out of the build entirely.
- *  (Voice models come from HuggingFace anyway, so this adds no new
- *  offline/first-load constraint.) If this URL ever 404s or isn't served as
- *  ESM, try the `/+esm` variant: .../piper-tts-web@1.1.2/+esm */
-const PIPER_CDN_URL = 'https://cdn.jsdelivr.net/npm/piper-tts-web@1.1.2/dist/piper-tts-web.js';
+/** Where the piper-tts-web module is loaded from at RUNTIME.
+ *  Why not a normal import: the package inlines its WASM as base64 inside one
+ *  ~43 MiB JS file — bundling it (even as a lazy chunk) blows Cloudflare's
+ *  25 MiB per-asset limit, and CDNs like jsdelivr 403 files over 20 MiB.
+ *  So the file lives in an R2 bucket and is served by our Worker under
+ *  /vendor/... on the SAME origin (see cloudflare-server/src/index.ts and the
+ *  R2 setup notes in wrangler.jsonc.example).
+ *  In Vite dev there is no Worker serving /vendor, so we import the file
+ *  straight from node_modules via the /@fs dev-server escape hatch. */
+const PIPER_VENDOR_URL = '/vendor/piper-tts-web-1.1.2.js';
 
 async function getPiperModule(): Promise<any> {
   if (!piperModule) {
     // @vite-ignore keeps Rollup/Vite from resolving and bundling this import.
-    piperModule = await import(/* @vite-ignore */ PIPER_CDN_URL);
+    piperModule = import.meta.env.DEV
+      ? await import(/* @vite-ignore */ '/node_modules/piper-tts-web/dist/piper-tts-web.js')
+      : await import(/* @vite-ignore */ PIPER_VENDOR_URL);
   }
   return piperModule;
 }
@@ -182,7 +185,7 @@ function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise
   });
 }
 
-/** First generate per voice includes the model download allow much longer. */
+/** First generate per voice includes the model download — allow much longer. */
 const readyVoices = new Set<string>();
 const FIRST_GENERATE_TIMEOUT_MS = 180_000;
 const GENERATE_TIMEOUT_MS = 25_000;
@@ -247,7 +250,7 @@ async function writeStorageCache(voiceId: string, text: string, blob: Blob): Pro
     await cache.put(storageKey(voiceId, text), new Response(blob, {
       headers: { 'Content-Type': 'audio/wav' },
     }));
-  } catch { /* private mode / quota memory cache still works */ }
+  } catch { /* private mode / quota — memory cache still works */ }
 }
 
 /** True if a clip is already available without synthesis (memory or storage). */
@@ -293,7 +296,7 @@ async function generateWithEngine(text: string, voiceId: string): Promise<Blob> 
   try {
     return await attempt();
   } catch (error) {
-    // A wedged/broken engine instance must not poison later calls rebuild
+    // A wedged/broken engine instance must not poison later calls — rebuild
     // once and retry; if that fails too, the caller falls back to system voice.
     console.warn('piper generate failed, recreating engine and retrying once', error);
     resetEngine();
@@ -319,25 +322,25 @@ async function getAudioUrl(text: string, voiceId: string, _foreground: boolean):
 async function neuralSpeak(text: string, lang: string): Promise<boolean> {
   const voiceId = NEURAL_VOICES[lang.toLowerCase().slice(0, 2)];
   if (!voiceId) return false;
-  // Raise the priority flag BEFORE any await otherwise the prefetch pump can
+  // Raise the priority flag BEFORE any await — otherwise the prefetch pump can
   // grab the generation chain (incl. a cold-start model download) first and
   // the user's word queues behind it.
   foregroundWaiting += 1;
   try {
     const catalog = await getVoiceCatalog();
     if (!catalog[voiceId]) {
-      console.warn(`piper: voice "${voiceId}" not in catalog falling back to system`);
+      console.warn(`piper: voice "${voiceId}" not in catalog — falling back to system`);
       return false;
     }
 
     // Cold start (engine/model not warmed for this voice yet) and nothing
     // cached: don't sit in silence for seconds. Speak the system voice NOW if
     // the OS has one for this language, and warm the neural clip in the
-    // background the next occurrence plays neural instantly.
+    // background — the next occurrence plays neural instantly.
     if (!readyVoices.has(voiceId) && !(await isCached(voiceId, text))) {
       enqueuePrefetchItem(text, voiceId, true);
       if (hasSystemVoiceFor(lang)) return false; // caller plays system voice
-      // No usable system voice (e.g. Turkish on many devices) waiting for
+      // No usable system voice (e.g. Turkish on many devices) — waiting for
       // neural is still the better experience than a mangled default voice.
     }
 
@@ -345,7 +348,7 @@ async function neuralSpeak(text: string, lang: string): Promise<boolean> {
     currentAudio?.pause();
     currentAudio = new Audio(url);
     currentAudioUrl = url;
-    // Browsers block autoplay before the first user interaction the clip is
+    // Browsers block autoplay before the first user interaction — the clip is
     // generated and cached anyway, so the next occurrence plays fine.
     currentAudio.play().catch((error) =>
       console.warn('audio playback blocked (autoplay policy?)', error?.name ?? error));
@@ -379,12 +382,12 @@ async function pumpPrefetchQueue(): Promise<void> {
   prefetchRunning = true;
   try {
     // Grace delay: a card mounting right now auto-speaks within a frame or
-    // two let that foreground request claim the engine first instead of
+    // two — let that foreground request claim the engine first instead of
     // starting a cold-start generation it would have to wait behind.
     await sleep(600);
     while (prefetchQueue.length > 0) {
       if (getTtsEngine() !== 'neural') { prefetchQueue.length = 0; break; }
-      // Foreground speak() requests take priority pause instead of competing.
+      // Foreground speak() requests take priority — pause instead of competing.
       if (foregroundWaiting > 0) { await sleep(120); continue; }
       const item = prefetchQueue.shift()!;
       queuedKeys.delete(memoryKey(item.voiceId, item.text));
@@ -405,7 +408,7 @@ async function pumpPrefetchQueue(): Promise<void> {
 
 /**
  * Warm the audio cache for a set of texts in one language, in the background.
- * No-op unless the neural engine is active. Safe to call repeatedly items
+ * No-op unless the neural engine is active. Safe to call repeatedly — items
  * already cached or queued are skipped. Study modes call this with the daily
  * set so cards speak instantly by the time they appear.
  */

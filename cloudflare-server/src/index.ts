@@ -35,6 +35,23 @@ api.onError((err, c) => {
 
 app.route('/api', api);
 
+/* ---------- Vendor files from R2 (too large for static assets) ---------- */
+// piper-tts-web's dist JS inlines its WASM as base64 (~43 MiB) — over the
+// 25 MiB Workers asset limit, and jsdelivr 403s files over 20 MiB. Serving it
+// from R2 on our own origin needs no CORS and keeps the build small.
+app.get('/vendor/:file', async (c) => {
+  const object = await (c.env as any).VENDOR?.get(c.req.param('file'));
+  if (!object) return c.json({ message: 'Not found' }, 404);
+  return new Response(object.body, {
+    headers: {
+      'Content-Type': 'text/javascript; charset=utf-8',
+      // Immutable: the filename is version-pinned, a new version = new name.
+      'Cache-Control': 'public, max-age=31536000, immutable',
+      'ETag': object.httpEtag,
+    },
+  });
+});
+
 /* ---------- Static SPA (client build) with history fallback ---------- */
 // NOTE: do NOT add COOP/COEP (cross-origin isolation) headers here — see the
 // matching note in client/vite.config.ts (onnxruntime pthread workers break).

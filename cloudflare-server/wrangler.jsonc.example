@@ -13,6 +13,18 @@
 
   "observability": { "enabled": true },
 
+  // Large vendor files (piper-tts-web is a 43 MiB single JS file — over the
+  // 25 MiB static-asset limit) are served from R2 instead. One-time setup:
+  //   npx wrangler r2 bucket create 1k-words-vendor
+  //   npx wrangler r2 object put 1k-words-vendor/piper-tts-web-1.1.2.js \
+  //     --file ../client/node_modules/piper-tts-web/dist/piper-tts-web.js --remote
+  "r2_buckets": [
+    {
+      "binding": "VENDOR",
+      "bucket_name": "1k-words-vendor"
+    }
+  ],
+
   "d1_databases": [
     {
       "binding": "DB",

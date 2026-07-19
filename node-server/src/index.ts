@@ -28,6 +28,28 @@ app.use('/api/admin', adminRouter);
 // Unknown API route -> JSON 404 (before the SPA fallback below).
 app.use('/api', (_req, res) => { res.status(404).json({ message: 'Unknown API route' }); });
 
+/* ---------- Vendor files (same URL contract as the Cloudflare Worker) ---------- */
+// The client loads piper-tts-web at runtime from /vendor/... (the ~43 MiB file
+// cannot be bundled — see client/src/utils/speech.ts). The Worker serves it
+// from R2; here Express has no size limit, so we serve it straight from the
+// client's node_modules. Set PIPER_VENDOR_FILE to override the location.
+const piperVendorFile =
+  process.env.PIPER_VENDOR_FILE ??
+  path.resolve(process.cwd(), '..', 'client', 'node_modules', 'piper-tts-web', 'dist', 'piper-tts-web.js');
+
+app.get('/vendor/piper-tts-web-1.1.2.js', (_req: Request, res: Response) => {
+  if (!fs.existsSync(piperVendorFile)) {
+    res.status(404).json({
+      message: `piper-tts-web not found at ${piperVendorFile} — run npm install in client/ or set PIPER_VENDOR_FILE`,
+    });
+    return;
+  }
+  res.type('text/javascript; charset=utf-8');
+  // Immutable: the URL is version-pinned; a new version gets a new filename.
+  res.set('Cache-Control', 'public, max-age=31536000, immutable');
+  res.sendFile(piperVendorFile);
+});
+
 /* ---------- Static client (single-origin, optional) ---------- */
 // Serve the built React app if present. Set CLIENT_DIR to override; defaults to
 // ../client/build relative to the process working directory (node-server/).
@@ -45,7 +67,7 @@ if (fs.existsSync(path.join(clientDir, 'index.html'))) {
   console.log(`Serving client from ${clientDir}`);
 } else {
   console.log(
-    `No client build at ${clientDir} running API-only ` +
+    `No client build at ${clientDir} — running API-only ` +
       `(use the Vite dev server, which proxies /api here).`,
   );
 }
